@@ -61,6 +61,7 @@
     <Compile Include="IPort.cs" />
     <Compile Include="IRole.cs" />
     <Compile Include="IModuleState.cs" />
+    <Compile Include="IModuleCondition.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

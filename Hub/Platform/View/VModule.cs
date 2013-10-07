@@ -11,8 +11,13 @@ namespace HomeOS.Hub.Platform.Views
     [AddInBase()]
     public abstract class VModule : MarshalByRefObject
     {
- 
+
         public abstract VModuleInfo GetInfo();
+        public virtual VModuleCondition GetCondition()
+        {
+            return null;
+        }
+
         public abstract void Initialize(VPlatform platform, VLogger logger, VModuleInfo info, int secret);
         public abstract void Start();
         public abstract void Stop();

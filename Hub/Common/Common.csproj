@@ -81,6 +81,7 @@
     <Compile Include="SafeServiceHost.cs" />
     <Compile Include="SafeThread.cs" />
     <Compile Include="SafeTokenHandler.cs" />
+    <Compile Include="ModuleCondition.cs" />
     <Compile Include="UserInfo.cs" />
     <Compile Include="Utils.cs" />
     <Compile Include="WebFileServer.cs" />

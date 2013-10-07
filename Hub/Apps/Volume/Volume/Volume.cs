@@ -1,5 +1,4 @@
-﻿//Kamil.Hawdziejuk@uj.edu.pl
-//02.01.2013
+﻿//02.01.2013
 
 using System;
 using System.Collections.Generic;
@@ -9,6 +8,7 @@ using System.Threading;
 using System.ServiceModel;
 using HomeOS.Hub.Common;
 using System.ServiceModel.Description;
+using HomeOS.Hub.Platform.Views;
 
 namespace HomeOS.Hub.Apps.Volume
 {
@@ -16,9 +16,10 @@ namespace HomeOS.Hub.Apps.Volume
     /// Service that changes volume on the system. WCF service uses NAudio library to control that.
     /// </summary>
     [System.AddIn.AddIn("HomeOS.Hub.Apps.Volume", Version = "1.0.0.0")]
-    public class Volume : ModuleBase
+    public class Volume : ModuleBase, ModuleCondition
     {
         ServiceHost serviceHost;
+        VolumeSvc volumeService;
 
         public override void Start()
         {           
@@ -42,7 +43,7 @@ namespace HomeOS.Hub.Apps.Volume
 
             logger.Log("Started: {0}", ToString());
 
-            VolumeSvc volumeService = new VolumeSvc(logger);
+            volumeService = new VolumeSvc(logger);
                 
             string homeId = this.GetConfSetting("HomeId");
             string homeIdPart = string.Empty;
@@ -85,6 +86,38 @@ namespace HomeOS.Hub.Apps.Volume
         public override void PortDeregistered(Platform.Views.VPort port)
         {
             //throw new NotImplementedException();
+        }
+
+        public override VModuleCondition GetCondition()
+        {
+            return this as VModuleCondition;
+        }
+
+        public double ExactValue
+        {
+            get
+            {
+                return this.volumeService.ExactValue;
+            }
+            set
+            {
+                this.volumeService.ExactValue = value;
+            }
+        }
+
+        public double InterpretedValue
+        {
+            get { return this.volumeService.ExactValue; }
+        }
+
+        public Dictionary<double, string> PossibleIntepretedValues
+        {
+            get { return this.volumeService.PossibleIntepretedValues; }
+        }
+
+        public object Clone()
+        {
+            return this.volumeService.Clone();
         }
     }
 }

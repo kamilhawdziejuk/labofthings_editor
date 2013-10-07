@@ -1,5 +1,4 @@
-﻿//Kamil.Hawdziejuk@uj.edu.pl
-//02.01.2013
+﻿//02.01.2013
 
 using System;
 using System.Collections.Generic;
@@ -8,11 +7,12 @@ using System.Text;
 using System.ServiceModel;
 using System.ServiceModel.Description;
 using HomeOS.Hub.Platform.Views;
+using HomeOS.Hub.Common;
 
 namespace HomeOS.Hub.Apps.Volume
 {
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
-    public class VolumeSvc : ISimplexContract
+    public class VolumeSvc : ISimplexContract, ModuleCondition
     {
         public static ServiceHost CreateServiceHost(ISimplexContract instance, Uri baseAddress)
         {
@@ -36,6 +36,10 @@ namespace HomeOS.Hub.Apps.Volume
         {
             this.logger = logger;
         }
+
+        double minValue;
+        double maxValue;
+
 
         public string UpdateVolume(int _change)
         {
@@ -83,7 +87,11 @@ namespace HomeOS.Hub.Apps.Volume
                 //When something happend that prevent us to iterate through the devices
             }
 
+            this.level = this.GetActualVolume();
+            this.minValue = this.GetMinVolume();
+            this.maxValue = this.GetMaxVolume();
             return total.ToString();
+
         }
 
         public float GetMaxVolume()
@@ -150,6 +158,84 @@ namespace HomeOS.Hub.Apps.Volume
             }
 
             return 0;
+        }
+
+        private double level = 0;
+
+        /// <summary>
+        /// Represents loudness
+        /// </summary>
+        public double ExactValue
+        {
+            get
+            {
+                return this.GetActualVolume();
+                return this.level;
+            }
+            set
+            {
+                this.UpdateVolume((int)value);
+            }
+        }
+
+        /// <summary>
+        /// Represents actual interpreted value of the state (one of the possible interpreted state in Home System Net)
+        /// </summary>
+        public double InterpretedValue
+        {
+            get
+            {
+                this.minValue = this.GetMinVolume();
+                this.maxValue = this.GetMaxVolume();
+                if (this.ExactValue <= minValue)
+                {
+                    return minValue;
+                }
+                else if (this.ExactValue >= maxValue)
+                {
+                    return maxValue;
+                }
+                else
+                {
+                    return 0.5 * (maxValue + minValue);
+                }
+            }
+        }
+
+        /// <summary>
+        /// All possible interpreted stated in Home System Net
+        /// </summary>
+        public Dictionary<double, string> PossibleIntepretedValues
+        {
+            get
+            {
+
+                this.minValue = this.GetMinVolume();
+                this.maxValue = this.GetMaxVolume();
+
+                double keyMin = this.minValue;
+                double keyMedium = 0.5 * (this.minValue + this.maxValue);
+                double keyMax = this.maxValue;
+
+                Dictionary<double, string> results = new Dictionary<double, string>();
+                results.Add(this.minValue, "minLoudness");
+                if (!results.ContainsKey(keyMedium))
+                {
+                    results.Add(keyMedium, "mediumLoudness");
+                }
+                if (!results.ContainsKey(keyMax))
+                {
+                    results.Add(keyMax, "maxLoudness");
+                }
+                return results;
+            }
+        }
+
+        public object Clone()
+        {
+            VolumeSvc appVolumeSvcCopy = new VolumeSvc(this.logger);
+            appVolumeSvcCopy.level = this.level;
+            return appVolumeSvcCopy;
         }
     }
 

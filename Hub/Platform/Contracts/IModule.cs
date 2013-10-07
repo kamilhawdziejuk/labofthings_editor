@@ -11,6 +11,7 @@ namespace HomeOS.Hub.Platform.Contracts
     public interface IModule : IContract
     {
         IModuleInfo GetInfo();
+        IModuleCondition GetCondition();
         void Initialize(IPlatform platform, ILogger logger, IModuleInfo moduleInfo, int secret);
         void Start();
         void Stop();

@@ -97,6 +97,11 @@ namespace HomeOS.Hub.Platform.Adapters
             return _view.GetDeviceIpAddress(deviceId);
         }
 
+        public IListContract<IModule> GetModules(bool _running)
+        {
+            return CollectionAdapters.ToIListContract<VModule, IModule>(_view.GetModules(true), ModuleAdapter.V2C, ModuleAdapter.C2V);
+        }
+
         public bool SafeToGoOnline()
         {
             return _view.SafeToGoOnline();
@@ -188,6 +193,11 @@ namespace HomeOS.Hub.Platform.Adapters
         public string GetDeviceIpAddress(string deviceId)
         {
             return _contract.GetDeviceIpAddress(deviceId);
+        }
+
+        public IList<VModule> GetModules(bool _running)
+        {
+            return CollectionAdapters.ToIList<IModule, VModule>(_contract.GetModules(_running), ModuleAdapter.C2V, ModuleAdapter.V2C);
         }
 
         public bool SafeToGoOnline()

@@ -18,6 +18,7 @@ using HomeOS.Hub.Platform.Authentication;
 using System.Xml;
 
 using System.Diagnostics;
+using HomeOS.Hub.Platform.EnvironmentMonitor;
 
 //using HomeOS.Hub.Platform.VirtualRouter.Wlan;
 
@@ -92,6 +93,8 @@ namespace HomeOS.Hub.Platform
         InfoService infoService;
 
         HeartbeatService heartbeatService;
+
+        EnvironmentMonitor.EnvironmentMonitor homeMonitor;
 
         HomeOS.Hub.Platform.Authentication.AuthenticationService authenticationService;
         System.ServiceModel.ServiceHost authenticationServiceHost; 
@@ -206,6 +209,10 @@ namespace HomeOS.Hub.Platform
 
             //rebuild the addin tokens
             this.rebuildAddInTokens();
+
+            this.homeMonitor = new EnvironmentMonitor.EnvironmentMonitor(this, logger);
+            SafeThread homeMonitorThread = new SafeThread(this.homeMonitor.Start, "HomeMonitor", logger);
+            homeMonitorThread.Start();
 
             homeStoreInfo = new HomeStoreInfo(logger);
             _consoleHandler = new PlatformConsoleCtrlHandlerDelegate(ConsoleEventHandler);
@@ -735,6 +742,19 @@ namespace HomeOS.Hub.Platform
 
             return tokens;
         }
+
+        public IList<VModule> GetModules(bool _running)
+        {
+            List<VModule> retList;
+
+            lock (this)
+            {
+                retList = System.Linq.Enumerable.ToList<VModule>(runningModules.Keys);
+            }
+
+            return retList as IList<VModule>;
+        }
+
 
         /// <summary>
         /// Issues a capability

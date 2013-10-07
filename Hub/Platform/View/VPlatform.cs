@@ -36,6 +36,13 @@ namespace HomeOS.Hub.Platform.Views
         VPortInfo GetPortInfo(string moduleFacingName, VModule module);
 
         /// <summary>
+        /// Returns the list of modules
+        /// </summary>
+        /// <param name="_running"></param>
+        /// <returns></returns>
+        IList<VModule> GetModules(bool _running);
+
+        /// <summary>
         /// Set the roles that are being exported by a port
         /// </summary>
         /// <param name="portInfo">the portinfo object of the port</param>

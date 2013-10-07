@@ -1,5 +1,4 @@
-﻿//Kamil.Hawdziejuk@uj.edu.pl
-//02.01.2013
+﻿//02.01.2013
 
 using System;
 using System.Collections.Generic;
@@ -25,7 +24,7 @@ namespace HomeOS.Hub.Apps.VolumeWp7
         /// <summary>
         /// Basic configuration, it can be changed in settins window
         /// </summary>
-        private string urlBasic = "http://192.168.0.2:51430/Hawdziejuk/Volume";
+        private string urlBasic = "http://localhost:51430/hawdziejukhome/Volume";
         private float minValue;
         private float maxValue;
         private float actualValue;

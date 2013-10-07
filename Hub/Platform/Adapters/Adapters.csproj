@@ -61,6 +61,7 @@
     <Compile Include="APort.cs" />
     <Compile Include="AModule.cs" />
     <Compile Include="ARole.cs" />
+    <Compile Include="AModuleCondition.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

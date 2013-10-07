@@ -1,5 +1,4 @@
-﻿//Kamil.Hawdziejuk@uj.edu.pl
-//02.01.2013
+﻿//02.01.2013
 
 using System;
 using System.Collections.Generic;

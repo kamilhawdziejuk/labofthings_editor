@@ -93,6 +93,11 @@ namespace HomeOS.Hub.Platform.Adapters
         {
             _view.OnlineStatusChanged(newStatus);
         }
+
+        public IModuleCondition GetCondition()
+        {
+            return ModuleConditionAdapter.V2C(_view.GetCondition());
+        }
     }
 
     [HostAdapter()]
@@ -117,6 +122,11 @@ namespace HomeOS.Hub.Platform.Adapters
         public override VModuleInfo GetInfo()
         {
             return ModuleInfoAdapter.C2V(_contract.GetInfo());
+        }
+
+        public override VModuleCondition GetCondition()
+        {
+            return ModuleConditionAdapter.C2V(_contract.GetCondition());
         }
         
         public override void Initialize(VPlatform platform, VLogger logger, VModuleInfo moduleInfo, int secret)

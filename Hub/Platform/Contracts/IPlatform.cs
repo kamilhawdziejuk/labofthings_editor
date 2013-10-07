@@ -16,6 +16,9 @@ namespace HomeOS.Hub.Platform.Contracts
         void SetRoles(IPortInfo portInfo, IListContract<IRole> roles, IModule module);
 
         IListContract<IPort> GetAllPorts();
+
+        IListContract<IModule> GetModules(bool _running);
+        
         ICapability GetCapability(IModule module, IPort targetPort, string username, string password);
         int ModuleFinished(IModule module);
         //IRole GetRole(string roleName);
