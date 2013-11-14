@@ -1,5 +1,6 @@
 ﻿<Settings>
- 
+<Param Name="HomeId" Value="hawdziejukhome"/>
+<Param Name="OrgId" Value="hawdziejukhome"/> 
   <!-- <Param Name="HomeId" Value="DefaultHomeId"/>
   <Param Name="OrgId" Value="DefaultOrgId"/>
   <Param Name="StudyId" Value="DefaultStudy"/>

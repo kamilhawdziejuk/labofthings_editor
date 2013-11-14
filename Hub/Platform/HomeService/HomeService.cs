@@ -147,7 +147,7 @@ namespace HomeOS.Hub.Platform.Gatekeeper
         private bool Forwarding(ServiceConnection connection)
         {
             Socket localService = StaticUtilities.CreateConnectedSocket(
-                "localhost",
+                "192.168.0.2",
                 HomeOS.Hub.Common.Constants.InfoServicePort);
             if (localService != null)
             {

@@ -56,7 +56,7 @@ namespace HomeOS.Hub.Scouts.SynapseWireless
             
             var client = new UdpClient(8401);
             Byte[] sendBytes = Encoding.ASCII.GetBytes("kill");
-            client.Send(sendBytes, sendBytes.Length, "localhost", queryPortNumber);
+            client.Send(sendBytes, sendBytes.Length, "192.168.0.2", queryPortNumber);
 
             //logger.Log("SynapseController killed");
 
@@ -104,7 +104,7 @@ namespace HomeOS.Hub.Scouts.SynapseWireless
                     client.Client.ReceiveTimeout = 1000;
 
                     Byte[] sendBytes = Encoding.ASCII.GetBytes("Is anybody there?");
-                    client.Send(sendBytes, sendBytes.Length, "localhost", queryPortNumber);
+                    client.Send(sendBytes, sendBytes.Length, "192.168.0.2", queryPortNumber);
                     try
                     {
                         // loop until you timeout

@@ -13,7 +13,7 @@ namespace HomeOS.Hub.Common
 
         // ..... the base address at which we host all the services
         public const int InfoServicePort = 51430;
-        public static readonly string InfoServiceAddress = "http://localhost:" + InfoServicePort;         
+        public static readonly string InfoServiceAddress = "http://192.168.0.2:" + InfoServicePort;         
 
         // ..... where to find various resources
         public static string AddInRoot = System.IO.Path.GetFullPath(PlatformBinaryDir + "\\..\\Pipeline");
