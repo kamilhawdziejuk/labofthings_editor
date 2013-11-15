@@ -28,9 +28,9 @@ namespace HomeOS.Shared
         public static readonly UInt32 HeartbeatServicePort = 5003;
 
         /// <summary>
-        /// heartbeat client service constants. This sometimes may need to be set to 127.0.0.x
+        /// Heartbeat service end point port
         /// </summary>
-        public const string HeartbeatServiceEmulationHost = "localhost"; // 
+        public static readonly UInt32 HeartbeatServiceSecurePort = 5443;
 
         /// <summary>
         /// Heartbeat service listener WCf service end point Url suffix
@@ -51,5 +51,16 @@ namespace HomeOS.Shared
         /// This is the maximum value that can be set for the heart beat interval
         /// </summary>
         public static readonly UInt32 MaxHeartbeatIntervalInMins = 15;
+
+        /// <summary>
+        /// Email service end point Https port
+        /// </summary>
+        public static readonly UInt32 EmailServiceSecurePort = 7443;
+
+        /// <summary>
+        /// Email service end point Url suffix
+        /// </summary>
+        public static string EmailServiceWcfEndPointUrlSuffix = "EmailService.svc";
+
     }
 }

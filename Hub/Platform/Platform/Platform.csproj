@@ -75,7 +75,10 @@
       <HintPath>..\SecPal\Microsoft.Secpal.Core.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Synchronization, Version=2.1.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
-    <Reference Include="Microsoft.WindowsAzure.StorageClient, Version=1.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.WindowsAzure.StorageClient, Version=1.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Program Files\Microsoft SDKs\Windows Azure\.NET SDK\v2.1\ref\Microsoft.WindowsAzure.StorageClient.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
@@ -118,6 +121,7 @@
     <ProjectReference Include="..\..\Common\Common.csproj">
       <Project>{6F879B8B-C4B1-4E8D-9BF2-C6376B05E4EC}</Project>
       <Name>Common %28Common\Common%29</Name>
+      <Private>True</Private>
     </ProjectReference>
     <ProjectReference Include="..\..\Common\DataStore\DataStore.csproj">
       <Project>{b7def861-d0e5-47ce-aeb7-2e9b6091b52f}</Project>

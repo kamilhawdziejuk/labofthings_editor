@@ -9,7 +9,7 @@ namespace HomeOS.Hub.Common
         /// The list of simple types supported by HomeOS Port operations. They are further
         /// subtyped in BaseType.
         /// </summary>
-        public enum SimpleType { error = -2, unsupported = -1, opaque = 0, integer, binary, range, jpegimage, list, text };
+        public enum SimpleType { error = -2, unsupported = -1, opaque = 0, integer, numdouble, binary, range, jpegimage, list, text };
 
         SimpleType maintype;
         Object value;
@@ -22,15 +22,13 @@ namespace HomeOS.Hub.Common
             this.name = name;
         }
 
-        public ParamType(SimpleType maint, Object value)
-        {
-            this.maintype = maint;
-            this.value = value;
-        }
+        public ParamType(SimpleType maint, Object value) : this(maint, "", value) { }
 
         public ParamType(int value) : this (SimpleType.integer, value)  { }
 
         public ParamType(bool value) : this(SimpleType.binary, value) { }
+
+        public ParamType(double value) : this(SimpleType.numdouble, value) { }
 
         public int Maintype()
         {

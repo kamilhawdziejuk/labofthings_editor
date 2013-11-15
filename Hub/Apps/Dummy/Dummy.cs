@@ -15,7 +15,7 @@ namespace HomeOS.Hub.Apps.Dummy
     /// 1. sends ping messages to all active dummy ports
     /// </summary>
 
-    [System.AddIn.AddIn("HomeOS.Hub.Apps.Dummy", Version="1.0.0.0")]
+    [System.AddIn.AddIn("HomeOS.Hub.Apps.Dummy")]
     public class Dummy :  ModuleBase
     {
         //list of accessible dummy ports in the system
@@ -68,7 +68,8 @@ namespace HomeOS.Hub.Apps.Dummy
             logger.Log("AppDummy clean up");
             if (worker != null)
                 worker.Abort();
-            datastream.Close();
+            if (datastream != null)
+                datastream.Close();
         }
 
         /// <summary>
@@ -98,7 +99,7 @@ namespace HomeOS.Hub.Apps.Dummy
         {
             StrKey key = new StrKey("DummyKey");
             datastream.Append(key, new StrValue("DummyVal"));
-            logger.Log("Got value: " + datastream.Get(key));
+            logger.Log("Writing {0} to stream " , datastream.Get(key).ToString());
         }
 
         public void SendEchoRequest(VPort port, int counter)
