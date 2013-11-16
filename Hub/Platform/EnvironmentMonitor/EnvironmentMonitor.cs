@@ -89,7 +89,7 @@ namespace HomeOS.Hub.Platform.EnvironmentMonitor
 
         private void AddToHistory(VModule mod)
         {
-            VModuleCondition VModuleCondition = mod as VModuleCondition;
+            VModuleCondition VModuleCondition = mod.GetCondition();
             if (!history.ContainsKey(mod))
             {
                 history.Add(mod, new List<VModuleCondition>());
