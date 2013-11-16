@@ -15,7 +15,7 @@ namespace HomeOS.Hub.Apps.Volume
     /// <summary>
     /// Service that changes volume on the system. WCF service uses NAudio library to control that.
     /// </summary>
-    [System.AddIn.AddIn("HomeOS.Hub.Apps.Volume", Version = "1.0.0.0")]
+    [System.AddIn.AddIn("HomeOS.Hub.Apps.Volume")]
     public class Volume : ModuleBase, ModuleCondition
     {
         ServiceHost serviceHost;

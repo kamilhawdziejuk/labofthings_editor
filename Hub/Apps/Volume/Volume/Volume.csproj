@@ -7,8 +7,8 @@
     <ProjectGuid>{32B54731-6044-4D56-959A-151E5E9C98D8}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>HomeOS.Hub.App.Volume</RootNamespace>
-    <AssemblyName>HomeOS.Hub.App.Volume</AssemblyName>
+    <RootNamespace>HomeOS.Hub.Apps.Volume</RootNamespace>
+    <AssemblyName>HomeOS.Hub.Apps.Volume</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -16,7 +16,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\..\output\binaries\Pipeline\AddIns\HomeOS.Hub.App.Volume\</OutputPath>
+    <OutputPath>..\..\..\output\binaries\Pipeline\AddIns\HomeOS.Hub.Apps.Volume\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -58,6 +58,9 @@
       <Name>Views</Name>
       <Private>False</Private>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
