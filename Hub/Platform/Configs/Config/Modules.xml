@@ -5,6 +5,8 @@
     <Args Count="0"/> 
   </Module> -->
   <Module FriendlyName="Volume" AppName="Volume" BinaryName="HomeOS.Hub.Apps.Volume" AutoStart="1" Version="1.0.0.0">
-    
+  </Module>
+
+  <Module FriendlyName="Clock" AppName="Clock" BinaryName="HomeOS.Hub.Apps.Clock" AutoStart="1" Version="1.0.0.0">
   </Module>
 </Modules>
