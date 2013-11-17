@@ -42,6 +42,8 @@
     <Compile Include="EnvironmentMonitor.cs" />
     <Compile Include="ISolution.cs" />
     <Compile Include="IValidator.cs" />
+    <Compile Include="PetriNet\HomeGraph.cs" />
+    <Compile Include="PetriNet\Transition.cs" />
     <Compile Include="ProblematicSituation.cs" />
     <Compile Include="Problems\ExceedSituation.cs" />
     <Compile Include="Problems\StatesConflictSituation.cs" />

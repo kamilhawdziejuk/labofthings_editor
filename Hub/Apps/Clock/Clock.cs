@@ -5,7 +5,6 @@ using System.Text;
 using HomeOS.Hub.Common;
 using HomeOS.Hub.Platform.Views;
 
-
 namespace HomeOS.Hub.Apps.Clock
 {
     /// <summary>
