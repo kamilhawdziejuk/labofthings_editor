@@ -27,7 +27,7 @@ namespace LightSensor
         void ProgramStarted()
         {
             hgd = new HomeOSGadgeteer.HomeOSGadgeteerDevice("MicrosoftResearch", "LightSensor", "CCKKGJAA", wifi,
-                null, null, /*usbSerial.SerialLine.PortName*/null, null, null, () => { return GT.Timer.GetMachineTime() < RemoteControlLedEndTime; }, false);
+                null, null, /*usbSerial.SerialLine.PortName*/null, null, null, () => { return GT.Timer.GetMachineTime() < RemoteControlLedEndTime; }, true);
 
             this.joystick.JoystickPressed += joystick_JoystickPressed;
 
@@ -37,11 +37,12 @@ namespace LightSensor
             lightTimer.Tick += new GT.Timer.TickEventHandler(this.lightTimer_Tick);
             lightTimer.Start();
 
-            Debug.Print("Program KH Started");
+            Debug.Print("Program Started");
         }
 
         void joystick_JoystickPressed(Joystick sender, Joystick.JoystickState state)
         {
+            this.led7r.Animate(500, true, true, false);
             Debug.Print("Joystick pressed! Reseting Network Credentials!");
             hgd.ResetNetworkCredentials();
         }
@@ -65,17 +66,29 @@ namespace LightSensor
             //WebClient.GetFromWeb("http://research.microsoft.com/en-us/").ResponseReceived += new HttpRequest.ResponseHandler(TestResponseReceived);
         }
 
-        void LightWebEventReceived(string path, HomeOSGadgeteer.Networking.WebServer.HttpMethod method, HomeOSGadgeteer.Networking.Responder responder)
+        void LightWebEventReceived(string path, 
+            HomeOSGadgeteer.Networking.WebServer.HttpMethod method, 
+            HomeOSGadgeteer.Networking.Responder responder)
         {
-            string response = "{ \"DeviceId\" : \"" + hgd.IdentifierString + "\", \"light\" : " + this.lightSensor.GetIlluminance() + "}";
-            Debug.Print("Light web event from " + responder.ClientEndpoint + " - response " + response);
-            responder.Respond(response);
+            Debug.Print("Light web event from " + responder.ClientEndpoint + " - response " + this.response);
+            responder.Respond(this.response);
         }
 
         void lightTimer_Tick(GT.Timer timer)
         {
-            double light = this.lightSensor.GetIlluminance();
-            Debug.Print("Light: " + light.ToString());
+            Debug.Print(this.response);
+        }
+
+        private string response
+        {
+            get
+            {
+                return "{" +
+                "\"light\" : " + this.lightSensor.GetIlluminance() + "\n" +
+                 "\"DeviceIP\" : \"" + this.wifi.NetworkSettings.IPAddress + "\", " +
+                 "\"DeviceId\" : \"" + hgd.IdentifierString + "\", " +
+                "}";
+            }
         }
 
         #endregion
