@@ -136,6 +136,7 @@ namespace HomeOS.Hub.Platform.EnvironmentMonitor
         public void Start()
         {
             System.Threading.Thread.Sleep(5000);
+            return;
             logger.Log("Conflicts Manager has started...");
             while (true)
             {

@@ -7,8 +7,8 @@
     <ProjectGuid>{6868916B-E0A0-4F21-A34C-47CCB275F6EB}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>HomeOS.Hub.Drivers.Gadgeteer.LightSensor</RootNamespace>
-    <AssemblyName>HomeOS.Hub.Drivers.Gadgeteer.LightSensor</AssemblyName>
+    <RootNamespace>HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.LightSensor</RootNamespace>
+    <AssemblyName>HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.LightSensor</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -41,6 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\GadgeteerBase\DriverGadgeteerBase.cs">
+      <Link>DriverGadgeteerBase.cs</Link>
+    </Compile>
     <Compile Include="DriverGadgeteerMicrosoftResearchLightSensor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

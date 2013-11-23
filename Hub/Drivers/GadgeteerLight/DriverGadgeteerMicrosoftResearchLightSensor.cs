@@ -21,67 +21,17 @@ namespace HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.LightSensor
 
 
     [System.AddIn.AddIn("HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.LightSensor")]
-    public class DriverGadgeteerMicrosoftResearchLightSensor : ModuleBase
+    public class DriverGadgeteerMicrosoftResearchLightSensor : DriverGadgeteerBase
     {
-
         const byte LightThreshold = 1;
-
-        string deviceId;
-
-        IPAddress deviceIp;
-
-        Port devicePort;
-
         byte lastValue = 0;
-        SafeThread worker = null;
-        public override void Start()
+
+        protected override List<VRole> GetRoleList()
         {
-
-            try
-            {
-                string[] words = moduleInfo.Args();
-                if (words.Length > 0)
-                {
-                    deviceId = words[0];
-                }
-                else
-                {
-                    deviceId = "LightSensor";
-                }
-            }
-            catch (Exception e)
-            {
-                logger.Log("{0}: Improper arguments: {1}. Exiting module", this.ToString(), e.ToString());
-                //return;
-            }
-
-            //get the IP address
-            deviceIp = GetDeviceIp(deviceId);
-
-            if (deviceIp == null)
-            {
-                logger.Log("{0} did not get a device ip for deviceId: {1}. Returning", base.moduleInfo.BinaryName(), deviceId.ToString());
-                return;
-            }
-
-            //add the camera service port
-            VPortInfo pInfo = GetPortInfoFromPlatform("gadgeteer-" + deviceId);
-
-            List<VRole> roles = new List<VRole>() { RoleSensor.Instance };
-
-            devicePort = InitPort(pInfo);
-            BindRoles(devicePort, roles, OnOperationInvoke);
-
-            RegisterPortWithPlatform(devicePort);
-
-            worker = new SafeThread(delegate()
-            {
-                PollDevice();
-            }, "DriverGadgeteerLightSensor-PollDevice", logger);
-            worker.Start();
+            return new List<VRole>() { RoleSensor.Instance };
         }
 
-        private void PollDevice()
+        protected override void WorkerThread()
         {
             while (true)
             {
@@ -146,53 +96,58 @@ namespace HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.LightSensor
         /// The demultiplexing routing for incoming
         /// </summary>
         /// <param name="message"></param>
-        private List<VParamType> OnOperationInvoke(string roleName, String opName, IList<VParamType> parameters)
+        protected override List<VParamType> OnOperationInvoke(string roleName, String opName, IList<VParamType> parameters)
         {
-            switch (opName.ToLower())
+            switch (roleName.ToLower())
             {
-                case RoleSensor.OpGetName:
+                case RoleSensor.RoleName:
                     {
-                        List<VParamType> retVals = new List<VParamType>();
-                        retVals.Add(new ParamType(lastValue));
+                        switch (opName.ToLower())
+                        {
+                            case RoleSensor.OpGetName:
+                                {
+                                    List<VParamType> retVals = new List<VParamType>();
+                                    retVals.Add(new ParamType(lastValue));
 
-                        return retVals;
+                                    return retVals;
+                                }
+                            default:
+                                logger.Log("Unknown operation {0} for role {1}", opName, roleName);
+                                return null;
+                        }
                     }
-                default:
-                    logger.Log("Unknown operation {0} for role {1}", opName, roleName);
-                    return null;
+                case RoleActuator.RoleName:
+                    {
+                        switch (opName.ToLower()) 
+                        { 
+                            case RoleActuator.OpPutName:
+                                { 
+                                    try 
+                                    { 
+                                        string url = string.Format("http://{0}/led?low={1}&high={2}", 
+                                            deviceIp, (int)parameters[0].Value(), (int)parameters[1].Value());
+
+                                        HttpWebRequest webRequest = (HttpWebRequest)WebRequest.Create(url); 
+                                        HttpWebResponse response = (HttpWebResponse)webRequest.GetResponse();
+
+                                    } 
+                                    catch (Exception e) 
+                                    { 
+                                        logger.Log("{0}: couldn't talk to the device. are the arguments correct?\n exception details: {1}", this.ToString(), e.ToString());
+                                        //lets try getting the IP again 
+                                        deviceIp = GetDeviceIp(deviceId); 
+                                    } 
+                                    return new List<VParamType>(); 
+                                } 
+                            default: 
+                                logger.Log("Unknown operation {0} for {1}", opName, roleName); 
+                                return null; 
+                        }
+                    }
+                    default: 
+                        logger.Log("Unknown role {0}", roleName); 
+                        return null;
             }
-        }
-
-        public IPAddress GetDeviceIp(string deviceId)
-        {
-
-            //if the Id is an IP Address itself, return that.
-            //else get the Ip from platform
-
-            IPAddress ipAddress = null;
-
-            try
-            {
-                ipAddress = IPAddress.Parse(deviceId);
-                return ipAddress;
-            }
-            catch (Exception)
-            {
-            }
-
-            string ipAddrStr = GetDeviceIpAddress(deviceId);
-
-            try
-            {
-                ipAddress = IPAddress.Parse(ipAddrStr);
-                return ipAddress;
-            }
-            catch (Exception)
-            {
-                logger.Log("{0} couldn't get IP address from {1} or {2}", this.ToString(), deviceId, ipAddrStr);
-            }
-
-            return null;
         }
 
         public override void Stop()
