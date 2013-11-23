@@ -68,4 +68,10 @@
     </RoleList>
   </Module>
 
+  <Module AppName="LightAlerts" BinaryName="HomeOS.Hub.Apps.Light" Description="Sample application to see light value" Rating="5">
+    <RoleList>
+      <Role Name=":sensor:" />
+    </RoleList>
+  </Module>
+
 </Modules>

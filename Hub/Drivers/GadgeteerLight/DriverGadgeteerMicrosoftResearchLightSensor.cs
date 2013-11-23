@@ -124,11 +124,13 @@ namespace HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.LightSensor
                                 { 
                                     try 
                                     { 
+                                        //TODO:
+                                        /*
                                         string url = string.Format("http://{0}/led?low={1}&high={2}", 
                                             deviceIp, (int)parameters[0].Value(), (int)parameters[1].Value());
 
                                         HttpWebRequest webRequest = (HttpWebRequest)WebRequest.Create(url); 
-                                        HttpWebResponse response = (HttpWebResponse)webRequest.GetResponse();
+                                        HttpWebResponse response = (HttpWebResponse)webRequest.GetResponse();*/
 
                                     } 
                                     catch (Exception e) 

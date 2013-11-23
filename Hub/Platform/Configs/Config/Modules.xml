@@ -13,5 +13,11 @@
 <Module FriendlyName="LightSensor" AppName="driver for LightSensor" BinaryName="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.LightSensor" AutoStart="1" Background="1" Version="1.0.0.0">
   <Args Count="1" val1="HomeOSGadgeteerDevice_LightSensor_MicrosoftResearch_71121572442390389996" />
 </Module>
+  
+<Module FriendlyName="Light" AppName="Light" BinaryName="HomeOS.Hub.Apps.Light" AutoStart="1" Background="0"> 
+	<RoleList Optional="False">
+		<Role Name=":sensor:" />
+	</RoleList>
+  </Module>
 
 </Modules>
