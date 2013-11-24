@@ -26,7 +26,7 @@ namespace LightSensor
         // This method is run when the mainboard is powered up or reset.   
         void ProgramStarted()
         {
-            hgd = new HomeOSGadgeteer.HomeOSGadgeteerDevice("MicrosoftResearch", "LightSensor", "CCKKGJAA", wifi,
+            hgd = new HomeOSGadgeteer.HomeOSGadgeteerDevice("MicrosoftResearch", "LightSensor", "abcdefgh", wifi,
                 null, null, /*usbSerial.SerialLine.PortName*/null, null, null, () => { return GT.Timer.GetMachineTime() < RemoteControlLedEndTime; }, true);
 
             this.joystick.JoystickPressed += joystick_JoystickPressed;

@@ -7,8 +7,8 @@
     <ProjectGuid>{9BA15867-0C5C-43A0-9E76-4671283FFAA1}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Light</RootNamespace>
-    <AssemblyName>Light</AssemblyName>
+    <RootNamespace>HomeOS.Hub.Apps.Light</RootNamespace>
+    <AssemblyName>HomeOS.Hub.Apps.Light</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -16,7 +16,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\output\binaries\Pipeline\AddIns\HomeOS.Hub.Apps.Light\</OutputPath>
+    <OutputPath>..\..\..\output\binaries\Pipeline\AddIns\HomeOS.Hub.Apps.Light\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -56,6 +56,11 @@
       <Name>Views</Name>
       <Private>False</Private>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="index.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
