@@ -375,6 +375,19 @@ namespace HomeOSGadgeteer
         const int wifiUpTimeout = 5;
         TimeSpan maxTimeOnSetupNetwork = new TimeSpan(0, 5, 0);
 
+
+        private WiFiNetworkInfo GetFastestWiFi(WiFiNetworkInfo[] scan, APDetails knownAP)
+        {
+            WiFiNetworkInfo joinAP = null;
+            foreach (var scanAP in scan)
+            {
+                if (!knownAP.Matches(scanAP)) continue;
+                if (joinAP == null) joinAP = scanAP;
+                if (joinAP.RSSI > scanAP.RSSI) joinAP = scanAP; // lower RSSI is better
+            }
+            return joinAP;
+        }
+
         TimeSpan joinTime = TimeSpan.Zero;
         void wifiTimer_Tick(GT.Timer timer)
         {
@@ -450,23 +463,18 @@ namespace HomeOSGadgeteer
 
                 try
                 {
-                    var scan = wifi.Interface.Scan();
+                    var scan = wifi.Interface.Scan("setup");
                     Thread.Sleep(1);
                     foreach (var ap in scan)
                     {
                         Debug.Print("Scanned AP " + ap.SSID + " rssi " + ap.RSSI);
                     }
-                    if (scan != null) foreach (APDetails knownAP in wifiNetworks)
+                    if (scan != null) 
+                        foreach (APDetails knownAP in wifiNetworks)
                         {
                             // APs are in priority order, so break once we see the current ap
                             if (knownAP.Matches(currentAP)) break;
-                            WiFiNetworkInfo joinAP = null;
-                            foreach (var scanAP in scan)
-                            {
-                                if (!knownAP.Matches(scanAP)) continue;
-                                if (joinAP == null) joinAP = scanAP;
-                                if (joinAP.RSSI > scanAP.RSSI) joinAP = scanAP; // lower RSSI is better
-                            }
+                            WiFiNetworkInfo joinAP = this.GetFastestWiFi(scan, knownAP);
                             if (joinAP == null) continue;
 
                             try
