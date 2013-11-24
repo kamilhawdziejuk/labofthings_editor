@@ -16,7 +16,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\..\output\binaries\Pipeline\AddIns\HomeOS.Hub.Apps.Clock\</OutputPath>
+    <OutputPath>..\..\output\binaries\Pipeline\AddIns\HomeOS.Hub.Apps.Clock\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
