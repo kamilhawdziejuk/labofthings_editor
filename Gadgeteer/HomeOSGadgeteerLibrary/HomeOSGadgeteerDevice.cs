@@ -463,7 +463,7 @@ namespace HomeOSGadgeteer
 
                 try
                 {
-                    var scan = wifi.Interface.Scan("setup");
+                    var scan = wifi.Interface.Scan();//"setup");
                     Thread.Sleep(1);
                     foreach (var ap in scan)
                     {
