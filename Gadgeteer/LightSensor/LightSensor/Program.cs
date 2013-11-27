@@ -71,12 +71,23 @@ namespace LightSensor
             HomeOSGadgeteer.Networking.Responder responder)
         {
             Debug.Print("Light web event from " + responder.ClientEndpoint + " - response " + this.response);
-            responder.Respond(this.response);
+            responder.Respond(this.webResponse);
         }
 
         void lightTimer_Tick(GT.Timer timer)
         {
             Debug.Print(this.response);
+        }
+
+        private string webResponse
+        {
+            get
+            {
+                return "{\"DeviceId\":\"" + 
+                    hgd.IdentifierString + "\"," 
+                    + "\"light\":" + this.lightSensor.GetIlluminance().ToString() + 
+                    "}";
+            }
         }
 
         private string response

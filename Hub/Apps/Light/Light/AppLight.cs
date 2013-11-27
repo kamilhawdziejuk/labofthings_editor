@@ -92,9 +92,9 @@ namespace HomeOS.Hub.Apps.Light
         { 
             lock (this) 
             { 
-                if (Role.ContainsRole(port, RoleSensor.RoleName)) 
+                if (Role.ContainsRole(port, RoleSensor.RoleName))
                 { 
-                    if (registeredSensors.ContainsKey(port)) 
+                    if (registeredSensors.ContainsKey(port))
                     { 
                         registeredSensors.Remove(port); 
                         logger.Log("{0} removed sensor port {1}", this.ToString(), port.ToString()); 
@@ -112,18 +112,17 @@ namespace HomeOS.Hub.Apps.Light
         }
 
         public override void OnNotification(string roleName, string opName, IList<VParamType> retVals, VPort senderPort) 
-        { 
-            /*TODO:
+        {
             logger.Log("Notitification from {0} for {0}", roleName, opName); 
             if (retVals.Count >= 1) 
             { 
-                this.Temperature = (int)retVals[0].Value(); 
+                this.Light = (int)retVals[0].Value();
             } 
             else 
             { 
                 logger.Log("{0}: got unexpected retvals [{1}] from {2}", ToString(), 
                     retVals.Count.ToString(), senderPort.ToString()); 
-            } */
+            }
         } 
     }
 }
