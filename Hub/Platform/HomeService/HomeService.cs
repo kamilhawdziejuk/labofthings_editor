@@ -149,7 +149,7 @@ namespace HomeOS.Hub.Platform.Gatekeeper
         private bool Forwarding(ServiceConnection connection)
         {
             Socket localService = StaticUtilities.CreateConnectedSocket(
-                "192.168.0.2",
+                "localhost",
                 HomeOS.Hub.Common.Constants.InfoServicePort);
 
             NetworkStream netstream = new NetworkStream(localService, true /*ownSocket*/);
