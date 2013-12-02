@@ -1,23 +1,12 @@
-﻿<Modules>
-  <!-- zwave driver -->
-  <!-- Uncomment this if you have the zwave driver. Contact lab-of-things@microsoft.com to get the driver -->
-  <!-- <Module FriendlyName="zwavezensys" AppName="zwave driver based on zensys sdk" BinaryName="HomeOS.Hub.Drivers.ZwaveZensys_4_55" AutoStart="1" Background="1">
-    <Args Count="0"/> 
-  </Module> -->
-  <Module FriendlyName="Volume" AppName="Volume" BinaryName="HomeOS.Hub.Apps.Volume" AutoStart="1" Version="1.0.0.0">
+<Modules>
+  <Module FriendlyName="Volume" AppName="Volume" BinaryName="HomeOS.Hub.Apps.Volume" WorkingDir="D:\labofthings.codeplex.EnvMon\Hub\output\binaries\Platform\..\..\Data\Volume" AutoStart="1" Background="0" />
+  <Module FriendlyName="Clock" AppName="Clock" BinaryName="HomeOS.Hub.Apps.Clock" WorkingDir="D:\labofthings.codeplex.EnvMon\Hub\output\binaries\Platform\..\..\Data\Clock" AutoStart="1" Background="0" />
+  <Module FriendlyName="LightSensor" AppName="driver for LightSensor" BinaryName="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.LightSensor" WorkingDir="D:\labofthings.codeplex.EnvMon\Hub\output\binaries\Platform\..\..\Data\LightSensor" AutoStart="1" Background="1">
+    <Args Count="1" val1="HomeOSGadgeteerDevice_LightSensor_MicrosoftResearch_43965876879683988593" />
   </Module>
-
-  <Module FriendlyName="Clock" AppName="Clock" BinaryName="HomeOS.Hub.Apps.Clock" AutoStart="1" Version="1.0.0.0">
+  <Module FriendlyName="LightAlerts" AppName="LightAlerts" BinaryName="HomeOS.Hub.Apps.Light" WorkingDir="D:\labofthings.codeplex.EnvMon\Hub\output\binaries\Platform\..\..\Data\LightAlerts" AutoStart="1" Background="0">
+    <RoleList Optional="False">
+      <Role Name=":sensor:" />
+    </RoleList>
   </Module>
-
-<Module FriendlyName="LightSensor" AppName="driver for LightSensor" BinaryName="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.LightSensor" AutoStart="1" Background="1" Version="1.0.0.0">
-  <Args Count="1" val1="HomeOSGadgeteerDevice_LightSensor_MicrosoftResearch_43965876879683988593" />
-</Module>
-  
-<Module FriendlyName="Light" AppName="Light" BinaryName="HomeOS.Hub.Apps.Light" AutoStart="1" Background="0" Version="1.0.0.0"> 
-	<RoleList Optional="False">
-		<Role Name=":sensor:" />
-	</RoleList>
-  </Module>
-
 </Modules>

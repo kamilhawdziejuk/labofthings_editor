@@ -1,2 +1,14 @@
-﻿<Devices>
+<Devices>
+  <Device FriendlyName="USB2.0 1.3M UVC WebCam" UniqueName="USB2.0 1.3M UVC WebCam" IPAddress="" DriverBinaryName="HomeOS.Hub.Drivers.WebCam" Configured="False" DriverModuleFriendlyName="">
+    <DriverParams Count="1" Param0="USB2.0 1.3M UVC WebCam" />
+  </Device>
+  <Device FriendlyName="ManyCam Virtual Webcam" UniqueName="ManyCam Virtual Webcam" IPAddress="" DriverBinaryName="HomeOS.Hub.Drivers.WebCam" Configured="False" DriverModuleFriendlyName="">
+    <DriverParams Count="1" Param0="ManyCam Virtual Webcam" />
+  </Device>
+  <Device FriendlyName="ManyCam Video Source" UniqueName="ManyCam Video Source" IPAddress="" DriverBinaryName="HomeOS.Hub.Drivers.WebCam" Configured="False" DriverModuleFriendlyName="">
+    <DriverParams Count="1" Param0="ManyCam Video Source" />
+  </Device>
+  <Device FriendlyName="LightSensor" UniqueName="HomeOSGadgeteerDevice_LightSensor_MicrosoftResearch_43965876879683988593" IPAddress="192.168.173.175" DriverBinaryName="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.LightSensor" Configured="False" DriverModuleFriendlyName="">
+    <DriverParams Count="1" Param0="HomeOSGadgeteerDevice_LightSensor_MicrosoftResearch_43965876879683988593" />
+  </Device>
 </Devices>

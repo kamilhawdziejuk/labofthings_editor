@@ -1,30 +1,29 @@
-﻿<Settings>
-<Param Name="HomeId" Value="hawdziejukhome"/>
-<Param Name="OrgId" Value="hawdziejukhome"/> 
-  <!-- <Param Name="HomeId" Value="DefaultHomeId"/>
-  <Param Name="OrgId" Value="DefaultOrgId"/>
-  <Param Name="StudyId" Value="DefaultStudy"/>
-  <Param Name="DataStoreAccountName" Value=""/>
-  <Param Name="DataStoreAccountKey" Value=""/
-  <Param Name="GatekeeperServiceHost" Value=""/>
-  <Param Name="GatekeeperServicePort" Value=""/>
-  <Param Name="HeartbeatServiceHost" Value="" /> 
-  <Param Name="HeartbeatIntervalMins" Value="" /> 
- -->
-
+<Settings>
+  <Param Name="OrgId" Value="hawdziejukhome" />
+  <Param Name="StudyId" Value="Default" />
+  <Param Name="HomeId" Value="hawdziejukhome" />
+  <Param Name="ConfigDir" Value="Configs\Config" />
+  <Param Name="ModuleWorkingDirBase" Value="D:\labofthings.codeplex.EnvMon\Hub\output\binaries\Platform\..\..\Data" />
+  <Param Name="RunningMode" Value="standard" />
+  <Param Name="StayOffline" Value="False" />
+  <Param Name="EnforcePolicies" Value="True" />
+  <Param Name="LogFile" Value="D:\labofthings.codeplex.EnvMon\Hub\output\binaries\Platform\..\..\Data\Platform\homeos.log" />
+  <Param Name="LogArchivalDir" Value="archived-logs" />
+  <Param Name="LogRotationThreshold" Value="10000" />
+  <Param Name="AutoSyncLogs" Value="True" />
   <Param Name="PortRegisterDelay" Value="1000" />
-
   <Param Name="MaxStopExecutionTime" Value="5000" />
-  <Param Name="MaxPortDeregisteredExecutionTime" Value="5000" />
   <Param Name="MaxFinallyBlockExecutionTime" Value="30000" />
-
-
-  <Param Name="ConfigLookupFrequency" Value="300000" />
-  <Param Name="HeartbeatServiceMode" Value="Production"/>
-
-
-  <!-- Details for connecting to a test Azure storage account. Note this account is public and for test/demo purposes only -->
+  <Param Name="MaxPortDeregisteredExecutionTime" Value="5000" />
+  <Param Name="HomeStoreBase" Value="file:///D:\labofthings.codeplex.EnvMon\Hub\output\binaries\Platform/../../HomeStore" />
+  <Param Name="RepositoryURIs" Value="file:///D:\labofthings.codeplex.EnvMon\Hub\output\binaries\Platform/../../HomeStore/repository" />
+  <Param Name="GatekeeperURI" Value="www.lab-of-things.net" />
+  <Param Name="HeartbeatServiceHost" Value="www.lab-of-things.net" />
   <Param Name="DataStoreAccountName" Value="testdrive" />
   <Param Name="DataStoreAccountKey" Value="zRTT++dVryOWXJyAM7NM0TuQcu0Y23BgCQfkt7xh2f/Mm+r6c8/XtPTY0xxaF6tPSACJiuACsjotDeNIVyXM8Q==" />
-
+  <Param Name="ConfigLookupFrequency" Value="300000" />
+  <Param Name="HomeStoreRefreshIntervalMins" Value="60" />
+  <Param Name="HeartbeatServiceMode" Value="Production" />
+  <Param Name="HeartbeatIntervalMins" Value="1" />
+  <Param Name="EmailServiceHost" Value="www.lab-of-things.net" />
 </Settings>
