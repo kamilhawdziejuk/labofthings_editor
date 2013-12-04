@@ -85,10 +85,12 @@ namespace HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.LightSensor
 
         private byte NormalizeLightValue(double rawValue)
         {
-            if (rawValue >= LightThreshold)
+            byte normalizedValue = (byte)rawValue;
+            return normalizedValue;
+            /*if (rawValue >= LightThreshold)
                 return 255;
             else
-                return 0;
+                return 0;*/
         }
 
 
