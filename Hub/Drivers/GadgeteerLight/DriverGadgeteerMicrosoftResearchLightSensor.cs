@@ -23,8 +23,8 @@ namespace HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.LightSensor
     [System.AddIn.AddIn("HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.LightSensor")]
     public class DriverGadgeteerMicrosoftResearchLightSensor : DriverGadgeteerBase
     {
-        const byte LightThreshold = 1;
-        byte lastValue = 0;
+        const int LightThreshold = 1;
+        int lastValue = 0;
 
         protected override List<VRole> GetRoleList()
         {
@@ -56,7 +56,7 @@ namespace HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.LightSensor
                     if (jsonResponse.light > 0)
                         logger.Log("Gadgeteer Light: {0}", jsonResponse.light.ToString());
 
-                    byte newValue = NormalizeLightValue(jsonResponse.light);
+                    int newValue = NormalizeLightValue(jsonResponse.light);
 
                     //notify the subscribers
                     if (newValue != lastValue)
@@ -83,14 +83,9 @@ namespace HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.LightSensor
             }
         }
 
-        private byte NormalizeLightValue(double rawValue)
+        private int NormalizeLightValue(double rawValue)
         {
-            byte normalizedValue = (byte)rawValue;
-            return normalizedValue;
-            /*if (rawValue >= LightThreshold)
-                return 255;
-            else
-                return 0;*/
+            return (int)rawValue;
         }
 
 
