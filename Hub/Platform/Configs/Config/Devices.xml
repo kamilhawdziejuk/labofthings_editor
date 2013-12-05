@@ -8,7 +8,7 @@
   <Device FriendlyName="ManyCam Video Source" UniqueName="ManyCam Video Source" IPAddress="" DriverBinaryName="HomeOS.Hub.Drivers.WebCam" Configured="False" DriverModuleFriendlyName="">
     <DriverParams Count="1" Param0="ManyCam Video Source" />
   </Device>
-  <Device FriendlyName="LightSensor" UniqueName="HomeOSGadgeteerDevice_LightSensor_MicrosoftResearch_43965876879683988593" IPAddress="192.168.173.175" DriverBinaryName="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.LightSensor" Configured="False" DriverModuleFriendlyName="">
+  <Device FriendlyName="LightSensor" UniqueName="HomeOSGadgeteerDevice_LightSensor_MicrosoftResearch_43965876879683988593" IPAddress="192.168.0.10" DriverBinaryName="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.LightSensor" Configured="True" DriverModuleFriendlyName="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.LightSensor for LightSensor">
     <DriverParams Count="1" Param0="HomeOSGadgeteerDevice_LightSensor_MicrosoftResearch_43965876879683988593" />
   </Device>
 </Devices>

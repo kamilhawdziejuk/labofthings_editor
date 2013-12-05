@@ -1,5 +1,5 @@
 <Services>
-  <Service FriendlyName="LightDeviceKH" Location="Home" Module="LightSensor" ModuleFacingName="gadgeteer-HomeOSGadgeteerDevice_LightSensor_MicrosoftResearch_43965876879683988593">
+  <Service FriendlyName="LightDevice" Location="Home" Module="LightSensor" ModuleFacingName="gadgeteer-HomeOSGadgeteerDevice_LightSensor_MicrosoftResearch_43965876879683988593">
     <Role Name=":sensor:" />
   </Service>
   <Service FriendlyName="port - Volume" Module="Volume" ModuleFacingName="port" Location="Home" Configured="no" />
