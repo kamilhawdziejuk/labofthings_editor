@@ -50,18 +50,18 @@
 <body> 
     <div class="dashboard_toolbar"> 
         <div class="homeID_title"><a href="../GuiWeb/index.html">Dashboard</a> | Light </div> </div>
-    TestXXX
     <div class="page"> 
         <div class="row"> 
-            <div class="page_title col">Light</div> 
+            <div class="page_title col">Luminous intensity measured by your light sensor is:</div> 
         </div> 
         
         <div class="row"> 
             <div id="bigLightbox" style="text-align:center;width:100%;font-size:200px"> 
-                <span id="lightValue"></span>&deg; 
+                <span id="lightValue"></span>&nbsp; &curren; 
             </div> 
         </div> 
 
+        <!--
         <div class="row"> 
             <div style="padding-left:100px"> 
                 <input type="number" value="20" id="lowEntry" placeholder="Low value" /> 
@@ -69,8 +69,9 @@
                 <input type="submit" value="Set lows and highs" onclick="" />
             </div> 
         </div> 
+        -->
     </div>
 <!--Used for debugging messages, set style="display:none" to turn off showing them, common.js will put text
      into div with id =divDebugInfo when calls are made to service --> 
-    <div id="divServiceDebug" style="display:block"> Service Status Debug Info: <p id="divDebugInfo"></p> </div>
+    <div id="divServiceDebug" style="display:normal"> Service Status Debug Info: <p id="divDebugInfo"></p> </div>
 </body> </html>
