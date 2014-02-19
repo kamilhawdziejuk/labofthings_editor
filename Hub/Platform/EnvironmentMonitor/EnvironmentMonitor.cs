@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows;
 using HomeOS.Hub.Platform.EnvironmentMonitor.Validators;
 using HomeOS.Hub.Platform.Views;
+using PetriNetSharp.Engine;
 
 namespace HomeOS.Hub.Platform.EnvironmentMonitor
 {
@@ -24,7 +26,7 @@ namespace HomeOS.Hub.Platform.EnvironmentMonitor
         /// <summary>
         /// Represents the situation of the running home environment
         /// </summary>
-        //HomeGraph homeGraph = new HomeGraph();
+        PetriNetGraph homeGraph = new PetriNetGraph();
 
         #endregion
 
@@ -69,11 +71,79 @@ namespace HomeOS.Hub.Platform.EnvironmentMonitor
 
         private void InitializeHomeEnvironment()
         {
+            Place p1 = new Place(new Point(785, 213), "Night", "P1");
+            Place p2 = new Place(new Point(419, 228), "Day", "P2");
+            Place p3 = new Place(new Point(127, 90), "Min loudness", "P3");
+            Place p4 = new Place(new Point(422, 92), "Half loudness", "P4");
+            Place p6 = new Place(new Point(448, 451), "Mode_day", "P6");
+            Place p7 = new Place(new Point(756, 453), "Mode_night", "P7");
+
+            Transition t1 = new Transition("More light", new Point(607, 125), "T1", 1);
+            Transition t2 = new Transition("Less light", new Point(610, 330), "T2", 1);
+            Transition t3 = new Transition("Speaker ON", new Point(277, 153), "T3", 1);
+            Transition t4 = new Transition("Speaker OFF", new Point(270, 35), "T4", 1);
+            Transition t6 = new Transition("22 p.m.", new Point(599, 390), "T6", 1);
+            Transition t7 = new Transition("6 a.m.", new Point(602, 500), "T7", 1);
+
+            Arc a1 = new Arc(p1, t1);
+            Arc a2 = new Arc(t1, p4);
+            Arc a3 = new Arc(t1, p2);
+            Arc a4 = new Arc(p2, t2);
+            Arc a5 = new Arc(t2, p1);
+            Arc a6 = new Arc(p4, t4);
+            Arc a7 = new Arc(t4, p3);
+            Arc a8 = new Arc(p4, t3);
+            Arc a9 = new Arc(t3, p3);
+            Arc a10 = new Arc(p7, t7);
+            Arc a11 = new Arc(t7, p6);
+            Arc a12 = new Arc(p6, t6);
+            Arc a13 = new Arc(t6, p7);
+
+            this.homeGraph.AddPlace(p1);
+            this.homeGraph.AddPlace(p2);
+            this.homeGraph.AddPlace(p3);
+            this.homeGraph.AddPlace(p4);
+            this.homeGraph.AddPlace(p6);
+            this.homeGraph.AddPlace(p7);
+
+            this.homeGraph.AddTransition(t1);
+            this.homeGraph.AddTransition(t2);
+            this.homeGraph.AddTransition(t3);
+            this.homeGraph.AddTransition(t4);
+            this.homeGraph.AddTransition(t6);
+            this.homeGraph.AddTransition(t7);
+
+            this.homeGraph.AddArc(a1);
+            this.homeGraph.AddArc(a2);
+            this.homeGraph.AddArc(a3);
+            this.homeGraph.AddArc(a4);
+            this.homeGraph.AddArc(a5);
+            this.homeGraph.AddArc(a6);
+            this.homeGraph.AddArc(a7);
+            this.homeGraph.AddArc(a8);
+            this.homeGraph.AddArc(a9);
+            this.homeGraph.AddArc(a10);
+            this.homeGraph.AddArc(a11);
+            this.homeGraph.AddArc(a12);
+            this.homeGraph.AddArc(a13);
+
+            PetriNetSharp.IOSystem ios = new PetriNetSharp.IOSystem();
+            ios.SaveAs(this.homeGraph, "D:\\dane2.txt");
+
+           // Window homeGraphWindow = new Window();
+          //  homeGraphWindow.Show();
+            //PetriNetSharp.MainWindow mainWindow = new PetriNetSharp.MainWindow();
+            
             //here comes adding states...
-            foreach (var state in this.GetSystemStates())
+            /*foreach (var state in this.GetSystemStates())
             {
+                foreach (var kvp in state.PossibleIntepretedValues)
+                {
+                    Place place = new Place(
+                    this.homeGraph.AddPlace(
+                }
                 //this.homeGraph.AddState(state);
-            }
+            }*/
 
             //here comes adding possible transitions...
         }
@@ -135,6 +205,7 @@ namespace HomeOS.Hub.Platform.EnvironmentMonitor
 
         public void Start()
         {
+            this.InitializeHomeEnvironment();
             System.Threading.Thread.Sleep(5000);
             return;
             logger.Log("Conflicts Manager has started...");

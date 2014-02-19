@@ -69,7 +69,7 @@ namespace HomeOS.Hub.Common
         /// <summary>
         /// The synchronizer object
         /// </summary>
-        DataStore.ISync synchronizer = null;
+        Bolt.DataStore.ISync synchronizer = null;
 
         public Logger() : this(":stdout")
         {
@@ -127,9 +127,33 @@ namespace HomeOS.Hub.Common
                 throw new Exception("Cannot sync a non-rotating log");
 
             //the code below could throw an exception if containerName does not meet the restrictions
-            var remoteInfo = new DataStore.RemoteInfo(accountName, accountKey);
-            synchronizer = Common.DataStore.SyncFactory.Instance.CreateSynchronizer(Common.DataStore.SynchronizerType.Azure, remoteInfo, containerName);
-            synchronizer.SetLocalSource(archivingDirectory);
+            var locationInfo = new Bolt.DataStore.LocationInfo(accountName, accountKey, Bolt.DataStore.SynchronizerType.Azure);
+
+            try
+            {
+                synchronizer = Bolt.DataStore.SyncFactory.Instance.CreateSynchronizer(locationInfo, containerName, null);
+                synchronizer.SetLocalSource(archivingDirectory);
+            }
+            catch (System.FormatException ex1)
+            {
+                Log("ERROR: Could not start log syncing. The Azure account key may be wrong \n {0}", ex1.ToString());
+            }
+            catch (System.Runtime.InteropServices.COMException ex2)
+            {
+                Log("ERROR: Could not start log syncing. It appears that the Sync Framework v2.1 x86 version is not installed. Make sure that no other version is present. \n {0}", ex2.ToString());
+            }
+            catch (Microsoft.WindowsAzure.StorageClient.StorageServerException ex3)
+            {
+                Log("ERROR: Could not start log syncing. The Azure account name may be wrong.\n {0}", ex3.ToString());
+            }
+            catch (Microsoft.WindowsAzure.StorageClient.StorageClientException ex3)
+            {
+                Log("ERROR: Could not start log syncing. The Azure account key may be wrong.\n {0}", ex3.ToString());
+            }               
+            catch (Exception ex3)
+            {
+                Log("Got unknown exception while starting log syncing.\n {0}", ex3.ToString());
+            }
         }
         
 

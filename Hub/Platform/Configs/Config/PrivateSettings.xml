@@ -1,2 +1,8 @@
-﻿<PrivateSettings>
+<PrivateSettings>
+  <Param Name="SmtpServer" Value="smtp.live.com" />
+  <Param Name="SmtpUser" Value="your-email@live.com" />
+  <Param Name="SmtpPassword" Value="your-password" />
+  <Param Name="NotificationEmail" Value="kamil.hawdziejuk@outlook.com" />
+  <Param Name="WifiSsid" Value="UPC0047455" />
+  <Param Name="WifiKey" Value="CCKKGJAA" />
 </PrivateSettings>

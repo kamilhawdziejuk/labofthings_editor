@@ -30,20 +30,25 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PetriNetSharp">
+      <HintPath>..\..\..\..\programming\PetriNetSharp\PetriNetSharp\bin\Release\PetriNetSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EnvironmentMonitor.cs" />
     <Compile Include="ISolution.cs" />
     <Compile Include="IValidator.cs" />
-    <Compile Include="PetriNet\HomeGraph.cs" />
-    <Compile Include="PetriNet\Transition.cs" />
     <Compile Include="ProblematicSituation.cs" />
     <Compile Include="Problems\ExceedSituation.cs" />
     <Compile Include="Problems\StatesConflictSituation.cs" />

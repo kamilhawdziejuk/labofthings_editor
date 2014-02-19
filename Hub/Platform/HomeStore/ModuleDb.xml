@@ -68,7 +68,7 @@
     </RoleList>
   </Module>
 
-  <Module AppName="LightAlerts" BinaryName="HomeOS.Hub.Apps.Light" Description="Sample application to see light value" Rating="5">
+  <Module AppName="LightAlerts" BinaryName="HomeOS.Hub.Apps.Light" Description="Sample application to view luminous intensity measured at home" Rating="5" IconUrl="http://i.msdn.microsoft.com/dynimg/IC534687.png">
     <RoleList>
       <Role Name=":sensor:" />
     </RoleList>

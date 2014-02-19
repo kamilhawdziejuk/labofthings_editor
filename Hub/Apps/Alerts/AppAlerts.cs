@@ -9,7 +9,7 @@ using System.IO;
 using HomeOS.Hub.Common;
 using HomeOS.Hub.Platform.Views;
 using HomeOS.Hub.Platform;
-using HomeOS.Hub.Common.DataStore;
+using HomeOS.Hub.Common.Bolt.DataStore;
 
 namespace HomeOS.Hub.Apps.Alerts
 {
@@ -29,6 +29,8 @@ namespace HomeOS.Hub.Apps.Alerts
         {
             return Mode + " " + StartHourMin + "-" + EndHourMin + " " + SuppressSeconds;
         }
+        
+        public string emailAddress { get; set; }
     }
 
     //[DataContract]
@@ -76,14 +78,6 @@ namespace HomeOS.Hub.Apps.Alerts
 
         Dictionary<VPort, VCapability> registeredSensors = new Dictionary<VPort, VCapability>();
         
-        //string switchFriendlyName;
-        //VPort switchPort;
-        //VCapability switchPortCapability;
-
-        //string sensorFriendlyName;
-        //VPort sensorPort;
-        //VCapability sensorPortCapability;
-
         AlertSettings settings;
 
         private SafeServiceHost serviceHost;
@@ -95,8 +89,9 @@ namespace HomeOS.Hub.Apps.Alerts
         
         //DataStream for writing the alert pictures and text.
         IStream picStream, textStream;
-        //Email address to receive the alert pictures.
-        string emailAdrs;
+
+        ////Email address to receive the alert pictures.
+        //string emailAdrs;
 
         public override void Start()
         {
@@ -118,6 +113,9 @@ namespace HomeOS.Hub.Apps.Alerts
                 settings.SuppressSeconds = (moduleInfo.Args().Length > 3) ? int.Parse(moduleInfo.Args()[3]) : 5;  //AJB shorten suppression
 
                 settings.UserName = (moduleInfo.Args().Length > 4) ? moduleInfo.Args()[4] : "user";
+
+                settings.emailAddress = GetPrivateConfSetting("NotificationEmail");
+
             }
             catch (Exception exception)
             {
@@ -268,7 +266,6 @@ namespace HomeOS.Hub.Apps.Alerts
         {
             List<Attachment> attachmentList = new List<Attachment>();
 
-            string publicIp = GetConfSetting("publicip");
             string linkMessage = String.Format("Go to Lab of Things Alerts application to see list of alerts.");
 
             string subject = "Alert";
@@ -323,7 +320,7 @@ namespace HomeOS.Hub.Apps.Alerts
             StrValue strVal = new StrValue(message);
             try
             {
-                textStream = base.CreateFileStream<StrKey, StrValue>("WaterAlertsText", true);
+                textStream = base.CreateFileStream<StrKey, StrValue>("H2OAlertsText", true);
                 textStream.Append(strKey, strVal);
                 logger.Log("WaterAlert message has been written to {0}.", textStream.Get(strKey).ToString());
                 textStream.Close();
@@ -340,7 +337,7 @@ namespace HomeOS.Hub.Apps.Alerts
             ByteValue byteVal = new ByteValue(imageBytes);
             try
             {
-                picStream = base.CreateDirStream<StrKey, ByteValue>("WaterAlertsPics", true);
+                picStream = base.CreateDirStream<StrKey, ByteValue>("H2OAlertsPics", true);
                 picStream.Append(strKey, byteVal);
                // logger.Log("WaterAlert picture has been written to {0}.", picStream.Get(strKey).ToString());
                 picStream.Close();
@@ -353,12 +350,12 @@ namespace HomeOS.Hub.Apps.Alerts
 
         internal void UpdateEmail(string email)
         {
-            emailAdrs = email;
+            settings.emailAddress = email;
         }
 
         void SendEmail(string subject, string message, List<Attachment> attachmentList)
         {           
-            Tuple<bool,string> result = base.SendEmail(emailAdrs, subject, message, attachmentList);
+            Tuple<bool,string> result = base.SendEmail(settings.emailAddress, subject, message, attachmentList);
 
             if (result.Item1)
             {
@@ -373,7 +370,7 @@ namespace HomeOS.Hub.Apps.Alerts
 
         void SendSms(string subject, string message)
         {
-            Tuple<bool, string> result = base.SendEmail(emailAdrs, subject, message, null);
+            Tuple<bool, string> result = base.SendEmail(settings.emailAddress, subject, message, null);
 
             if (result.Item1)
             {
@@ -561,6 +558,11 @@ namespace HomeOS.Hub.Apps.Alerts
             }
 
             return retList;
+        }
+
+        internal string GetEmail()
+        {
+            return settings.emailAddress;
         }
     }
 }

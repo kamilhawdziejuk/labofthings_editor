@@ -123,10 +123,6 @@
       <Name>Common %28Common\Common%29</Name>
       <Private>True</Private>
     </ProjectReference>
-    <ProjectReference Include="..\..\Common\DataStore\DataStore.csproj">
-      <Project>{b7def861-d0e5-47ce-aeb7-2e9b6091b52f}</Project>
-      <Name>DataStore</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Authentication\AuthenticationService.csproj">
       <Project>{db0e2f8c-2834-470b-8bc8-879a35df570b}</Project>
       <Name>AuthenticationService</Name>
@@ -160,7 +156,13 @@
     <None Include="starthostednetwork.bat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="startwatchdog.bat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="stophostednetwork.bat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="stopwatchdog.bat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
@@ -206,6 +208,9 @@ xcopy  /E /D /Y "$(ProjectDir)..\Homestore" "$(TargetDir)..\..\HomeStore"
 REM copy libraries needed for webcam and smartcamrecorder
 copy "$(windir)\system32\msvcr110d.dll" "$(TargetDir)"
 copy "$(windir)\system32\msvcp110d.dll" "$(TargetDir)"
+
+REM copy newtonsoft stuff
+copy "$(SolutionDir)\packages\Newtonsoft.Json.5.0.8\lib\net45\Newtonsoft.Json.dll" "$(TargetDir)"
 
 REM copy scripts
 copy "$(ProjectDir)*.bat"  "$(TargetDir)..\..\..\output"
