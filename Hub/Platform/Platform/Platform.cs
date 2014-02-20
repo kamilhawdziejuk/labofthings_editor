@@ -14,12 +14,8 @@ using System.Linq;
 using HomeOS.Hub.Platform.Authentication;
 using System.Xml;
 using System.Xml.Linq;
-
-<<<<<<< HEAD
 using System.Diagnostics;
 using HomeOS.Hub.Platform.EnvironmentMonitor;
-=======
->>>>>>> 61141b60e8e9638b40afd2fecfb16e62215bbbd6
 
 //using HomeOS.Hub.Platform.VirtualRouter.Wlan;
 

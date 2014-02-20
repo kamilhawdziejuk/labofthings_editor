@@ -9,6 +9,7 @@ using System.ServiceModel;
 using HomeOS.Hub.Common;
 using System.ServiceModel.Description;
 using HomeOS.Hub.Platform.Views;
+using HomeOS.Hub.Common.Bolt.DataStore;
 
 namespace HomeOS.Hub.Apps.Volume
 {
