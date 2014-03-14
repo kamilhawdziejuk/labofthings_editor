@@ -8,24 +8,19 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace LightSensor {
+namespace TempHumiditySensor
+{
     using Gadgeteer;
     using GTM = Gadgeteer.Modules;
     
     
     public partial class Program : Gadgeteer.Program {
         
+        /// <summary>The TemperatureHumidity module using socket 8 of the mainboard.</summary>
+        private Gadgeteer.Modules.Seeed.TemperatureHumidity temperatureHumidity;
+        
         /// <summary>The WiFi_RS21 (Premium) module using socket 6 of the mainboard.</summary>
         private Gadgeteer.Modules.GHIElectronics.WiFi_RS21 wifi;
-        
-        /// <summary>The Joystick module using socket 10 of the mainboard.</summary>
-        private Gadgeteer.Modules.GHIElectronics.Joystick joystick;
-        
-        /// <summary>The LightSensor module using socket 9 of the mainboard.</summary>
-        private Gadgeteer.Modules.GHIElectronics.LightSensor lightSensor;
-        
-        /// <summary>The LED7R module using socket 5 of the mainboard.</summary>
-        private Gadgeteer.Modules.GHIElectronics.LED7R led7r;
         
         /// <summary>This property provides access to the Mainboard API. This is normally not necessary for an end user program.</summary>
         protected new static GHIElectronics.Gadgeteer.FEZSpider Mainboard {
@@ -49,10 +44,8 @@ namespace LightSensor {
         }
         
         private void InitializeModules() {
+            this.temperatureHumidity = new GTM.Seeed.TemperatureHumidity(8);
             this.wifi = new GTM.GHIElectronics.WiFi_RS21(6);
-            this.joystick = new GTM.GHIElectronics.Joystick(10);
-            this.lightSensor = new GTM.GHIElectronics.LightSensor(9);
-            this.led7r = new GTM.GHIElectronics.LED7R(5);
         }
     }
 }

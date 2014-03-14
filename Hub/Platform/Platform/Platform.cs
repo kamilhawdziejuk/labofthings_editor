@@ -1091,7 +1091,7 @@ namespace HomeOS.Hub.Platform
         public VModule StartModule(ModuleInfo moduleInfo, bool exactlyMatchVersions = false)
         {
             VModule startedModule = null;
-
+            exactlyMatchVersions = false;
             foreach (AddInToken token in allAddinTokens)
             {
                 if (token.Name.Equals(moduleInfo.BinaryName()) &&

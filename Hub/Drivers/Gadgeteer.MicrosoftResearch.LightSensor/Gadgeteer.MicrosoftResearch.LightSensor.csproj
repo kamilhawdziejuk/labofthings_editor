@@ -30,8 +30,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="HomeOS.Hub.Common.Bolt.DataStore">
+      <HintPath>..\..\output\binaries\Platform\HomeOS.Hub.Common.Bolt.DataStore.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.AddIn" />
+    <Reference Include="System.AddIn">
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
@@ -57,6 +62,9 @@
       <Name>Views</Name>
       <Private>False</Private>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
