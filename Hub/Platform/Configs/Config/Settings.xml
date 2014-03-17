@@ -1,9 +1,9 @@
 <Settings>
-  <Param Name="OrgId" Value="hawdziejukhome" />
+  <Param Name="OrgId" Value="hawdziejukhome2" />
   <Param Name="StudyId" Value="Default" />
-  <Param Name="HomeId" Value="hawdziejukhome" />
+  <Param Name="HomeId" Value="hawdziejukhome2" />
   <Param Name="ConfigDir" Value="Configs\Config" />
-  <Param Name="ModuleWorkingDirBase" Value="D:\labofthings.codeplex.EnvMon\Hub\output\binaries\Platform\..\..\Data" />
+  <Param Name="ModuleWorkingDirBase" Value="C:\labofthings.codeplex.EnvMon\Hub\output\binaries\Platform\..\..\Data" />
   <Param Name="RunningMode" Value="standard" />
   <Param Name="StayOffline" Value="False" />
   <Param Name="EnforcePolicies" Value="True" />
@@ -15,8 +15,8 @@
   <Param Name="MaxStopExecutionTime" Value="5000" />
   <Param Name="MaxFinallyBlockExecutionTime" Value="30000" />
   <Param Name="MaxPortDeregisteredExecutionTime" Value="5000" />
-  <Param Name="HomeStoreBase" Value="file:///D:\labofthings.codeplex.EnvMon\Hub\output\binaries\Platform/../../HomeStore" />
-  <Param Name="RepositoryURIs" Value="file:///D:\labofthings.codeplex.EnvMon\Hub\output\binaries\Platform/../../HomeStore/repository" />
+  <Param Name="HomeStoreBase" Value="file:///C:\labofthings.codeplex.EnvMon\Hub\output\binaries\Platform/../../HomeStore" />
+  <Param Name="RepositoryURIs" Value="file:///C:\labofthings.codeplex.EnvMon\Hub\output\binaries\Platform/../../HomeStore/repository" />
   <Param Name="GatekeeperURI" Value="www.lab-of-things.net" />
   <Param Name="HeartbeatServiceHost" Value="www.lab-of-things.net" />
   <Param Name="DataStoreAccountName" Value="testdrive" />

@@ -8,7 +8,10 @@
   <Device FriendlyName="ManyCam Video Source" UniqueName="ManyCam Video Source" IPAddress="" DriverBinaryName="HomeOS.Hub.Drivers.WebCam" Configured="False" DriverModuleFriendlyName="">
     <DriverParams Count="1" Param0="ManyCam Video Source" />
   </Device>
-  <Device FriendlyName="LightSensor" UniqueName="HomeOSGadgeteerDevice_LightSensor_MicrosoftResearch_43965876879683988593" IPAddress="192.168.0.10" DriverBinaryName="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.LightSensor" Configured="True" DriverModuleFriendlyName="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.LightSensor for LightSensor">
-    <DriverParams Count="1" Param0="HomeOSGadgeteerDevice_LightSensor_MicrosoftResearch_43965876879683988593" />
+  <Device FriendlyName="Lenovo EasyCamera" UniqueName="Lenovo EasyCamera" IPAddress="" DriverBinaryName="HomeOS.Hub.Drivers.WebCam" Configured="False" DriverModuleFriendlyName="">
+    <DriverParams Count="1" Param0="Lenovo EasyCamera" />
+  </Device>
+  <Device FriendlyName="TempHumiditySensor" UniqueName="HomeOSGadgeteerDevice_TempHumiditySensor_MicrosoftResearch_44264929836478357100" IPAddress="192.168.0.18" DriverBinaryName="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.TempHumiditySensor" Configured="True" DriverModuleFriendlyName="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.TempHumiditySensor for TempHumiditySensor">
+    <DriverParams Count="1" Param0="HomeOSGadgeteerDevice_TempHumiditySensor_MicrosoftResearch_44264929836478357100" />
   </Device>
 </Devices>

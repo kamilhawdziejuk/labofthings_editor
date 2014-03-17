@@ -1,15 +1,10 @@
-﻿<Group Name="Everyone">
-  <User Name="systemlow" Password="" ActiveFrom="0001/1/1 12:00:00 AM" ActiveUntil="2100/12/31 11:59:59 PM" />
-  <User Name="systemhigh" Password="highpass" ActiveFrom="0001/1/1 12:00:00 AM" ActiveUntil="2100/12/31 11:59:59 PM" />
-  
-<Group Name="Residents">
-  <Group Name="Adults">
+<Group Name="everyone">
+  <User Password="" ActiveFrom="0001-01-01 00:00:00" ActiveUntil="2100-12-31 23:59:59" LiveId="" LiveIdUniqueUserToken="" Name="systemlow" />
+  <User Password="highpass" ActiveFrom="0001-01-01 00:00:00" ActiveUntil="2100-12-31 23:59:59" LiveId="" LiveIdUniqueUserToken="" Name="systemhigh" />
+  <Group Name="residents">
+    <Group Name="adults" />
+    <Group Name="kids" />
   </Group>
-
-  <Group Name="Kids">
-  </Group>
-</Group>
-
-<Group Name="Guests">
-</Group>  
+  <Group Name="guests" />
+  <User Password="" ActiveFrom="0001-01-01 00:00:00" ActiveUntil="9999-12-31 23:59:59" LiveId="Kamil.Hawdziejuk@outlook.com" LiveIdUniqueUserToken="7e993ea81a435097b825223aeba070b3" Name="Kamil" />
 </Group>

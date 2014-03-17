@@ -9,6 +9,12 @@
       <Role Name=":sensor:" />
     </RoleList>
   </Module>
-  <Module FriendlyName="TempHumiditySensor" AppName="driver for TempHumiditySensor" BinaryName="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.TempHumiditySensor" AutoStart="1" Background="1">
+  <Module FriendlyName="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.TempHumiditySensor for TempHumiditySensor" AppName="driver for TempHumiditySensor" BinaryName="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.TempHumiditySensor" WorkingDir="C:\labofthings.codeplex.EnvMon\Hub\output\binaries\Platform\..\..\Data\HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.TempHumiditySensor for TempHumiditySensor" AutoStart="1" Background="1">
+    <Args Count="1" val1="HomeOSGadgeteerDevice_TempHumiditySensor_MicrosoftResearch_44264929836478357100" />
+  </Module>
+  <Module FriendlyName="ThermoAlerts" AppName="ThermoAlerts" BinaryName="HomeOS.Hub.Apps.Thermometer" WorkingDir="C:\labofthings.codeplex.EnvMon\Hub\output\binaries\Platform\..\..\Data\ThermoAlerts" AutoStart="1" Background="0">
+    <RoleList Optional="False">
+      <Role Name=":sensor:" />
+    </RoleList>
   </Module>
 </Modules>
