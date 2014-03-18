@@ -19,7 +19,7 @@ namespace HomeOS.Hub.Apps.Thermometer
         /// <summary>
         /// The most recently fetched temperature from the sensor
         /// </summary>
-        public int Temperature = 0;
+        public double Temperature = 0;
 
         public override void Start()
         {
@@ -135,7 +135,7 @@ namespace HomeOS.Hub.Apps.Thermometer
             logger.Log("Notitification from {0} for {0}", roleName, opName);
             if (retVals.Count >= 1)
             {
-                this.Temperature = (int)retVals[0].Value();
+                this.Temperature = (double)retVals[0].Value();
             }
             else
             {

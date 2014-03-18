@@ -23,8 +23,8 @@ namespace HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.TempHumiditySensor
     [System.AddIn.AddIn("HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.TempHumiditySensor")]
     public class DriverGadgeteerMicrosoftResearchLightSensor : DriverGadgeteerBase
     {
-        const int LightThreshold = 1;
-        int lastValue = 0;
+        const int TempThreshold = 1;
+        double lastValue = 0;
 
         protected override List<VRole> GetRoleList()
         {
@@ -56,7 +56,7 @@ namespace HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.TempHumiditySensor
                     if (jsonResponse.temperature > 0)
                         logger.Log("Gadgeteer Light: {0}", jsonResponse.temperature.ToString());
 
-                    int newValue = NormalizeLightValue(jsonResponse.temperature);
+                    double newValue = NormalizeTempValue(jsonResponse.temperature);
 
                     //notify the subscribers
                     if (newValue != lastValue)
@@ -83,9 +83,9 @@ namespace HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.TempHumiditySensor
             }
         }
 
-        private int NormalizeLightValue(double rawValue)
+        private double NormalizeTempValue(double rawValue)
         {
-            return (int)rawValue;
+            return Math.Round(rawValue,2);
         }
 
 
