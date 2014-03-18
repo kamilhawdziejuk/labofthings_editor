@@ -11,18 +11,6 @@
       <Time DayOfWeek="-1" StartMins="0" EndMins="2400" />
     </User>
   </Rule>
-  <Rule Name="Access for LightAlerts" Module="LightAlerts">
-    <User Name="everyone" Type="Allow" Priority="0">
-      <Service FriendlyName="*" />
-      <Time DayOfWeek="-1" StartMins="0" EndMins="2400" />
-    </User>
-  </Rule>
-  <Rule Name="LightAlerts-LightDevice" Module="LightAlerts">
-    <User Name="everyone" Type="Allow" Priority="0">
-      <Service FriendlyName="LightDevice" />
-      <Time DayOfWeek="-1" StartMins="0" EndMins="2400" />
-    </User>
-  </Rule>
   <Rule Name="Access for ThermoAlerts" Module="ThermoAlerts">
     <User Name="everyone" Type="Allow" Priority="0">
       <Service FriendlyName="*" />
@@ -32,6 +20,18 @@
   <Rule Name="ThermoAlerts-TempHumidityDevice" Module="ThermoAlerts">
     <User Name="everyone" Type="Allow" Priority="0">
       <Service FriendlyName="TempHumidityDevice" />
+      <Time DayOfWeek="-1" StartMins="0" EndMins="2400" />
+    </User>
+  </Rule>
+  <Rule Name="Access for LightAlerts" Module="LightAlerts">
+    <User Name="everyone" Type="Allow" Priority="0">
+      <Service FriendlyName="*" />
+      <Time DayOfWeek="-1" StartMins="0" EndMins="2400" />
+    </User>
+  </Rule>
+  <Rule Name="LightAlerts-LightDevice" Module="LightAlerts">
+    <User Name="everyone" Type="Allow" Priority="0">
+      <Service FriendlyName="LightDevice" />
       <Time DayOfWeek="-1" StartMins="0" EndMins="2400" />
     </User>
   </Rule>
