@@ -62,11 +62,17 @@
   </Module>-->
 
 
-  <!--<Module AppName="AppDummy" BinaryName="HomeOS.Hub.Apps.Dummy" Description="Example basic application" Rating="5">
+  <Module AppName="Clock" BinaryName="HomeOS.Hub.Apps.Clock" Description="Clock of the system" Rating="5">
     <RoleList>
-      <Role Name=":dummy:"/>
+      <Role Name=":sensor:"/>
     </RoleList>
-  </Module>-->
+  </Module>
+
+  <Module AppName="Volume" BinaryName="HomeOS.Hub.Apps.Volume" Description="Volume (loudness) of the system" Rating="5">
+    <RoleList>
+      <Role Name=":sensor:"/>
+    </RoleList>
+  </Module>
 
  <Module AppName="ThermoAlerts" BinaryName="HomeOS.Hub.Apps.Thermometer" Description="Sample application for Gadgeteer guide" Rating="5">
     <RoleList>

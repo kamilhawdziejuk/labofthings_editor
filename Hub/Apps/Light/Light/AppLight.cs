@@ -8,7 +8,7 @@ using HomeOS.Hub.Common;
 using HomeOS.Hub.Platform.Views;
 using System.Net;
 using System.Runtime.Serialization;
-using System.Runtime.Serialization.Json;
+//using System.Runtime.Serialization.Json;
 
 namespace HomeOS.Hub.Apps.Light
 {

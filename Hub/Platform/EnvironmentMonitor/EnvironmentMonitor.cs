@@ -5,7 +5,10 @@ using System.Text;
 using System.Windows;
 using HomeOS.Hub.Platform.EnvironmentMonitor.Validators;
 using HomeOS.Hub.Platform.Views;
-using PetriNetSharp.Engine;
+//using PetriNetSharp.Engine;
+using System.Globalization;
+using System.Threading;
+using System.Windows.Threading;
 
 namespace HomeOS.Hub.Platform.EnvironmentMonitor
 {
@@ -26,7 +29,7 @@ namespace HomeOS.Hub.Platform.EnvironmentMonitor
         /// <summary>
         /// Represents the situation of the running home environment
         /// </summary>
-        PetriNetGraph homeGraph = new PetriNetGraph();
+        //PetriNetGraph homeGraph = new PetriNetGraph();
 
         #endregion
 
@@ -69,7 +72,8 @@ namespace HomeOS.Hub.Platform.EnvironmentMonitor
             return retList as IList<VModuleCondition>;
         }
 
-        private void InitializeHomeEnvironment()
+        /*
+        private void SaveHomeEnvironmentStateAsPetriNet()
         {
             Place p1 = new Place(new Point(785, 213), "Night", "P1");
             Place p2 = new Place(new Point(419, 228), "Day", "P2");
@@ -128,11 +132,7 @@ namespace HomeOS.Hub.Platform.EnvironmentMonitor
             this.homeGraph.AddArc(a13);
 
             PetriNetSharp.IOSystem ios = new PetriNetSharp.IOSystem();
-            ios.SaveAs(this.homeGraph, "D:\\dane2.txt");
-
-           // Window homeGraphWindow = new Window();
-          //  homeGraphWindow.Show();
-            //PetriNetSharp.MainWindow mainWindow = new PetriNetSharp.MainWindow();
+            ios.SaveAs(this.homeGraph, "D:\\data.pns");
             
             //here comes adding states...
             /*foreach (var state in this.GetSystemStates())
@@ -143,10 +143,11 @@ namespace HomeOS.Hub.Platform.EnvironmentMonitor
                     this.homeGraph.AddPlace(
                 }
                 //this.homeGraph.AddState(state);
-            }*/
+            }
 
             //here comes adding possible transitions...
         }
+        */
 
         #endregion
 
@@ -206,9 +207,8 @@ namespace HomeOS.Hub.Platform.EnvironmentMonitor
         public void Start()
         {
             return;
-            this.InitializeHomeEnvironment();
             System.Threading.Thread.Sleep(5000);
-            logger.Log("Conflicts Manager has started...");
+            logger.Log("Environment Monitor agent has started...");
             while (true)
             {
                 IList<VModule> list = this.platform.GetModules(true);
