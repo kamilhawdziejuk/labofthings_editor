@@ -11,10 +11,10 @@
   <Device FriendlyName="Lenovo EasyCamera" UniqueName="Lenovo EasyCamera" IPAddress="" DriverBinaryName="HomeOS.Hub.Drivers.WebCam" Configured="False" DriverModuleFriendlyName="">
     <DriverParams Count="1" Param0="Lenovo EasyCamera" />
   </Device>
-  <Device FriendlyName="TempHumiditySensor" UniqueName="HomeOSGadgeteerDevice_TempHumiditySensor_MicrosoftResearch_44264929836478357100" IPAddress="192.168.0.18" DriverBinaryName="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.TempHumiditySensor" Configured="True" DriverModuleFriendlyName="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.TempHumiditySensor for TempHumiditySensor">
-    <DriverParams Count="1" Param0="HomeOSGadgeteerDevice_TempHumiditySensor_MicrosoftResearch_44264929836478357100" />
+  <Device FriendlyName="TempHumiditySensor" UniqueName="HomeOSGadgeteerDevice_TempHumiditySensor_MicrosoftResearch_48442029061122239447" IPAddress="192.168.0.10" DriverBinaryName="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.TempHumiditySensor" Configured="True" DriverModuleFriendlyName="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.TempHumiditySensor for TempHumiditySensor">
+    <DriverParams Count="1" Param0="HomeOSGadgeteerDevice_TempHumiditySensor_MicrosoftResearch_48442029061122239447" />
   </Device>
-  <Device FriendlyName="LightSensor" UniqueName="HomeOSGadgeteerDevice_LightSensor_MicrosoftResearch_10578712614567821938" IPAddress="192.168.0.10" DriverBinaryName="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.LightSensor" Configured="True" DriverModuleFriendlyName="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.LightSensor for LightSensor">
-    <DriverParams Count="1" Param0="HomeOSGadgeteerDevice_LightSensor_MicrosoftResearch_10578712614567821938" />
+  <Device FriendlyName="LightSensor" UniqueName="HomeOSGadgeteerDevice_LightSensor_MicrosoftResearch_75258955500065439816" IPAddress="192.168.0.11" DriverBinaryName="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.LightSensor" Configured="True" DriverModuleFriendlyName="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.LightSensor for LightSensor">
+    <DriverParams Count="1" Param0="HomeOSGadgeteerDevice_LightSensor_MicrosoftResearch_75258955500065439816" />
   </Device>
 </Devices>
