@@ -17,4 +17,7 @@
   <Device FriendlyName="LightSensor" UniqueName="HomeOSGadgeteerDevice_LightSensor_MicrosoftResearch_75258955500065439816" IPAddress="192.168.0.18" DriverBinaryName="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.LightSensor" Configured="True" DriverModuleFriendlyName="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.LightSensor for LightSensor">
     <DriverParams Count="1" Param0="HomeOSGadgeteerDevice_LightSensor_MicrosoftResearch_75258955500065439816" />
   </Device>
+  <Device FriendlyName="DistanceSensor" UniqueName="HomeOSGadgeteerDevice_DistanceSensor_MicrosoftResearch_87387072133675897046" IPAddress="192.168.0.10" DriverBinaryName="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.DistanceSensor" Configured="True" DriverModuleFriendlyName="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.DistanceSensor for DistanceSensor">
+    <DriverParams Count="1" Param0="HomeOSGadgeteerDevice_DistanceSensor_MicrosoftResearch_87387072133675897046" />
+  </Device>
 </Devices>
