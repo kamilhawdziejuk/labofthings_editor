@@ -121,7 +121,7 @@
     </ProjectReference>
     <ProjectReference Include="..\..\Common\Common.csproj">
       <Project>{6F879B8B-C4B1-4E8D-9BF2-C6376B05E4EC}</Project>
-      <Name>Common %28Common\Common%29</Name>
+      <Name>Common</Name>
       <Private>True</Private>
     </ProjectReference>
     <ProjectReference Include="..\Authentication\AuthenticationService.csproj">
