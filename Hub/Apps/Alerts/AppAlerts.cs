@@ -89,6 +89,8 @@ namespace HomeOS.Hub.Apps.Alerts
         
         //DataStream for writing the alert pictures and text.
         IStream picStream, textStream;
+        private Object picStreamLock = new Object();
+        private Object textStreamLock = new Object();
 
         ////Email address to receive the alert pictures.
         //string emailAdrs;
@@ -121,6 +123,9 @@ namespace HomeOS.Hub.Apps.Alerts
             {
                 logger.Log("{0}: error parsing arguments: {1}", exception.ToString(), String.Join(" ", moduleInfo.Args()));
             }
+
+            picStream = base.CreateFileDataStream<StrKey, ByteValue>("H2OAlertsPics", true, 0);
+            textStream = base.CreateValueDataStream<StrKey, StrValue>("H2OAlertsText", true, 0);
 
             DoorNotifierSvc service = new DoorNotifierSvc(logger, this);
 
@@ -320,10 +325,11 @@ namespace HomeOS.Hub.Apps.Alerts
             StrValue strVal = new StrValue(message);
             try
             {
-                textStream = base.CreateValueDataStream<StrKey, StrValue>("H2OAlertsText", true);
-                textStream.Append(strKey, strVal);
-                logger.Log("WaterAlert message has been written to {0}.", textStream.Get(strKey).ToString());
-                textStream.Close();
+                lock (textStreamLock)
+                {
+                    textStream.Append(strKey, strVal);
+                    logger.Log("WaterAlert message has been written to {0}.", textStream.Get(strKey).ToString());
+                }
             }
             catch (Exception e)
             {
@@ -337,10 +343,10 @@ namespace HomeOS.Hub.Apps.Alerts
             ByteValue byteVal = new ByteValue(imageBytes);
             try
             {
-                picStream = base.CreateFileDataStream<StrKey, ByteValue>("H2OAlertsPics", true);
-                picStream.Append(strKey, byteVal);
-               // logger.Log("WaterAlert picture has been written to {0}.", picStream.Get(strKey).ToString());
-                picStream.Close();
+                lock (picStreamLock)
+                {
+                    picStream.Append(strKey, byteVal);
+                }
             }
             catch (Exception e)
             {
@@ -385,8 +391,17 @@ namespace HomeOS.Hub.Apps.Alerts
              
         public override void Stop()
         {
-            serviceHost.Abort();
+            if (serviceHost != null)
+                serviceHost.Abort();
 
+            try
+            {
+                textStream.Close();
+                picStream.Close();
+            }
+            catch (Exception e) {
+                logger.Log("{0}: error: {1}", e.ToString());
+            }
         }
 
         public void WindowClosed()

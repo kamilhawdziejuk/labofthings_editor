@@ -62,23 +62,17 @@
   </Module>-->
 
 
-  <Module AppName="Clock" BinaryName="HomeOS.Hub.Apps.Clock" Description="Clock of the system" Rating="5">
+  <Module AppName="AppDummy" BinaryName="HomeOS.Hub.Apps.Dummy" Description="Example basic application" Rating="5">
     <RoleList>
-      <Role Name=":sensor:"/>
+      <Role Name=":dummy:"/>
     </RoleList>
   </Module>
 
-  <Module AppName="Volume" BinaryName="HomeOS.Hub.Apps.Volume" Description="Volume (loudness) of the system" Rating="5">
-    <RoleList>
-      <Role Name=":sensor:"/>
-    </RoleList>
-  </Module>
-
- <Module AppName="ThermoAlerts" BinaryName="HomeOS.Hub.Apps.Thermometer" Description="Sample application for Gadgeteer guide" Rating="5">
+  <!--<Module AppName="ThermoAlerts" BinaryName="HomeOS.Hub.Apps.Thermometer" Description="Sample application for Gadgeteer guide" Rating="5">
     <RoleList>
       <Role Name=":sensor:" />
     </RoleList>
-  </Module>
+  </Module>-->
 
   <Module AppName="Sensor" BinaryName="HomeOS.Hub.Apps.Sensor" Description="Prints sensor values" Rating="5" IconUrl="icon.png">
     <RoleList>
@@ -87,9 +81,17 @@
     </RoleList>
   </Module>
 
-  <Module AppName="LightAlerts" BinaryName="HomeOS.Hub.Apps.Light" Description="Sample application to view luminous intensity measured at home" Rating="5" IconUrl="http://i.msdn.microsoft.com/dynimg/IC534687.png">
+  <Module AppName="ConFurniture" BinaryName="HomeOS.Hub.Apps.ConnectedFurniture" Description="Connected Furniture" Rating="5" IconUrl="icon.png">
     <RoleList>
-      <Role Name=":sensor:" />
+      <Role Name=":sensor:"/>
+      <Role Name=":sensormultilevel:"/>
+      <Role Name=":dummy:"/>
+    </RoleList>
+  </Module>
+
+  <Module AppName="Weather" BinaryName="HomeOS.Hub.Apps.Weather" Description="Shows current weather" Rating="5" IconUrl="icon.png">
+    <RoleList>
+      <Role Name=":weather:"/>
     </RoleList>
   </Module>
 

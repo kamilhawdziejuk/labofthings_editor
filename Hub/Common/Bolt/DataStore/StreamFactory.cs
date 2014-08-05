@@ -9,6 +9,9 @@ using System.IO;
 using System.ServiceModel;
 using System.Configuration;
 
+using HomeOS.Hub.Common.Bolt.DataStoreCommon;
+
+
 namespace HomeOS.Hub.Common.Bolt.DataStore
 {
     public sealed class StreamFactory
@@ -44,6 +47,13 @@ namespace HomeOS.Hub.Common.Bolt.DataStore
             }
         }
 
+        /* syncIntervalSec:
+         *   -ve ==> don't sync on writes;  only sync on close.
+         *   0   ==> sync on every write
+         *   +ve ==> sync every x seconds
+         *   
+         * Throws System.Exception e.g., on network disconnection for remote streams. Catch in Caller.
+        */
         public IStream openValueDataStream<KeyType, ValType>(FqStreamID FQSID,
                                                         CallerInfo Ci,
                                                         LocationInfo Li,
@@ -54,18 +64,27 @@ namespace HomeOS.Hub.Common.Bolt.DataStore
                                                         int ChunkSizeForUpload = 4*1024*1024 , 
                                                         int ThreadPoolSize = 1, 
                                                         Logger log = null,
-                                                        bool sideload = false)
+                                                        bool sideload = false,
+                                                        int syncIntervalSec = -1)
             where KeyType : IKey, new()
             where ValType : IValue, new()
         {
             if (Li == null)
                 Li = new LocationInfo("", "", SynchronizerType.None);
-            return new MetaStream<KeyType, ValType>(FQSID, Ci, Li, 
-                                                    op, type, ctype, StreamDataType.Values, mdserveraddress, 
+            return new MetaStream<KeyType, ValType>(FQSID, Ci, Li,
+                                                    op, type, ctype, StreamDataType.Values, 
+                                                    syncIntervalSec, mdserveraddress, 
                                                     ChunkSizeForUpload, ThreadPoolSize, 
                                                     log, sideload);
         }
 
+        /* syncIntervalSec:
+         *   -ve ==> don't sync on writes;  only sync on close.
+         *   0   ==> sync on every write
+         *   +ve ==> sync every x seconds
+         *   
+         * Throws System.Exception e.g., on network disconnection for remote streams. Catch in Caller.
+        */
         public IStream openFileDataStream<KeyType>(FqStreamID FQSID, 
                                                 CallerInfo Ci, 
                                                 LocationInfo Li,
@@ -76,13 +95,15 @@ namespace HomeOS.Hub.Common.Bolt.DataStore
                                                 int ChunkSizeForUpload = 4*1024*1024 , 
                                                 int ThreadPoolSize = 1,
                                                 Logger log = null,
-                                                bool sideload = false)
+                                                bool sideload = false,
+                                                int syncIntervalSec = -1)
             where KeyType : IKey, new()
         {
             if (Li == null)
                 Li = new LocationInfo("", "", SynchronizerType.None);
-            return new MetaStream<KeyType, ByteValue>(FQSID, Ci, Li, 
-                                                      op, type, ctype, StreamDataType.Files, mdserveraddress, 
+            return new MetaStream<KeyType, ByteValue>(FQSID, Ci, Li,
+                                                      op, type, ctype, StreamDataType.Files, 
+                                                      syncIntervalSec, mdserveraddress, 
                                                       ChunkSizeForUpload, ThreadPoolSize, 
                                                       log, sideload);
         }
@@ -179,17 +200,17 @@ namespace HomeOS.Hub.Common.Bolt.DataStore
                 LocalMetaDataServer localMdServer = new LocalMetaDataServer(targetDir + "/" + MetaStream<StrKey, StrValue>.StreamMDFileName, log);
                 localMdServer.LoadMetaDataServer();
 
-                Dictionary<int, HomeOS.Hub.Common.MDServer.AccountInfo> tmp = localMdServer.GetAllAccounts(new HomeOS.Hub.Common.MDServer.FQStreamID(streamId.HomeId, streamId.AppId, streamId.StreamId));
+                Dictionary<int, AccountInfo> tmp = localMdServer.GetAllAccounts(new FQStreamID(streamId.HomeId, streamId.AppId, streamId.StreamId));
 
                 if (tmp != null)
                 {
-                    HomeOS.Hub.Common.Bolt.MetaDataService.AccountInfo ai=null;
-                    HomeOS.Hub.Common.Bolt.MetaDataService.AccountInfo segment0Ai =null;
-                    foreach (HomeOS.Hub.Common.MDServer.AccountInfo account in tmp.Values)
+                    MetaDataService.AccountInfo ai=null;
+                    MetaDataService.AccountInfo segment0Ai =null;
+                    foreach (AccountInfo account in tmp.Values)
                     {
                         Boom(targetDir + "/" + account.num);
                         containerName = streamId.ToString().Replace('/', '-').ToLower() + "-" + account.num;
-                        ai = new HomeOS.Hub.Common.Bolt.MetaDataService.AccountInfo();
+                        ai = new MetaDataService.AccountInfo();
                         ai.accountKey = account.accountKey;
                         ai.accountName = account.accountName;
                         ai.location = account.location;
