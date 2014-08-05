@@ -24,7 +24,7 @@ namespace HomeOS.Hub.Apps.VolumeWp7
         /// <summary>
         /// Basic configuration, it can be changed in settins window
         /// </summary>
-        private string urlBasic = "http://192.168.0.2:51430/hawdziejukhome/Volume";
+        private string urlBasic = "http://192.168.0.3:51430/hawdziejukhome2/Volume";
         private float minValue;
         private float maxValue;
         private float actualValue;

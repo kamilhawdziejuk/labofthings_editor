@@ -9,6 +9,7 @@ using HomeOS.Hub.Platform.Views;
 using System.Globalization;
 using System.Threading;
 using System.Windows.Threading;
+using PetrinetTool;
 
 namespace HomeOS.Hub.Platform.EnvironmentMonitor
 {
@@ -72,68 +73,84 @@ namespace HomeOS.Hub.Platform.EnvironmentMonitor
             return retList as IList<VModuleCondition>;
         }
 
+        private void SaveHomeEnvAsPN()
+        {
+            #region --- places ---
+
+            //clock
+            var pClockNight = new Place() { Name = "night", Id = "pClockNight" };
+            var pClockDay = new Place() { Name = "day", Id = "pClockDay" };
+
+            //speaker
+            var pSpeakerMin = new Place() { Name = "min_loudness", Id = "pSpeakerMin" };
+            var pSpeakerHalf = new Place() { Name = "half_loudness", Id = "pSpeakerHalf" };
+            var pSpeakerMax = new Place() { Name = "Mmx_loudness", Id = "pSpeakerMax" };
+
+            //light_sensor
+            var pLightDark = new Place() { Name = "dark", Id = "pLightDark" };
+            var pLightBright = new Place() { Name = "bright", Id = "pLightBright" };
+
+            #endregion
+
+            #region --- transitions ---
+
+            //day->night
+            var t6am = new Transition() { Name = "6am", Id = "t6am" };
+            var a1 = new Arc() { SourceID = "pClockNight", TargetID = "t6am", Weight = 1, Id = "a1" };
+            var a2 = new Arc() { SourceID = "t6am", TargetID = "pClockDay", Weight = 1, Id = "a2" };
+            //night->day
+            var t10pm = new Transition() { Name = "10pm", Id = "t10pm" };
+            var a3 = new Arc() { SourceID = "pClockDay", TargetID = "t10pm", Weight = 1, Id = "a3" };
+            var a4 = new Arc() { SourceID = "t10pm", TargetID = "pClockNight", Weight = 1, Id = "a4" };
+            
+            //++light
+            var tMoreLight = new Transition() { Name = "moreLight", Id = "tMoreLight" };
+            var a5 = new Arc() { SourceID = "pLightDark", TargetID = "tMoreLight", Weight = 1, Id = "a5" };
+            var a6 = new Arc() { SourceID = "tMoreLight", TargetID = "pLightBright", Weight = 1, Id = "a6" };
+            //--light
+            var tLessLight = new Transition() { Name = "lessLight", Id = "tLessLight" };
+            var a7 = new Arc() { SourceID = "pLightBright", TargetID = "tLessLight", Weight = 1, Id = "a7" };
+            var a8 = new Arc() { SourceID = "tLessLight", TargetID = "pLightDark", Weight = 1, Id = "a8" };
+            
+
+            #endregion
+
+            #region --- adding everything ---
+
+            Page page = new Page();
+            page.Places.Add(pClockNight);
+            page.Places.Add(pClockDay);
+            page.Places.Add(pSpeakerMin);
+            page.Places.Add(pSpeakerHalf);
+            page.Places.Add(pSpeakerMax);
+            page.Places.Add(pLightBright);
+            page.Places.Add(pLightDark);
+
+            page.Transitions.Add(t6am);
+            page.Transitions.Add(t10pm);
+            page.Transitions.Add(tMoreLight);
+            page.Transitions.Add(tLessLight);
+
+            page.Arcs.Add(a1);
+            page.Arcs.Add(a2);
+            page.Arcs.Add(a3);
+            page.Arcs.Add(a4);
+            page.Arcs.Add(a5);
+            page.Arcs.Add(a6);
+            page.Arcs.Add(a7);
+            page.Arcs.Add(a8);
+
+            #endregion
+
+            Petrinet PN = new Petrinet();
+            PN.Pages.Add("current", page);
+
+            PN.Save("D://testNet.xml");
+        }
+
         /*
         private void SaveHomeEnvironmentStateAsPetriNet()
         {
-            Place p1 = new Place(new Point(785, 213), "Night", "P1");
-            Place p2 = new Place(new Point(419, 228), "Day", "P2");
-            Place p3 = new Place(new Point(127, 90), "Min loudness", "P3");
-            Place p4 = new Place(new Point(422, 92), "Half loudness", "P4");
-            Place p6 = new Place(new Point(448, 451), "Mode_day", "P6");
-            Place p7 = new Place(new Point(756, 453), "Mode_night", "P7");
-
-            Transition t1 = new Transition("More light", new Point(607, 125), "T1", 1);
-            Transition t2 = new Transition("Less light", new Point(610, 330), "T2", 1);
-            Transition t3 = new Transition("Speaker ON", new Point(277, 153), "T3", 1);
-            Transition t4 = new Transition("Speaker OFF", new Point(270, 35), "T4", 1);
-            Transition t6 = new Transition("22 p.m.", new Point(599, 390), "T6", 1);
-            Transition t7 = new Transition("6 a.m.", new Point(602, 500), "T7", 1);
-
-            Arc a1 = new Arc(p1, t1);
-            Arc a2 = new Arc(t1, p4);
-            Arc a3 = new Arc(t1, p2);
-            Arc a4 = new Arc(p2, t2);
-            Arc a5 = new Arc(t2, p1);
-            Arc a6 = new Arc(p4, t4);
-            Arc a7 = new Arc(t4, p3);
-            Arc a8 = new Arc(p4, t3);
-            Arc a9 = new Arc(t3, p3);
-            Arc a10 = new Arc(p7, t7);
-            Arc a11 = new Arc(t7, p6);
-            Arc a12 = new Arc(p6, t6);
-            Arc a13 = new Arc(t6, p7);
-
-            this.homeGraph.AddPlace(p1);
-            this.homeGraph.AddPlace(p2);
-            this.homeGraph.AddPlace(p3);
-            this.homeGraph.AddPlace(p4);
-            this.homeGraph.AddPlace(p6);
-            this.homeGraph.AddPlace(p7);
-
-            this.homeGraph.AddTransition(t1);
-            this.homeGraph.AddTransition(t2);
-            this.homeGraph.AddTransition(t3);
-            this.homeGraph.AddTransition(t4);
-            this.homeGraph.AddTransition(t6);
-            this.homeGraph.AddTransition(t7);
-
-            this.homeGraph.AddArc(a1);
-            this.homeGraph.AddArc(a2);
-            this.homeGraph.AddArc(a3);
-            this.homeGraph.AddArc(a4);
-            this.homeGraph.AddArc(a5);
-            this.homeGraph.AddArc(a6);
-            this.homeGraph.AddArc(a7);
-            this.homeGraph.AddArc(a8);
-            this.homeGraph.AddArc(a9);
-            this.homeGraph.AddArc(a10);
-            this.homeGraph.AddArc(a11);
-            this.homeGraph.AddArc(a12);
-            this.homeGraph.AddArc(a13);
-
-            PetriNetSharp.IOSystem ios = new PetriNetSharp.IOSystem();
-            ios.SaveAs(this.homeGraph, "D:\\data.pns");
-            
             //here comes adding states...
             /*foreach (var state in this.GetSystemStates())
             {
@@ -206,6 +223,8 @@ namespace HomeOS.Hub.Platform.EnvironmentMonitor
 
         public void Start()
         {
+			return;
+            this.SaveHomeEnvAsPN();
             return;
             System.Threading.Thread.Sleep(5000);
             logger.Log("Environment Monitor agent has started...");
