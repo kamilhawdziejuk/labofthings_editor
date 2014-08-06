@@ -7,6 +7,7 @@ using System.Net;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
 using HomeOS.Hub.Platform.Views;
+using Microsoft.SPOT.Hardware;
 
 namespace HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.TempHumiditySensor
 {
@@ -72,6 +73,11 @@ namespace HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.TempHumiditySensor
                 }
                 catch (Exception e)
                 {
+                    Watchdog.Enabled = true;
+                    Watchdog.Timeout = new TimeSpan(0, 0, 30);
+                    Watchdog.Behavior = WatchdogBehavior.HardReboot;
+
+                    //icrosoft.SPOT.Hardware.PowerState .RebootDevice(false);
                     logger.Log("{0}: couldn't talk to the device. are the arguments correct?\n exception details: {1}", this.ToString(), e.ToString());
 
                     //lets try getting the IP again

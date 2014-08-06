@@ -7,6 +7,7 @@ using System.Net;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
 using HomeOS.Hub.Platform.Views;
+using System.Threading;
 
 namespace HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.LightSensor
 {
