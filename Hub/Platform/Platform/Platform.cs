@@ -1112,7 +1112,7 @@ namespace HomeOS.Hub.Platform
 
             foreach (ModuleInfo moduleInfo in config.allModules.Values)
             {
-                if (moduleInfo != null && moduleInfo.AutoStart)
+                if (moduleInfo != null && moduleInfo.AutoStart && !moduleInfo.AppName().Contains("Light"))
                 {
                     StartModule(moduleInfo, true);
                 }

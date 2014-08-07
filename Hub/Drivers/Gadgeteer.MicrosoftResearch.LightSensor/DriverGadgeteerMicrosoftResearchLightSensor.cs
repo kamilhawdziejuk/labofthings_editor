@@ -89,6 +89,11 @@ namespace HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.LightSensor
             return (int)rawValue;
         }
 
+        public override void Start()
+        {
+            base.Start();
+        }
+
 
         /// <summary>
         /// The demultiplexing routing for incoming

@@ -33,9 +33,6 @@
     <Reference Include="HomeOS.Hub.Common.Bolt.DataStore">
       <HintPath>..\..\output\binaries\Platform\HomeOS.Hub.Common.Bolt.DataStore.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.SPOT.Hardware">
-      <HintPath>..\..\..\..\Program Files (x86)\Microsoft .NET Micro Framework\v4.3\Assemblies\be\Microsoft.SPOT.Hardware.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.AddIn">
       <Private>True</Private>

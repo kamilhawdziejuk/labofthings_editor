@@ -20,7 +20,6 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -31,12 +30,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="HomeOS.Hub.Common.Bolt.DataStore, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Common\bin\Debug\HomeOS.Hub.Common.Bolt.DataStore.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.SPOT.Hardware">
-      <HintPath>..\..\..\..\Program Files (x86)\Microsoft .NET Micro Framework\v4.3\Assemblies\be\Microsoft.SPOT.Hardware.dll</HintPath>
+    <Reference Include="HomeOS.Hub.Common.Bolt.DataStore">
+      <HintPath>..\..\output\binaries\Platform\HomeOS.Hub.Common.Bolt.DataStore.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.AddIn">
@@ -67,6 +62,9 @@
       <Name>Views</Name>
       <Private>False</Private>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
