@@ -11,8 +11,8 @@
   <Device FriendlyName="Lenovo EasyCamera" UniqueName="Lenovo EasyCamera" IPAddress="" DriverBinaryName="HomeOS.Hub.Drivers.WebCam" Configured="False" DriverModuleFriendlyName="">
     <DriverParams Count="1" Param0="Lenovo EasyCamera" />
   </Device>
-  <Device FriendlyName="TempHumiditySensor" UniqueName="HomeOSGadgeteerDevice_TempHumiditySensor_MicrosoftResearch_27099184662060197631" IPAddress="192.168.0.11" DriverBinaryName="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.TempHumiditySensor" Configured="True" DriverModuleFriendlyName="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.TempHumiditySensor for TempHumiditySensor">
-    <DriverParams Count="1" Param0="HomeOSGadgeteerDevice_TempHumiditySensor_MicrosoftResearch_27099184662060197631" />
+  <Device FriendlyName="TempHumiditySensor" UniqueName="HomeOSGadgeteerDevice_TempHumiditySensor_MicrosoftResearch_68377914335995823250" IPAddress="192.168.0.11" DriverBinaryName="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.TempHumiditySensor" Configured="True" DriverModuleFriendlyName="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.TempHumiditySensor for TempHumiditySensor">
+    <DriverParams Count="1" Param0="HomeOSGadgeteerDevice_TempHumiditySensor_MicrosoftResearch_00978384897354714764" />
   </Device>
   <Device FriendlyName="DistanceSensor" UniqueName="HomeOSGadgeteerDevice_DistanceSensor_MicrosoftResearch_87387072133675897046" IPAddress="192.168.0.10" DriverBinaryName="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.DistanceSensor" Configured="True" DriverModuleFriendlyName="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.DistanceSensor for DistanceSensor">
     <DriverParams Count="1" Param0="HomeOSGadgeteerDevice_DistanceSensor_MicrosoftResearch_87387072133675897046" />

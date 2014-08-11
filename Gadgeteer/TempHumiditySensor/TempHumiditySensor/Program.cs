@@ -13,6 +13,7 @@ using GT = Gadgeteer;
 using GTM = Gadgeteer.Modules;
 using Gadgeteer.Modules.Seeed;
 using Gadgeteer.Modules.GHIElectronics;
+using GHI.Premium.Net;
 
 namespace TempHumiditySensor
 {
@@ -23,22 +24,32 @@ namespace TempHumiditySensor
         /// <summary>
         /// The time between checking temp&humidity sensor
         /// </summary>
-        const int CheckPeriod = 5000;
+        const int CheckPeriod = 5 * 1000;
+
+        /// <summary>
+        /// The time between restarting device (This device crashed every periodic time)
+        /// </summary>
+        const int ResetPeriod = 60 * 1000;
         TimeSpan RemoteControlLedEndTime = TimeSpan.Zero;
 
         // This method is run when the mainboard is powered up or reset.   
         void ProgramStarted()
         {
-            hgd = new HomeOSGadgeteer.HomeOSGadgeteerDevice("MicrosoftResearch", "TempHumiditySensor", "abcdefgh", wifi,
+            hgd = new HomeOSGadgeteer.HomeOSGadgeteerDevice("MicrosoftResearch", "TempHumiditySensor", "abcdefgh",wifi,
                 null, null, /*usbSerial.SerialLine.PortName*/null, null, null, () => { return GT.Timer.GetMachineTime() < RemoteControlLedEndTime; }, true);
 
             //this.joystick.JoystickPressed += joystick_JoystickPressed;
 
             //hgd.SetupWebEvent("temp").WebEventReceived += this.LightWebEventReceived;
+            this.button.TurnLEDOff();
 
             GT.Timer timer = new GT.Timer(CheckPeriod);
             timer.Tick += Timer_Tick;
             timer.Start();
+
+            GT.Timer timerReboot = new GT.Timer(ResetPeriod);
+            timerReboot.Tick += timerReboot_Tick;
+            timerReboot.Start();
 
             hgd.SetupWebEvent("temperature").WebEventReceived += TempHumidityWebEventReceived;
 
@@ -63,6 +74,11 @@ namespace TempHumiditySensor
 
             // Use Debug.Print to show messages in Visual Studio's "Output" window during debugging.
             Debug.Print("Program Started");
+        }
+
+        void timerReboot_Tick(GT.Timer timer)
+        {
+            Reboot();
         }
 
         void temperatureHumidity_MeasurementComplete(TemperatureHumidity sender, double temperature, double relativeHumidity)

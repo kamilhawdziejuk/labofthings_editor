@@ -67,6 +67,9 @@
     <Reference Include="GHIElectronics.Gadgeteer.FEZSpider, Version=4.2.101.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
+    <Reference Include="GTM.GHIElectronics.Button, Version=4.2.102.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
     <Reference Include="GTM.GHIElectronics.MulticolorLed, Version=4.2.102.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="GTM.GHIElectronics.WiFi_RS21, Version=4.2.101.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
