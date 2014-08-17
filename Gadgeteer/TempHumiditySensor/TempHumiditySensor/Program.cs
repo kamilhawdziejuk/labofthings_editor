@@ -42,6 +42,7 @@ namespace TempHumiditySensor
 
             //hgd.SetupWebEvent("temp").WebEventReceived += this.LightWebEventReceived;
             this.button.TurnLEDOff();
+            this.button.ButtonPressed += button_ButtonPressed;
 
             GT.Timer timer = new GT.Timer(CheckPeriod);
             timer.Tick += Timer_Tick;
@@ -50,6 +51,7 @@ namespace TempHumiditySensor
             GT.Timer timerReboot = new GT.Timer(ResetPeriod);
             timerReboot.Tick += timerReboot_Tick;
             timerReboot.Start();
+         
 
             hgd.SetupWebEvent("temperature").WebEventReceived += TempHumidityWebEventReceived;
 
@@ -74,6 +76,11 @@ namespace TempHumiditySensor
 
             // Use Debug.Print to show messages in Visual Studio's "Output" window during debugging.
             Debug.Print("Program Started");
+        }
+
+        void button_ButtonPressed(Button sender, Button.ButtonState state)
+        {
+            Reboot();
         }
 
         void timerReboot_Tick(GT.Timer timer)

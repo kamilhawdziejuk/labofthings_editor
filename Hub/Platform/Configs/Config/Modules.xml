@@ -2,10 +2,10 @@
   <Module FriendlyName="Volume" AppName="Volume" BinaryName="HomeOS.Hub.Apps.Volume" WorkingDir="C:\labofthings.codeplex.EnvMon\Hub\output\binaries\Platform\..\..\Data\Volume" AutoStart="1" Background="0" />
   <Module FriendlyName="Clock" AppName="Clock" BinaryName="HomeOS.Hub.Apps.Clock" WorkingDir="C:\labofthings.codeplex.EnvMon\Hub\output\binaries\Platform\..\..\Data\Clock" AutoStart="1" Background="0" />
   <Module FriendlyName="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.LightSensor for LightSensor" AppName="driver for LightSensor" BinaryName="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.LightSensor" WorkingDir="C:\labofthings.codeplex.EnvMon\Hub\output\binaries\Platform\..\..\Data\HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.LightSensor for LightSensor" AutoStart="1" Background="1">
-    <Args Count="1" val1="HomeOSGadgeteerDevice_LightSensor_MicrosoftResearch_71244069414338266142" />
+    <Args Count="1" val1="HomeOSGadgeteerDevice_LightSensor_MicrosoftResearch_09276576679070709881" />
   </Module>
   <Module FriendlyName="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.TempHumiditySensor for TempHumiditySensor" AppName="driver for TempHumiditySensor" BinaryName="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.TempHumiditySensor" WorkingDir="C:\labofthings.codeplex.EnvMon\Hub\output\binaries\Platform\..\..\Data\HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.TempHumiditySensor for TempHumiditySensor" AutoStart="1" Background="1">
-    <Args Count="1" val1="HomeOSGadgeteerDevice_TempHumiditySensor_MicrosoftResearch_68377914335995823250" />
+    <Args Count="1" val1="HomeOSGadgeteerDevice_TempHumiditySensor_MicrosoftResearch_05431585008963000836" />
   </Module>
   <Module FriendlyName="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.DistanceSensor for DistanceSensor" AppName="driver for DistanceSensor" BinaryName="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.DistanceSensor" WorkingDir="C:\labofthings.codeplex.EnvMon\Hub\output\binaries\Platform\..\..\Data\HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.DistanceSensor for DistanceSensor" AutoStart="1" Background="1">
     <Args Count="1" val1="HomeOSGadgeteerDevice_DistanceSensor_MicrosoftResearch_87387072133675897046" />
