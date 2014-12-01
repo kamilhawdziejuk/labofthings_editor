@@ -497,7 +497,7 @@ namespace HomeOSGadgeteer
                                 SetLed();
                                 SetScreen();
                                 wifi.Interface.Join(joinAP, knownAP.Key);
-                                //Debug.Print("Joined WiFi network " + scanAP.SSID);
+                                Debug.Print("Joined WiFi network " + joinAP.SSID);
                                 wifiUpTime = 0;
                                 break;
                             }

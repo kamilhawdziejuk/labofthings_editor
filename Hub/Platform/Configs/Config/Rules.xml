@@ -35,4 +35,16 @@
       <Time DayOfWeek="-1" StartMins="0" EndMins="2400" />
     </User>
   </Rule>
+  <Rule Name="Access for CameraViewer" Module="CameraViewer">
+    <User Name="everyone" Type="Allow" Priority="0">
+      <Service FriendlyName="*" />
+      <Time DayOfWeek="-1" StartMins="0" EndMins="2400" />
+    </User>
+  </Rule>
+  <Rule Name="CameraViewer-Camera" Module="CameraViewer">
+    <User Name="everyone" Type="Allow" Priority="0">
+      <Service FriendlyName="Camera" />
+      <Time DayOfWeek="-1" StartMins="0" EndMins="2400" />
+    </User>
+  </Rule>
 </Rules>

@@ -2,13 +2,13 @@
   <Module FriendlyName="Volume" AppName="Volume" BinaryName="HomeOS.Hub.Apps.Volume" WorkingDir="C:\labofthings.codeplex.EnvMon\Hub\output\binaries\Platform\..\..\Data\Volume" AutoStart="1" Background="0" />
   <Module FriendlyName="Clock" AppName="Clock" BinaryName="HomeOS.Hub.Apps.Clock" WorkingDir="C:\labofthings.codeplex.EnvMon\Hub\output\binaries\Platform\..\..\Data\Clock" AutoStart="1" Background="0" />
   <Module FriendlyName="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.LightSensor for LightSensor" AppName="driver for LightSensor" BinaryName="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.LightSensor" WorkingDir="C:\labofthings.codeplex.EnvMon\Hub\output\binaries\Platform\..\..\Data\HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.LightSensor for LightSensor" AutoStart="1" Background="1">
-    <Args Count="1" val1="HomeOSGadgeteerDevice_LightSensor_MicrosoftResearch_09276576679070709881" />
+    <Args Count="1" val1="HomeOSGadgeteerDevice_LightSensor_MicrosoftResearch_12972693646645308580" />
   </Module>
   <Module FriendlyName="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.TempHumiditySensor for TempHumiditySensor" AppName="driver for TempHumiditySensor" BinaryName="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.TempHumiditySensor" WorkingDir="C:\labofthings.codeplex.EnvMon\Hub\output\binaries\Platform\..\..\Data\HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.TempHumiditySensor for TempHumiditySensor" AutoStart="1" Background="1">
-    <Args Count="1" val1="HomeOSGadgeteerDevice_TempHumiditySensor_MicrosoftResearch_05431585008963000836" />
+    <Args Count="1" val1="HomeOSGadgeteerDevice_TempHumiditySensor_MicrosoftResearch_69411786142054028649" />
   </Module>
   <Module FriendlyName="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.DistanceSensor for DistanceSensor" AppName="driver for DistanceSensor" BinaryName="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.DistanceSensor" WorkingDir="C:\labofthings.codeplex.EnvMon\Hub\output\binaries\Platform\..\..\Data\HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.DistanceSensor for DistanceSensor" AutoStart="1" Background="1">
-    <Args Count="1" val1="HomeOSGadgeteerDevice_DistanceSensor_MicrosoftResearch_87387072133675897046" />
+    <Args Count="1" val1="HomeOSGadgeteerDevice_DistanceSensor_MicrosoftResearch_71510265594473289466" />
   </Module>
   <Module FriendlyName="ThermoAlerts" AppName="ThermoAlerts" BinaryName="HomeOS.Hub.Apps.Thermometer" WorkingDir="C:\labofthings.codeplex.EnvMon\Hub\output\binaries\Platform\..\..\Data\ThermoAlerts" AutoStart="1" Background="0">
     <RoleList Optional="False">
@@ -18,6 +18,14 @@
   <Module FriendlyName="LightAlerts" AppName="LightAlerts" BinaryName="HomeOS.Hub.Apps.Light" WorkingDir="C:\labofthings.codeplex.EnvMon\Hub\output\binaries\Platform\..\..\Data\LightAlerts" AutoStart="1" Background="0">
     <RoleList Optional="False">
       <Role Name=":sensor:" />
+    </RoleList>
+  </Module>
+  <Module FriendlyName="HomeOS.Hub.Drivers.WebCam for Lenovo EasyCamera" AppName="driver for Lenovo EasyCamera" BinaryName="HomeOS.Hub.Drivers.WebCam" WorkingDir="C:\labofthings.codeplex.EnvMon\Hub\output\binaries\Platform\..\..\Data\HomeOS.Hub.Drivers.WebCam for Lenovo EasyCamera" AutoStart="1" Background="1">
+    <Args Count="1" val1="Lenovo EasyCamera" />
+  </Module>
+  <Module FriendlyName="CameraViewer" AppName="CameraViewer" BinaryName="HomeOS.Hub.Apps.SmartCam" WorkingDir="C:\labofthings.codeplex.EnvMon\Hub\output\binaries\Platform\..\..\Data\CameraViewer" AutoStart="1" Background="0">
+    <RoleList Optional="False">
+      <Role Name=":camera:" />
     </RoleList>
   </Module>
 </Modules>

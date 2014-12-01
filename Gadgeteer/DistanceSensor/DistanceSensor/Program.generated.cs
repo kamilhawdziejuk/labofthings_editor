@@ -21,6 +21,9 @@ namespace DistanceSensor {
         /// <summary>The Distance US3 module using socket 4 of the mainboard.</summary>
         private Gadgeteer.Modules.GHIElectronics.Distance_US3 distance_US3;
         
+        /// <summary>The GasSense module using socket 10 of the mainboard.</summary>
+        private Gadgeteer.Modules.GHIElectronics.GasSense gasSense;
+        
         /// <summary>This property provides access to the Mainboard API. This is normally not necessary for an end user program.</summary>
         protected new static GHIElectronics.Gadgeteer.FEZSpider Mainboard {
             get {
@@ -45,6 +48,7 @@ namespace DistanceSensor {
         private void InitializeModules() {
             this.wifi = new GTM.GHIElectronics.WiFi_RS21(6);
             this.distance_US3 = new GTM.GHIElectronics.Distance_US3(4);
+            this.gasSense = new GTM.GHIElectronics.GasSense(10);
         }
     }
 }

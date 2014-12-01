@@ -1,13 +1,13 @@
 <Settings>
-  <Param Name="OrgId" Value="hawdziejukhome2" />
+  <Param Name="OrgId" Value="hawdziejukhome" />
   <Param Name="StudyId" Value="Default" />
-  <Param Name="HomeId" Value="hawdziejukhome2" />
+  <Param Name="HomeId" Value="hawdziejukhome" />
   <Param Name="ConfigDir" Value="C:\labofthings.codeplex.EnvMon\Hub\output\Configs\Config" />
   <Param Name="ModuleWorkingDirBase" Value="C:\labofthings.codeplex.EnvMon\Hub\output\binaries\Platform\..\..\Data" />
   <Param Name="RunningMode" Value="standard" />
   <Param Name="StayOffline" Value="False" />
   <Param Name="EnforcePolicies" Value="True" />
-  <Param Name="LogFile" Value="D:\labofthings.codeplex.EnvMon\Hub\output\binaries\Platform\..\..\Data\Platform\homeos.log" />
+  <Param Name="LogFile" Value="C:\labofthings.codeplex.EnvMon\Hub\output\binaries\Platform\..\..\Data\Platform\homeos.log" />
   <Param Name="LogArchivalDir" Value="archived-logs" />
   <Param Name="LogRotationThreshold" Value="10000" />
   <Param Name="AutoSyncLogs" Value="True" />

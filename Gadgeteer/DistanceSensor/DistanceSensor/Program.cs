@@ -54,7 +54,8 @@ namespace DistanceSensor
             {
                 return "{\"DeviceId\":\"" +
                     hgd.IdentifierString + "\","
-                    + "\"distance\":" + this.distance_US3.GetDistanceInCentimeters().ToString() +
+                    + "\"distance\":" + this.distance_US3.GetDistanceInCentimeters().ToString() 
+                    + "\"gas\":" + this.gasSense.ReadVoltage().ToString() +
                     "}";
             }
         }
@@ -65,7 +66,8 @@ namespace DistanceSensor
             {
                 return "{" +
                 "\"distance\" : " + this.distance_US3.GetDistanceInCentimeters().ToString() + "\n" +
-                 "\"DeviceIP\" : \"" + this.wifi.NetworkSettings.IPAddress + "\", " +
+                "\"gas\" : " + this.gasSense.ReadVoltage().ToString() + "\n" +
+                "\"DeviceIP\" : \"" + this.wifi.NetworkSettings.IPAddress + "\", " +
                  "\"DeviceId\" : \"" + hgd.IdentifierString + "\", " +
                 "}";
             }
