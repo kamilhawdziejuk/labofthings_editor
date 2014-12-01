@@ -161,6 +161,9 @@ namespace HomeOS.Hub.Common
         }
     }
 
+ 
+
+
 
     public class RoleDoorjamb : Role
     {
@@ -769,6 +772,37 @@ namespace HomeOS.Hub.Common
         }
     }
 
+    public class RoleOccupancy : Role
+    {
+        public const string RoleName = ":occupancy:";
+        public const string OpGetOccupancy = RoleName + "->" + "getoccupancy";
+
+        private static RoleOccupancy _instance;
+
+        public static RoleOccupancy Instance
+        {
+            get
+            {
+                if (_instance == null)
+                    new RoleOccupancy();
+                return _instance;
+            }
+        }
+
+        protected RoleOccupancy()
+        {
+
+            SetName(RoleName);
+            _instance = this;
+
+            {
+                List<VParamType> args = new List<VParamType>();
+                List<VParamType> retVals = new List<VParamType>() { new ParamType(ParamType.SimpleType.integer, null) };
+                AddOperation(new Operation(RoleOccupancy.OpGetOccupancy, args, retVals, true));
+            }
+        }
+    }
+
     public class RolePTCamera : RoleCamera
     {
         public new const string RoleName = ":camera::ptcamera:";
@@ -934,6 +968,8 @@ namespace HomeOS.Hub.Common
     {
         public const string RoleName = ":couch:";
         public const string OpSetEmotion = RoleName + "->" + "setemotion";
+        public const string OpGetEmotion = RoleName + "->" + "getemotion";
+
         
         private static RoleCouch _instance;
 
@@ -954,9 +990,53 @@ namespace HomeOS.Hub.Common
             _instance = this;
 
             {
-                List<VParamType> eArgs = new List<VParamType>() { new ParamType(0) };
-                List<VParamType> eRetVals = new List<VParamType>() { new ParamType(0) };
+                List<VParamType> eArgs = new List<VParamType>() { new ParamType("text") };
+                List<VParamType> eRetVals = new List<VParamType>() { new ParamType("text") };
                 AddOperation(new Operation(OpSetEmotion, eArgs, eRetVals));
+            }
+
+            {
+               // List<VParamType> args = new List<VParamType>() { new ParamType("text") };
+                List<VParamType> retVals = new List<VParamType>() { new ParamType("text") };
+                AddOperation(new Operation(OpGetEmotion, null, retVals, true));
+            }
+        }
+    }
+
+    public class RoleMSRChair : Role
+    {
+        public const string RoleName = ":chair:";
+        public const string OpSendString = RoleName + "->" + "sendstring";
+        public const string OpReceiveString = RoleName + "->" + "receivestring";
+
+        private static RoleMSRChair _instance;
+
+        protected RoleMSRChair()
+        {
+            SetName(RoleName);
+            _instance = this;
+
+            {
+                List<VParamType> args = new List<VParamType>() { new ParamType("text") };
+                List<VParamType> retVals = new List<VParamType>() { new ParamType("text") };
+                AddOperation(new Operation(OpSendString, args, retVals));
+            }
+
+            {
+                List<VParamType> args = new List<VParamType>() { new ParamType("text") };
+                List<VParamType> retVals = new List<VParamType>() { new ParamType("text") };
+                AddOperation(new Operation(OpReceiveString, args, retVals, true));
+            }
+
+        }
+
+        public static RoleMSRChair Instance
+        {
+            get
+            {
+                if (_instance == null)
+                    new RoleMSRChair();
+                return _instance;
             }
         }
     }
