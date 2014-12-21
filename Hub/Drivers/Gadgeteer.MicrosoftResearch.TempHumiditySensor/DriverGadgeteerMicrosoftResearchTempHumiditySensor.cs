@@ -34,13 +34,10 @@ namespace HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.TempHumiditySensor
 
         public override void Start()
         {
-            var str = moduleInfo.WorkingDir() +"\\" + "module.log";
-            driverLogger = new Logger(str);
-            
+            driverLogger = new Logger(moduleInfo.WorkingDir() +"\\" + "module.log");   
             driverLogger.Log("Temperature sensor started");
 
             base.Start();
-           
         }
 
         protected override void WorkerThread()
@@ -65,12 +62,7 @@ namespace HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.TempHumiditySensor
 
                     response.Close();
 
-                    if (jsonResponse.temperature > 0)
-                    {
-                        logger.Log("Gadgeteer Temperature: {0}", jsonResponse.temperature.ToString());
-                        DateTime date = DateTime.Now;
-                        driverLogger.Log("Temperature: {0}", jsonResponse.temperature.ToString());
-                    }
+                    this.Log(jsonResponse.temperature);
                     double newValue = NormalizeTempValue(jsonResponse.temperature);
 
                     //notify the subscribers
@@ -100,6 +92,16 @@ namespace HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.TempHumiditySensor
 
 
                 System.Threading.Thread.Sleep(4 * 1000);
+            }
+        }
+
+        private void Log(double temperature)
+        {
+            if (temperature > 0)
+            {
+                logger.Log("Gadgeteer Temperature: {0}", temperature.ToString());
+                DateTime date = DateTime.Now;
+                driverLogger.Log("Temperature: {0}", temperature.ToString());
             }
         }
 
