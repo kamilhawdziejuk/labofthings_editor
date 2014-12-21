@@ -25,6 +25,13 @@
     </RoleList>
   </Module>
 
+  <Module AppName="LightAlerts" Description="See the luminous intensity" BinaryName="HomeOS.Hub.Apps.Light" Rating="5" Version="1.0.0.0">
+    <RoleList Optional="False">
+      <Role Name=":sensor:" />
+    </RoleList>
+  </Module>
+
+
   <!--<Module AppName="SpeechInteraction" BinaryName="HomeOS.Hub.Apps.SpeechInteraction" Description="Use your voice to interact" Rating="5" IconUrl="icon.png" Version="1.0.0.0">
     <RoleList>
       <Role Name=":microphone:"/>     

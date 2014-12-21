@@ -25,6 +25,7 @@ namespace HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.TempHumiditySensor
     {
         const int TempThreshold = 1;
         double lastValue = 0;
+        VLogger driverLogger;
 
         protected override List<VRole> GetRoleList()
         {
@@ -33,7 +34,13 @@ namespace HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.TempHumiditySensor
 
         public override void Start()
         {
+            var str = moduleInfo.WorkingDir() +"\\" + "module.log";
+            driverLogger = new Logger(str);
+            
+            driverLogger.Log("Temperature sensor started");
+
             base.Start();
+           
         }
 
         protected override void WorkerThread()
@@ -59,8 +66,11 @@ namespace HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.TempHumiditySensor
                     response.Close();
 
                     if (jsonResponse.temperature > 0)
-                        logger.Log("Gadgeteer Light: {0}", jsonResponse.temperature.ToString());
-
+                    {
+                        logger.Log("Gadgeteer Temperature: {0}", jsonResponse.temperature.ToString());
+                        DateTime date = DateTime.Now;
+                        driverLogger.Log("Temperature: {0}", jsonResponse.temperature.ToString());
+                    }
                     double newValue = NormalizeTempValue(jsonResponse.temperature);
 
                     //notify the subscribers
