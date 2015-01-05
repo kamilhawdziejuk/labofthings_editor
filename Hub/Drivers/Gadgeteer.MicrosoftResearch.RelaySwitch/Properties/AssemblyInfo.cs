@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("App.RelaySwitch")]
+[assembly: AssemblyTitle("Gadgeteer.RelaySwitch")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("App.RelaySwitch")]
+[assembly: AssemblyProduct("Gadgeteer.RelaySwitch")]
 [assembly: AssemblyCopyright("Copyright ©  2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("f4d2aba5-bc56-42b7-8d03-7c9439a14202")]
+[assembly: Guid("e3ca4116-5d34-4566-b800-79ea59dfd3fb")]
 
 // Version information for an assembly consists of the following four values:
 //

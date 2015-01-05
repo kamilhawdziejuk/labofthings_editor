@@ -85,7 +85,7 @@ namespace HomeOS.Hub.Apps.RelaySwitch
             }
         }
 
-        public void setLEDs(double low, double high)
+        public void SetRelaySwitch()
         {
             foreach (var port in registeredActuators.Keys)
             {

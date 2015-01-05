@@ -10,11 +10,7 @@
   <link rel="Stylesheet" type="text/css" href="Styles/AppAlertsStyleSheet.css" />
  
     <script>
-        var currentTemperature = 0;
-        var lowThreshold = 20;
-        var highThreshold = 30;
-
-        var isOn = 0;
+        var currentValue = 0;
 
         $(document).ready(
             function () {
@@ -28,38 +24,38 @@
         }
 
         function RefreshRelaySwitchCallback(context, result) {
-            currentTemperature = result.GetRelaySwitchResult;
-            $("#temperatureValue").text(currentTemperature.toString());
+            currentValue = result.GetRelaySwitchResult;
+            $("#relayValue").text(currentValue.toString());
             updateColors();
         }
 
-        function updateColors() {
-            if (currentTemperature < lowThreshold) {
-                $("#bigtemperaturebox").css('color', 'light-blue');
-                console.log("set blue");
-            }
-            else if (currentTemperature > highThreshold) {
-                $("#bigtemperaturebox").css('color', 'red');
-                console.log("set red");
-            }
-            else {
-                $("#bigtemperaturebox").css('color', 'white');
-                console.log("set white");
-            }
-            console.log("Updated color to " + $("#bigtemperaturebox").css("color"));
-        }
+        //function updateColors() {
+        //    if (currentTemperature < lowThreshold) {
+        //        $("#bigtemperaturebox").css('color', 'light-blue');
+        //        console.log("set blue");
+        //    }
+        //    else if (currentTemperature > highThreshold) {
+        //        $("#bigtemperaturebox").css('color', 'red');
+        //        console.log("set red");
+        //    }
+        //    else {
+        //        $("#bigtemperaturebox").css('color', 'white');
+        //        console.log("set white");
+        //    }
+        //    console.log("Updated color to " + $("#bigtemperaturebox").css("color"));
+        //}
 
-        function setLEDs(e) {
-            lowThreshold = parseInt($("#lowEntry").val());
-            highThreshold = parseInt($("#highEntry").val());
-            updateColors();
-            var json = JSON.stringify({ low: lowThreshold, high: highThreshold });
-            new PlatformServiceHelper().MakeServiceCall("webapp/SetLEDs", json , LEDCallback);
+        function SetRelaySwitch(e) {
+            //lowThreshold = parseInt($("#lowEntry").val());
+            //highThreshold = parseInt($("#highEntry").val());
+            //updateColors();
+            //var json = JSON.stringify({ low: lowThreshold, high: highThreshold });
+            new PlatformServiceHelper().MakeServiceCall("webapp/SetRelaySwitch", "", RelaySwitchCallback);
             return false;
         }
 
-        function LEDCallback(context, result) {
-            updateColors();
+        function RelaySwitchCallback(context, result) {
+            //updateColors();
         }
     </script>
 </head>
@@ -74,14 +70,12 @@
             </div>
             <div class="row">
                 <div id="bigtemperaturebox" style="text-align:center;width:100%;font-size:200px">
-                    <span id="temperatureValue"></span>&deg;
+                    <span id="relayValue"></span>&deg;
                 </div>
             </div>
             <div class="row">
                 <div style="padding-left:100px">
-                        <input type="number" value="20" id="lowEntry" placeholder="Low value" />
-                        <input type="number" value="30" id="highEntry" placeholder="High value" />
-                        <input type="submit" value="Set lows and highs" onclick="setLEDs()" />
+                        <input type="submit" value="Turn" onclick="SetRelaySwitch()" />
                     </div>
             </div>
         </div>

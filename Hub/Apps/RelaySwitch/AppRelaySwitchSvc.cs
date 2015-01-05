@@ -42,8 +42,9 @@ namespace HomeOS.Hub.Apps.RelaySwitch
             return (int)relaySwitchApp.IsOn;
         }
 
-        public string SetLEDs(double low, double high)
+        public string SetRelaySwitch()
         {
+            relaySwitchApp.SetRelaySwitch();
             //relaySwitchApp.setLEDs(low, high);
             return "";
         }
@@ -59,7 +60,7 @@ namespace HomeOS.Hub.Apps.RelaySwitch
 
         [OperationContract]
         [WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.Wrapped, ResponseFormat = WebMessageFormat.Json)]
-        string SetLEDs(double low, double high);
+        string SetRelaySwitch();
     }
 
 }

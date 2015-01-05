@@ -219,6 +219,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnvironmentMonitor", "Platf
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RelaySwitch", "Apps\RelaySwitch\RelaySwitch.csproj", "{BA07BDA9-B235-43F4-BB85-4C0469E09B62}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gadgeteer.MicrosoftResearch.RelaySwitch", "Drivers\Gadgeteer.MicrosoftResearch.RelaySwitch\Gadgeteer.MicrosoftResearch.RelaySwitch.csproj", "{B9C8A240-D13E-4408-A363-09E46C974F3F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		ClientDebug|Any CPU = ClientDebug|Any CPU
@@ -1336,6 +1338,30 @@ Global
 		{BA07BDA9-B235-43F4-BB85-4C0469E09B62}.Release|Win32.ActiveCfg = Release|Any CPU
 		{BA07BDA9-B235-43F4-BB85-4C0469E09B62}.Release|x64.ActiveCfg = Release|Any CPU
 		{BA07BDA9-B235-43F4-BB85-4C0469E09B62}.Release|x86.ActiveCfg = Release|Any CPU
+		{B9C8A240-D13E-4408-A363-09E46C974F3F}.ClientDebug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9C8A240-D13E-4408-A363-09E46C974F3F}.ClientDebug|Any CPU.Build.0 = Debug|Any CPU
+		{B9C8A240-D13E-4408-A363-09E46C974F3F}.ClientDebug|ARM.ActiveCfg = Debug|Any CPU
+		{B9C8A240-D13E-4408-A363-09E46C974F3F}.ClientDebug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{B9C8A240-D13E-4408-A363-09E46C974F3F}.ClientDebug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{B9C8A240-D13E-4408-A363-09E46C974F3F}.ClientDebug|Win32.ActiveCfg = Debug|Any CPU
+		{B9C8A240-D13E-4408-A363-09E46C974F3F}.ClientDebug|x64.ActiveCfg = Debug|Any CPU
+		{B9C8A240-D13E-4408-A363-09E46C974F3F}.ClientDebug|x86.ActiveCfg = Debug|Any CPU
+		{B9C8A240-D13E-4408-A363-09E46C974F3F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9C8A240-D13E-4408-A363-09E46C974F3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9C8A240-D13E-4408-A363-09E46C974F3F}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{B9C8A240-D13E-4408-A363-09E46C974F3F}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{B9C8A240-D13E-4408-A363-09E46C974F3F}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{B9C8A240-D13E-4408-A363-09E46C974F3F}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{B9C8A240-D13E-4408-A363-09E46C974F3F}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{B9C8A240-D13E-4408-A363-09E46C974F3F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{B9C8A240-D13E-4408-A363-09E46C974F3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9C8A240-D13E-4408-A363-09E46C974F3F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9C8A240-D13E-4408-A363-09E46C974F3F}.Release|ARM.ActiveCfg = Release|Any CPU
+		{B9C8A240-D13E-4408-A363-09E46C974F3F}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{B9C8A240-D13E-4408-A363-09E46C974F3F}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{B9C8A240-D13E-4408-A363-09E46C974F3F}.Release|Win32.ActiveCfg = Release|Any CPU
+		{B9C8A240-D13E-4408-A363-09E46C974F3F}.Release|x64.ActiveCfg = Release|Any CPU
+		{B9C8A240-D13E-4408-A363-09E46C974F3F}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -1397,5 +1423,6 @@ Global
 		{7C972067-BD8C-4945-AC27-DC75CCE32170} = {074F4C41-ED3D-410D-8967-411AD26EEDF2}
 		{47A3627A-13D3-4596-BBC1-33CBC5D0CDE7} = {0CAFEF7D-158E-4036-950E-8993D97301C6}
 		{BA07BDA9-B235-43F4-BB85-4C0469E09B62} = {7EF50C0F-42A9-4737-8EF2-B9AC73FFACA4}
+		{B9C8A240-D13E-4408-A363-09E46C974F3F} = {074F4C41-ED3D-410D-8967-411AD26EEDF2}
 	EndGlobalSection
 EndGlobal
