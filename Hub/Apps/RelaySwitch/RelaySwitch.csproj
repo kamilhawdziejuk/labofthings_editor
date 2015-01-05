@@ -72,8 +72,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AppThermometer.cs" />
-    <Compile Include="AppThermometerSvc.cs" />
+    <Compile Include="AppRelaySwitch.cs" />
+    <Compile Include="AppRelaySwitchSvc.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,19 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.ServiceModel;
-using System.ServiceModel.Activation;
-using System.ServiceModel.Channels;
+﻿using System.ServiceModel;
 using System.ServiceModel.Description;
 using System.ServiceModel.Web;
 
 using HomeOS.Hub.Common;
 using HomeOS.Hub.Platform.Views;
-using System.Net;
-using System.Runtime.Serialization;
-using System.Runtime.Serialization.Json;
 
 namespace HomeOS.Hub.Apps.RelaySwitch
 {
@@ -49,7 +39,7 @@ namespace HomeOS.Hub.Apps.RelaySwitch
 
         public int GetRelaySwitch()
         {
-            return (int)relaySwitchApp.Temperature;
+            return (int)relaySwitchApp.IsOn;
         }
 
         public string SetLEDs(double low, double high)
