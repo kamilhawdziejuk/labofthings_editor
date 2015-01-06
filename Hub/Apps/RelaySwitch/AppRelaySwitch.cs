@@ -87,21 +87,21 @@ namespace HomeOS.Hub.Apps.RelaySwitch
 
         public void SetRelaySwitch()
         {
-            foreach (var port in registeredActuators.Keys)
-            {
-                if (registeredActuators[port] == null)
-                    registeredActuators[port] = GetCapability(port, Constants.UserSystem);
+            //foreach (var port in registeredActuators.Keys)
+            //{
+            //    if (registeredActuators[port] == null)
+            //        registeredActuators[port] = GetCapability(port, Constants.UserSystem);
 
-                if (registeredActuators[port] != null)
-                {
-                    logger.Log(string.Format("Set LEDs {0},{1}", low, high));
-                    IList<VParamType> parameters = new List<VParamType>();
-                    parameters.Add(new ParamType((int)low));
-                    parameters.Add(new ParamType((int)high));
+            //    if (registeredActuators[port] != null)
+            //    {
+            //        logger.Log(string.Format("Set LEDs {0},{1}", low, high));
+            //        IList<VParamType> parameters = new List<VParamType>();
+            //        parameters.Add(new ParamType((int)low));
+            //        parameters.Add(new ParamType((int)high));
 
-                    port.Invoke(RoleActuator.RoleName, RoleActuator.OpPutName, parameters, ControlPort, registeredActuators[port], ControlPortCapability);
-                }
-            }
+            //        port.Invoke(RoleActuator.RoleName, RoleActuator.OpPutName, parameters, ControlPort, registeredActuators[port], ControlPortCapability);
+            //    }
+            //}
         }
 
         public override void PortDeregistered(VPort port)
@@ -132,7 +132,7 @@ namespace HomeOS.Hub.Apps.RelaySwitch
             logger.Log("Notitification from {0} for {0}", roleName, opName);
             if (retVals.Count >= 1)
             {
-                this.IsOn = (double)retVals[0].Value();
+                this.IsOn = (int)retVals[0].Value();
             }
             else
             {
