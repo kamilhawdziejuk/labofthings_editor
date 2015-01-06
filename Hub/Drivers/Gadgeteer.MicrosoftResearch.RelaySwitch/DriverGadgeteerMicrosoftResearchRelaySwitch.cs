@@ -28,7 +28,7 @@ namespace HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.RelaySwitch
 
         protected override List<VRole> GetRoleList()
         {
-            return new List<VRole>() { RoleSensor.Instance };
+            return new List<VRole>() { RoleSensor.Instance, RoleActuator.Instance };
         }
 
         public override void Start()
@@ -129,14 +129,12 @@ namespace HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.RelaySwitch
                             case RoleActuator.OpPutName:
                                 { 
                                     try 
-                                    { 
-                                        //TODO:
-                                        /*
-                                        string url = string.Format("http://{0}/led?low={1}&high={2}", 
-                                            deviceIp, (int)parameters[0].Value(), (int)parameters[1].Value());
+                                    {
+                                        string url = string.Format("http://{0}/IsOn?isOn={1}",
+                                            deviceIp, 4 + (int)parameters[0].Value());
 
-                                        HttpWebRequest webRequest = (HttpWebRequest)WebRequest.Create(url); 
-                                        HttpWebResponse response = (HttpWebResponse)webRequest.GetResponse();*/
+                                        HttpWebRequest webRequest = (HttpWebRequest)WebRequest.Create(url);
+                                        HttpWebResponse response = (HttpWebResponse)webRequest.GetResponse();
 
                                     } 
                                     catch (Exception e) 

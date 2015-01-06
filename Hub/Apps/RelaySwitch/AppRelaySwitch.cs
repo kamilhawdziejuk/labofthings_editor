@@ -96,7 +96,7 @@ namespace HomeOS.Hub.Apps.RelaySwitch
                 {
                     //logger.Log(string.Format("Set LEDs {0},{1}", low, high));
                     IList<VParamType> parameters = new List<VParamType>();
-                    parameters.Add(new ParamType((int)!this.IsOn));
+                    parameters.Add(new ParamType((int)1));
 
                     port.Invoke(RoleActuator.RoleName, RoleActuator.OpPutName, parameters, ControlPort, registeredActuators[port], ControlPortCapability);
                 }

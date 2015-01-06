@@ -7,8 +7,8 @@
     <ProjectGuid>{B9C8A240-D13E-4408-A363-09E46C974F3F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.TempHumiditySensor</RootNamespace>
-    <AssemblyName>HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.TempHumiditySensor</AssemblyName>
+    <RootNamespace>HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.RelaySwitch</RootNamespace>
+    <AssemblyName>HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.RelaySwitch</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -16,7 +16,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\output\binaries\Pipeline\AddIns\HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.TempHumiditySensor\</OutputPath>
+    <OutputPath>..\..\output\binaries\Pipeline\AddIns\HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.RelaySwitch\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
