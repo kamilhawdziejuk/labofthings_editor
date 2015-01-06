@@ -26,6 +26,7 @@
   <Module FriendlyName="RelaySwitch" AppName="RelaySwitch" Description="Relay switch" BinaryName="HomeOS.Hub.Apps.RelaySwitch" WorkingDir="C:\labofthings.codeplex.EnvMon\Hub\output\binaries\Platform\..\..\Data\RelaySwitch" AutoStart="1" Background="0">
     <RoleList Optional="False">
       <Role Name=":sensor:" />
+      <Role Name=":actuator:" />
     </RoleList>
   </Module> 
   <Module FriendlyName="HomeOS.Hub.Drivers.WebCam for Lenovo EasyCamera" AppName="driver for Lenovo EasyCamera" BinaryName="HomeOS.Hub.Drivers.WebCam" WorkingDir="C:\labofthings.codeplex.EnvMon\Hub\output\binaries\Platform\..\..\Data\HomeOS.Hub.Drivers.WebCam for Lenovo EasyCamera" AutoStart="1" Background="1">
