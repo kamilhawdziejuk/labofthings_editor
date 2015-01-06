@@ -23,7 +23,6 @@ namespace HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.RelaySwitch
     [System.AddIn.AddIn("HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.RelaySwitch")]
     public class DriverGadgeteerMicrosoftResearchRelaySwitch : DriverGadgeteerBase
     {
-        const int TempThreshold = 1;
         double lastValue = 0;
         VLogger driverLogger;
 
@@ -79,17 +78,11 @@ namespace HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.RelaySwitch
                 }
                 catch (Exception e)
                 {
-                    //Watchdog.Enabled = true;
-                    //Watchdog.Timeout = new TimeSpan(0, 0, 30);
-                    //Watchdog.Behavior = WatchdogBehavior.HardReboot;
-
-                    //icrosoft.SPOT.Hardware.PowerState .RebootDevice(false);
                     logger.Log("{0}: couldn't talk to the device. are the arguments correct?\n exception details: {1}", this.ToString(), e.ToString());
 
                     //lets try getting the IP again
                     deviceIp = GetDeviceIp(deviceId);
                 }
-
 
                 System.Threading.Thread.Sleep(1000);
             }
@@ -104,12 +97,6 @@ namespace HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.RelaySwitch
                 driverLogger.Log("Relay: {0}", isOn.ToString());
             }
         }
-
-        //private double NormalizeTempValue(double rawValue)
-        //{
-        //    return Math.Round(rawValue,2);
-        //}
-
 
         /// <summary>
         /// The demultiplexing routing for incoming
