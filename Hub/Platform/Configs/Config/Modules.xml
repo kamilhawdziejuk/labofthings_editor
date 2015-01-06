@@ -7,9 +7,9 @@
   <Module FriendlyName="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.TempHumiditySensor for TempHumiditySensor" AppName="driver for TempHumiditySensor" BinaryName="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.TempHumiditySensor" WorkingDir="C:\labofthings.codeplex.EnvMon\Hub\output\binaries\Platform\..\..\Data\HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.TempHumiditySensor for TempHumiditySensor" AutoStart="1" Background="1">
     <Args Count="1" val1="HomeOSGadgeteerDevice_TempHumiditySensor_MicrosoftResearch_69411786142054028649" />
   </Module>
-  <Module FriendlyName="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.DistanceSensor for DistanceSensor" AppName="driver for DistanceSensor" BinaryName="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.DistanceSensor" WorkingDir="C:\labofthings.codeplex.EnvMon\Hub\output\binaries\Platform\..\..\Data\HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.DistanceSensor for DistanceSensor" AutoStart="1" Background="1">
+  <!--<Module FriendlyName="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.DistanceSensor for DistanceSensor" AppName="driver for DistanceSensor" BinaryName="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.DistanceSensor" WorkingDir="C:\labofthings.codeplex.EnvMon\Hub\output\binaries\Platform\..\..\Data\HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.DistanceSensor for DistanceSensor" AutoStart="1" Background="1">
     <Args Count="1" val1="HomeOSGadgeteerDevice_DistanceSensor_MicrosoftResearch_71510265594473289466" />
-  </Module>
+  </Module>-->
   <Module FriendlyName="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.RelaySwitch for RelaySwitch" AppName="driver for RelaySwitch" BinaryName="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.RelaySwitch" WorkingDir="C:\labofthings.codeplex.EnvMon\Hub\output\binaries\Platform\..\..\Data\HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.RelaySwitch for RelaySwitch" AutoStart="1" Background="1">
     <Args Count="1" val1="HomeOSGadgeteerDevice_RelaySwitch_MicrosoftResearch_71510265594473289466" />
   </Module>

@@ -11,9 +11,9 @@
   <Device FriendlyName="Lenovo EasyCamera" UniqueName="Lenovo EasyCamera" IPAddress="" DriverBinaryName="HomeOS.Hub.Drivers.WebCam" Configured="True" DriverModuleFriendlyName="HomeOS.Hub.Drivers.WebCam for Lenovo EasyCamera">
     <DriverParams Count="1" Param0="Lenovo EasyCamera" />
   </Device>
-  <Device FriendlyName="DistanceSensor" UniqueName="HomeOSGadgeteerDevice_DistanceSensor_MicrosoftResearch_71510265594473289466" IPAddress="192.168.0.13" DriverBinaryName="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.DistanceSensor" Configured="True" DriverModuleFriendlyName="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.DistanceSensor for DistanceSensor">
+  <!--<Device FriendlyName="DistanceSensor" UniqueName="HomeOSGadgeteerDevice_DistanceSensor_MicrosoftResearch_71510265594473289466" IPAddress="192.168.0.13" DriverBinaryName="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.DistanceSensor" Configured="True" DriverModuleFriendlyName="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.DistanceSensor for DistanceSensor">
     <DriverParams Count="1" Param0="HomeOSGadgeteerDevice_DistanceSensor_MicrosoftResearch_71510265594473289466" />
-  </Device>
+  </Device>-->
   <Device FriendlyName="RelaySwitch" UniqueName="HomeOSGadgeteerDevice_RelaySwitch_MicrosoftResearch_71510265594473289466" IPAddress="192.168.0.15" DriverBinaryName="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.RelaySwitch" Configured="True" DriverModuleFriendlyName="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.RelaySwitch for RelaySwitch">
     <DriverParams Count="1" Param0="HomeOSGadgeteerDevice_RelaySwitch_MicrosoftResearch_71510265594473289466" />
   </Device>

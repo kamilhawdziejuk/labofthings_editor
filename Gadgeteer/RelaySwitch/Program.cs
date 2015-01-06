@@ -69,13 +69,18 @@ namespace LightSensor
             Debug.Print(this.response);
         }
 
+        private int IsOn()
+        {
+            return this.relay_X1.Enabled ? 1 : 0;
+        }
+
         private string webResponse
         {
             get
             {
                 return "{\"DeviceId\":\"" + 
-                    hgd.IdentifierString + "\"," 
-                    + "\"IsOn\":" + this.relay_X1.Enabled.ToString() + 
+                    hgd.IdentifierString + "\","
+                    + "\"IsOn\":" + IsOn() + 
                     "}";
             }
         }
@@ -85,7 +90,7 @@ namespace LightSensor
             get
             {
                 return "{" +
-                "\"IsOn\" : " + this.relay_X1.Enabled.ToString() + "\n" +
+                "\"IsOn\" : " + IsOn() + "\n" +
                  "\"DeviceIP\" : \"" + this.wifi.NetworkSettings.IPAddress + "\", " +
                  "\"DeviceId\" : \"" + hgd.IdentifierString + "\", " +
                 "}";
