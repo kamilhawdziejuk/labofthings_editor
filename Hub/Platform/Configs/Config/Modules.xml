@@ -10,6 +10,9 @@
   <Module FriendlyName="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.DistanceSensor for DistanceSensor" AppName="driver for DistanceSensor" BinaryName="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.DistanceSensor" WorkingDir="C:\labofthings.codeplex.EnvMon\Hub\output\binaries\Platform\..\..\Data\HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.DistanceSensor for DistanceSensor" AutoStart="1" Background="1">
     <Args Count="1" val1="HomeOSGadgeteerDevice_DistanceSensor_MicrosoftResearch_71510265594473289466" />
   </Module>
+  <Module FriendlyName="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.RelaySwitch for RelaySwitch" AppName="driver for RelaySwitch" BinaryName="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.RelaySwitch" WorkingDir="C:\labofthings.codeplex.EnvMon\Hub\output\binaries\Platform\..\..\Data\HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.RelaySwitch for RelaySwitch" AutoStart="1" Background="1">
+    <Args Count="1" val1="HomeOSGadgeteerDevice_RelaySwitch_MicrosoftResearch_71510265594473289466" />
+  </Module>
   <Module FriendlyName="ThermoAlerts" AppName="ThermoAlerts" Description="Do you want to know what the temperature is?" BinaryName="HomeOS.Hub.Apps.Thermometer" WorkingDir="C:\labofthings.codeplex.EnvMon\Hub\output\binaries\Platform\..\..\Data\ThermoAlerts" AutoStart="1" Background="0">
     <RoleList Optional="False">
       <Role Name=":sensor:" />
@@ -20,6 +23,11 @@
       <Role Name=":sensor:" />
     </RoleList>
   </Module>
+  <Module FriendlyName="RelaySwitch" AppName="RelaySwitch" Description="Relay switch" BinaryName="HomeOS.Hub.Apps.RelaySwitch" WorkingDir="C:\labofthings.codeplex.EnvMon\Hub\output\binaries\Platform\..\..\Data\RelaySwitch" AutoStart="1" Background="0">
+    <RoleList Optional="False">
+      <Role Name=":sensor:" />
+    </RoleList>
+  </Module> 
   <Module FriendlyName="HomeOS.Hub.Drivers.WebCam for Lenovo EasyCamera" AppName="driver for Lenovo EasyCamera" BinaryName="HomeOS.Hub.Drivers.WebCam" WorkingDir="C:\labofthings.codeplex.EnvMon\Hub\output\binaries\Platform\..\..\Data\HomeOS.Hub.Drivers.WebCam for Lenovo EasyCamera" AutoStart="1" Background="1">
     <Args Count="1" val1="Lenovo EasyCamera" />
   </Module>

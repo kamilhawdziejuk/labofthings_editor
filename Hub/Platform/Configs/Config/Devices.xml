@@ -14,6 +14,9 @@
   <Device FriendlyName="DistanceSensor" UniqueName="HomeOSGadgeteerDevice_DistanceSensor_MicrosoftResearch_71510265594473289466" IPAddress="192.168.0.13" DriverBinaryName="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.DistanceSensor" Configured="True" DriverModuleFriendlyName="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.DistanceSensor for DistanceSensor">
     <DriverParams Count="1" Param0="HomeOSGadgeteerDevice_DistanceSensor_MicrosoftResearch_71510265594473289466" />
   </Device>
+  <Device FriendlyName="RelaySwitch" UniqueName="HomeOSGadgeteerDevice_RelaySwitch_MicrosoftResearch_71510265594473289466" IPAddress="192.168.0.15" DriverBinaryName="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.RelaySwitch" Configured="True" DriverModuleFriendlyName="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.RelaySwitch for RelaySwitch">
+    <DriverParams Count="1" Param0="HomeOSGadgeteerDevice_RelaySwitch_MicrosoftResearch_71510265594473289466" />
+  </Device>
   <Device FriendlyName="LightSensor" UniqueName="HomeOSGadgeteerDevice_LightSensor_MicrosoftResearch_12972693646645308580" IPAddress="192.168.0.11" DriverBinaryName="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.LightSensor" Configured="True" DriverModuleFriendlyName="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.LightSensor for LightSensor">
     <DriverParams Count="1" Param0="HomeOSGadgeteerDevice_LightSensor_MicrosoftResearch_12972693646645308580" />
   </Device>
