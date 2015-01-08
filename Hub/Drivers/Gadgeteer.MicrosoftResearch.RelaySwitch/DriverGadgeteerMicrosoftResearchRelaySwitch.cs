@@ -145,7 +145,7 @@ namespace HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.RelaySwitch
                                         //notify the subscribers
                                         if (newValue != lastValue)
                                         {
-                                            driverLogger.Log("Relay switch is now {0}", newValue);
+                                            driverLogger.Log("Relay switch is now {0}", newValue.ToString());
                                             IList<VParamType> retVals = new List<VParamType>();
                                             retVals.Add(new ParamType(newValue));
 
