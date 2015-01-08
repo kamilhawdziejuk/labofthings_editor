@@ -30,12 +30,53 @@ namespace LightSensor
                 null, null, /*usbSerial.SerialLine.PortName*/null, null, null, () => { return GT.Timer.GetMachineTime() < RemoteControlLedEndTime; }, true);
 
             hgd.SetupWebEvent("IsOn").WebEventReceived += this.RelayWebEventReceived;
+           // hgd.SetupWebEvent("Switch").WebEventReceived += Program_WebEventReceived;
+
+           // this.joystick.JoystickPressed += joystick_JoystickPressed;
+
+            this.SwitchAndWait();
 
             GT.Timer relayTimer = new GT.Timer(RelayCheckPeriod);
-            relayTimer.Tick += new GT.Timer.TickEventHandler(this.relayTimer_Tick);
+            relayTimer.Tick += relayTimer_Tick;
             relayTimer.Start();
 
             Debug.Print("Program Started");
+        }
+        //void relayTimer_Tick(GT.Timer timer)
+        //{
+        //    //this.relay_X1.Enabled = !this.relay_X1.Enabled;
+        //    Debug.Print(this.response);
+        //}
+      
+
+        public void Switch()
+        {   
+            this.relay_X1.Enabled = !this.relay_X1.Enabled;
+        }
+
+        public void SwitchAndWait()
+        {
+            Switch();
+            Thread.Sleep(500);
+        }
+
+        bool ok = false;
+        void Program_WebEventReceived(string path, HomeOSGadgeteer.Networking.WebServer.HttpMethod method, HomeOSGadgeteer.Networking.Responder responder)
+        {
+            //throw new NotImplementedException();
+            //this.relay_X1.Enabled = !this.relay_X1.Enabled;
+            //Reboot();
+            //if (this.relay_X1)
+            //{
+            //    this.relay_X1.TurnOff();
+            //}
+            //else
+            //{
+            //    this.relay_X1.TurnOn();
+            //}
+            //ok = !ok;
+            //this.relay_X1.TurnOn();
+            responder.Respond("OK");
         }
 
         TimeSpan RemoteControlLedEndTime = TimeSpan.Zero;
@@ -60,12 +101,14 @@ namespace LightSensor
             HomeOSGadgeteer.Networking.WebServer.HttpMethod method, 
             HomeOSGadgeteer.Networking.Responder responder)
         {
+            this.relay_X1.Enabled = !this.relay_X1.Enabled;
             Debug.Print("Relay web event from " + responder.ClientEndpoint + " - response " + this.response);
             responder.Respond(this.webResponse);
         }
 
         void relayTimer_Tick(GT.Timer timer)
         {
+            //this.relay_X1.Enabled = !this.relay_X1.Enabled;
             Debug.Print(this.response);
         }
 

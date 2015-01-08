@@ -34,7 +34,7 @@ namespace HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.RelaySwitch
         public override void Start()
         {
             driverLogger = new Logger(moduleInfo.WorkingDir() +"\\" + "module.log");   
-            driverLogger.Log("Switch sensor started");
+            driverLogger.Log("Relay switch sensor started");
 
             base.Start();
         }
@@ -43,46 +43,46 @@ namespace HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.RelaySwitch
         {
             while (true)
             {
-                try
-                {
-                    string url = string.Format("http://{0}/IsOn", deviceIp);
+                //try
+                //{
+                //    string url = string.Format("http://{0}/IsOn", deviceIp);
 
-                    HttpWebRequest webRequest = (HttpWebRequest)WebRequest.Create(url);
-                    HttpWebResponse response = (HttpWebResponse)webRequest.GetResponse();
+                //    HttpWebRequest webRequest = (HttpWebRequest)WebRequest.Create(url);
+                //    HttpWebResponse response = (HttpWebResponse)webRequest.GetResponse();
 
-                    if (response.StatusCode != HttpStatusCode.OK)
-                        throw new Exception(String.Format(
-                        "Server error (HTTP {0}: {1}).",
-                        response.StatusCode,
-                        response.StatusDescription));
-                    DataContractJsonSerializer jsonSerializer = new DataContractJsonSerializer(typeof(Response));
-                    object objResponse = jsonSerializer.ReadObject(response.GetResponseStream());
-                    Response jsonResponse = objResponse as Response;
+                //    if (response.StatusCode != HttpStatusCode.OK)
+                //        throw new Exception(String.Format(
+                //        "Server error (HTTP {0}: {1}).",
+                //        response.StatusCode,
+                //        response.StatusDescription));
+                //    DataContractJsonSerializer jsonSerializer = new DataContractJsonSerializer(typeof(Response));
+                //    object objResponse = jsonSerializer.ReadObject(response.GetResponseStream());
+                //    Response jsonResponse = objResponse as Response;
 
-                    response.Close();
+                //    response.Close();
 
-                    this.Log(jsonResponse.IsOn);
-                    //double newValue = NormalizeTempValue(jsonResponse.temperature);
-                    int newValue = jsonResponse.IsOn;
-                    //notify the subscribers
-                    //if (newValue != lastValue)
-                    {
-                        IList<VParamType> retVals = new List<VParamType>();
-                        retVals.Add(new ParamType(newValue));
+                //    this.Log(jsonResponse.IsOn);
+                //    //double newValue = NormalizeTempValue(jsonResponse.temperature);
+                //    int newValue = jsonResponse.IsOn;
+                //    //notify the subscribers
+                //    //if (newValue != lastValue)
+                //    {
+                //        IList<VParamType> retVals = new List<VParamType>();
+                //        retVals.Add(new ParamType(newValue));
 
-                        devicePort.Notify(RoleSensor.RoleName, RoleSensor.OpGetName, retVals);
-                    }
+                //        devicePort.Notify(RoleSensor.RoleName, RoleSensor.OpGetName, retVals);
+                //    }
 
-                    lastValue = newValue;
+                //    lastValue = newValue;
 
-                }
-                catch (Exception e)
-                {
-                    logger.Log("{0}: couldn't talk to the device. are the arguments correct?\n exception details: {1}", this.ToString(), e.ToString());
+                //}
+                //catch (Exception e)
+                //{
+                //    logger.Log("{0}: couldn't talk to the device. are the arguments correct?\n exception details: {1}", this.ToString(), e.ToString());
 
-                    //lets try getting the IP again
-                    deviceIp = GetDeviceIp(deviceId);
-                }
+                //    //lets try getting the IP again
+                //    deviceIp = GetDeviceIp(deviceId);
+                //}
 
                 System.Threading.Thread.Sleep(1000);
             }
@@ -130,11 +130,28 @@ namespace HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.RelaySwitch
                                 { 
                                     try 
                                     {
-                                        string url = string.Format("http://{0}/IsOn?isOn={1}",
-                                            deviceIp, 4 + (int)parameters[0].Value());
+                                        string url = string.Format("http://{0}/IsOn", deviceIp);
 
                                         HttpWebRequest webRequest = (HttpWebRequest)WebRequest.Create(url);
                                         HttpWebResponse response = (HttpWebResponse)webRequest.GetResponse();
+
+                                        DataContractJsonSerializer jsonSerializer = new DataContractJsonSerializer(typeof(Response));
+                                        object objResponse = jsonSerializer.ReadObject(response.GetResponseStream());
+                                        Response jsonResponse = objResponse as Response;
+                                        response.Close();
+
+                                       
+                                        int newValue = jsonResponse.IsOn;
+                                        //notify the subscribers
+                                        if (newValue != lastValue)
+                                        {
+                                            driverLogger.Log("Relay switch is now {0}", newValue);
+                                            IList<VParamType> retVals = new List<VParamType>();
+                                            retVals.Add(new ParamType(newValue));
+
+                                            devicePort.Notify(RoleSensor.RoleName, RoleSensor.OpGetName, retVals);
+                                        }
+                                        lastValue = newValue;
 
                                     } 
                                     catch (Exception e) 

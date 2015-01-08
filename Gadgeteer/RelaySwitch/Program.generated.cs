@@ -18,7 +18,7 @@ namespace LightSensor {
         /// <summary>The WiFi_RS21 (Premium) module using socket 6 of the mainboard.</summary>
         private Gadgeteer.Modules.GHIElectronics.WiFi_RS21 wifi;
         
-        /// <summary>The Relay X1 module using socket 4 of the mainboard.</summary>
+        /// <summary>The Relay X1 module using socket 8 of the mainboard.</summary>
         private Gadgeteer.Modules.GHIElectronics.Relay_X1 relay_X1;
         
         /// <summary>This property provides access to the Mainboard API. This is normally not necessary for an end user program.</summary>
@@ -44,7 +44,7 @@ namespace LightSensor {
         
         private void InitializeModules() {
             this.wifi = new GTM.GHIElectronics.WiFi_RS21(6);
-            this.relay_X1 = new GTM.GHIElectronics.Relay_X1(4);
+            this.relay_X1 = new GTM.GHIElectronics.Relay_X1(8);
         }
     }
 }

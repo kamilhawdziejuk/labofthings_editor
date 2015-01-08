@@ -45,7 +45,14 @@ namespace HomeOS.Hub.Apps.RelaySwitch
         public string SetRelaySwitch()
         {
             relaySwitchApp.SetRelaySwitch();
-            //relaySwitchApp.setLEDs(low, high);
+            if (this.relaySwitchApp.IsOn == 0)
+            {
+                this.relaySwitchApp.IsOn = 1;
+            }
+            else
+            {
+                this.relaySwitchApp.IsOn = 0;
+            }
             return "";
         }
     }

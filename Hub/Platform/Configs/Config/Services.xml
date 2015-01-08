@@ -5,12 +5,10 @@
   <Service FriendlyName="LightDevice" Location="Home" Module="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.LightSensor for LightSensor" ModuleFacingName="gadgeteer-HomeOSGadgeteerDevice_LightSensor_MicrosoftResearch_12972693646645308580">
     <Role Name=":sensor:" />
   </Service>
-  <Service FriendlyName="RelaySwitch" Location="Home" Module="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.RelaySwitch for RelaySwitch" ModuleFacingName="gadgeteer-HomeOSGadgeteerDevice_RelaySwitch_MicrosoftResearch_71510265594473289466">
+  <Service FriendlyName="RelaySwitch" Location="Home" Module="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.RelaySwitch for RelaySwitch" ModuleFacingName="gadgeteer-HomeOSGadgeteerDevice_RelaySwitch_MicrosoftResearch_32054443539427623454">
     <Role Name=":sensor:" />
-  </Service>  
-  <!--<Service FriendlyName="DistanceDevice" Location="Home" Module="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.DistanceSensor for DistanceSensor" ModuleFacingName="gadgeteer-HomeOSGadgeteerDevice_DistanceSensor_MicrosoftResearch_71510265594473289466">
-    <Role Name=":sensor:" />
-  </Service>-->
+    <Role Name=":actuator:" />
+  </Service>
   <Service FriendlyName="Camera" Location="Home" Module="HomeOS.Hub.Drivers.WebCam for Lenovo EasyCamera" ModuleFacingName="webcam - Lenovo EasyCamera">
     <Role Name=":camera:" />
   </Service>
