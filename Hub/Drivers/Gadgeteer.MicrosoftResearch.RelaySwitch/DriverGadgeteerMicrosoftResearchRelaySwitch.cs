@@ -41,7 +41,7 @@ namespace HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.RelaySwitch
 
         protected override void WorkerThread()
         {
-            while (true)
+            //while (true)
             {
                 //try
                 //{
@@ -84,7 +84,7 @@ namespace HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.RelaySwitch
                 //    deviceIp = GetDeviceIp(deviceId);
                 //}
 
-                System.Threading.Thread.Sleep(1000);
+                System.Threading.Thread.Sleep(10000);
             }
         }
 

@@ -54,11 +54,11 @@ namespace HomeOS.Hub.Drivers.Gadgeteer
             BindRoles(devicePort, GetRoleList(), OnOperationInvoke);
             RegisterPortWithPlatform(devicePort);
 
-            //worker = new SafeThread(delegate()
-            //{
-            //    WorkerThread();
-            //}, "DriverGadgeteer-WorkerThread", logger);
-            //worker.Start();
+            worker = new SafeThread(delegate()
+            {
+                WorkerThread();
+            }, "DriverGadgeteer-WorkerThread", logger);
+            worker.Start();
 
             imageServer = new WebFileServer(moduleInfo.BinaryDir(), moduleInfo.BaseURL(), logger);
         }
