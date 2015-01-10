@@ -243,7 +243,7 @@ namespace HomeOS.Hub.Tools.EnvironmentMonitor
                         }
                     }
                 }
-                System.Threading.Thread.Sleep(500);
+                System.Threading.Thread.Sleep(1000);
             }
         }
     }

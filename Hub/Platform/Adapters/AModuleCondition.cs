@@ -118,6 +118,10 @@ namespace HomeOS.Hub.Platform.Adapters
     {
         internal static VModuleCondition C2V(IModuleCondition contract)
         {
+            if (contract == null)
+            {
+                return null;
+            }
             if (!System.Runtime.Remoting.RemotingServices.IsObjectOutOfAppDomain(contract) &&
                 (contract.GetType().Equals(typeof(ConditionV2C))))
             {
@@ -131,6 +135,10 @@ namespace HomeOS.Hub.Platform.Adapters
 
         internal static IModuleCondition V2C(VModuleCondition condition)
         {
+            if (condition == null)
+            {
+                return null;
+            }
             if (!System.Runtime.Remoting.RemotingServices.IsObjectOutOfAppDomain(condition) &&
                 (condition.GetType().Equals(typeof(ConditionC2V))))
             {
