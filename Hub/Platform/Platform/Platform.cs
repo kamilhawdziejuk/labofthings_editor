@@ -15,7 +15,6 @@ using HomeOS.Hub.Platform.Authentication;
 using System.Xml;
 using System.Xml.Linq;
 using System.Diagnostics;
-using HomeOS.Hub.Platform.EnvironmentMonitor;
 
 //using HomeOS.Hub.Platform.VirtualRouter.Wlan;
 
@@ -113,7 +112,10 @@ namespace HomeOS.Hub.Platform
         /// </summary>
         HeartbeatService heartbeatService;
 
-        EnvironmentMonitor.EnvironmentMonitor homeMonitor;
+        /// <summary>
+        /// System agents responsible for monitoring the environment
+        /// </summary>
+        HomeOS.Hub.Tools.EnvironmentMonitor.EnvironmentMonitor homeMonitor;
 
         /// <summary>
         /// authentication service
@@ -244,7 +246,7 @@ namespace HomeOS.Hub.Platform
             //rebuild the addin tokens
             this.rebuildAddInTokens();
 
-            this.homeMonitor = new EnvironmentMonitor.EnvironmentMonitor(this, logger);
+            this.homeMonitor = new HomeOS.Hub.Tools.EnvironmentMonitor.EnvironmentMonitor(this, logger);
             SafeThread homeMonitorThread = new SafeThread(this.homeMonitor.Start, "HomeMonitor", logger);
             homeMonitorThread.Start();
 

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using HomeOS.Hub.Platform.Views;
 
-namespace HomeOS.Hub.Platform.EnvironmentMonitor
+namespace HomeOS.Hub.Tools.EnvironmentMonitor
 {
     interface IValidator
     {

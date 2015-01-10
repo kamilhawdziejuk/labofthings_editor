@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
-using HomeOS.Hub.Platform.EnvironmentMonitor.Problems;
+using HomeOS.Hub.Tools.EnvironmentMonitor.Problems;
 using HomeOS.Hub.Platform.Views;
 
-namespace HomeOS.Hub.Platform.EnvironmentMonitor.Validators
+namespace HomeOS.Hub.Tools.EnvironmentMonitor.Validators
 {
     /// <summary>
     /// Validates if the limit was exceeded

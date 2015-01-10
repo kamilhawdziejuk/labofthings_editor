@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows;
-using HomeOS.Hub.Platform.EnvironmentMonitor.Validators;
+using HomeOS.Hub.Tools.EnvironmentMonitor.Validators;
 using HomeOS.Hub.Platform.Views;
 //using PetriNetSharp.Engine;
 using System.Globalization;
@@ -11,7 +11,7 @@ using System.Threading;
 using System.Windows.Threading;
 using PetrinetTool;
 
-namespace HomeOS.Hub.Platform.EnvironmentMonitor
+namespace HomeOS.Hub.Tools.EnvironmentMonitor
 {
     /// <summary>
     /// Class for managing flows between component's states in home enviroment
@@ -145,7 +145,7 @@ namespace HomeOS.Hub.Platform.EnvironmentMonitor
             Petrinet PN = new Petrinet();
             PN.Pages.Add("current", page);
 
-            PN.Save("D://testNet.xml");
+            //PN.Save("D://testNet.xml");
         }
 
         /*
@@ -223,10 +223,9 @@ namespace HomeOS.Hub.Platform.EnvironmentMonitor
 
         public void Start()
         {
-			return;
             this.SaveHomeEnvAsPN();
-            return;
-            System.Threading.Thread.Sleep(5000);
+            //return;
+            //System.Threading.Thread.Sleep(5000);
             logger.Log("Environment Monitor agent has started...");
             while (true)
             {

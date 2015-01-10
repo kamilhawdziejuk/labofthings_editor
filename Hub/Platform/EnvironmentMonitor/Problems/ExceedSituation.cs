@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using HomeOS.Hub.Platform.Views;
 
-namespace HomeOS.Hub.Platform.EnvironmentMonitor.Problems
+namespace HomeOS.Hub.Tools.EnvironmentMonitor.Problems
 {
     class ExceedSituation : ProblematicSituation
     {

@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using HomeOS.Hub.Platform.EnvironmentMonitor.Problems;
+using HomeOS.Hub.Tools.EnvironmentMonitor.Problems;
 using HomeOS.Hub.Platform.Views;
 
-namespace HomeOS.Hub.Platform.EnvironmentMonitor.Validators
+namespace HomeOS.Hub.Tools.EnvironmentMonitor.Validators
 {
     /// <summary>
     /// Checks last states if they haven't changed

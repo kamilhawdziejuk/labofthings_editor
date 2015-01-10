@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using HomeOS.Hub.Platform.EnvironmentMonitor.Solutions;
+using HomeOS.Hub.Tools.EnvironmentMonitor.Solutions;
 using HomeOS.Hub.Platform.Views;
 
-namespace HomeOS.Hub.Platform.EnvironmentMonitor
+namespace HomeOS.Hub.Tools.EnvironmentMonitor
 {
     /// <summary>
     /// Class that deals with situations at home

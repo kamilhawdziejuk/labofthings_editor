@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using HomeOS.Hub.Platform.Views;
 
-namespace HomeOS.Hub.Platform.EnvironmentMonitor.Solutions
+namespace HomeOS.Hub.Tools.EnvironmentMonitor.Solutions
 {
     class LoggerSolution : ISolution
     {

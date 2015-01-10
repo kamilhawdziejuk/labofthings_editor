@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace HomeOS.Hub.Platform.EnvironmentMonitor
+namespace HomeOS.Hub.Tools.EnvironmentMonitor
 {
     interface ISolution
     {

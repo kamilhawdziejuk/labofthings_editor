@@ -29,7 +29,7 @@
   <Module FriendlyName="HomeOS.Hub.Drivers.WebCam for Lenovo EasyCamera" AppName="driver for Lenovo EasyCamera" BinaryName="HomeOS.Hub.Drivers.WebCam" WorkingDir="C:\labofthings.codeplex.EnvMon\Hub\output\binaries\Platform\..\..\Data\HomeOS.Hub.Drivers.WebCam for Lenovo EasyCamera" AutoStart="1" Background="1">
     <Args Count="1" val1="Lenovo EasyCamera" />
   </Module>
-  <Module FriendlyName="CameraViewer" AppName="CameraViewer" BinaryName="HomeOS.Hub.Apps.SmartCam" WorkingDir="C:\labofthings.codeplex.EnvMon\Hub\output\binaries\Platform\..\..\Data\CameraViewer" AutoStart="0" Background="0">
+  <Module FriendlyName="CameraViewer" AppName="CameraViewer" BinaryName="HomeOS.Hub.Apps.SmartCam" WorkingDir="C:\labofthings.codeplex.EnvMon\Hub\output\binaries\Platform\..\..\Data\CameraViewer" AutoStart="1" Background="0">
     <RoleList Optional="False">
       <Role Name=":camera:" />
     </RoleList>
