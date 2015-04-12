@@ -53,7 +53,7 @@ namespace HomeOS.Hub.Apps.Volume
                 homeIdPart = "/" + homeId;
             }
 
-            string add = Constants.InfoServiceAddress;// "http://192.168.0.3:51430/";//Constants.InfoServiceAddress
+            string add = Constants.InfoServiceAddress;
             var uri =  new Uri(add + homeIdPart + "/" + moduleInfo.FriendlyName());
             serviceHost = VolumeSvc.CreateServiceHost(volumeService,uri);
             var behavior = serviceHost.Description.Behaviors.Find<ServiceDebugBehavior>();

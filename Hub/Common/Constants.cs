@@ -13,8 +13,8 @@ namespace HomeOS.Hub.Common
 
         // ..... the base address at which we host all the services
         public const int InfoServicePort = 51430;
-        public static readonly string localhost = "192.168.0.3";//localhost
-        public static readonly string InfoServiceAddress = "http://192.168.0.3" + ":" + InfoServicePort;
+        public static readonly string localhost = "192.168.0.3";
+        public static readonly string InfoServiceAddress = "http://" + localhost + ":" + InfoServicePort;
 
         // .... the port where platform is discovered
         public const int PlatformDiscoveryPort = 51432;
