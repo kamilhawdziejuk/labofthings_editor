@@ -132,10 +132,6 @@
       <Project>{74363882-6ecc-40f5-a7e7-139dd95b52d3}</Project>
       <Name>DeviceScout</Name>
     </ProjectReference>
-    <ProjectReference Include="..\EnvironmentMonitor\EnvironmentMonitor.csproj">
-      <Project>{47a3627a-13d3-4596-bbc1-33cbc5d0cde7}</Project>
-      <Name>EnvironmentMonitor</Name>
-    </ProjectReference>
     <ProjectReference Include="..\HomeService\HomeService.csproj">
       <Project>{62467325-6d15-4161-a09d-07b7793dab68}</Project>
       <Name>HomeService</Name>

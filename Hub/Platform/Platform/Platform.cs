@@ -115,7 +115,7 @@ namespace HomeOS.Hub.Platform
         /// <summary>
         /// System agents responsible for monitoring the environment
         /// </summary>
-        HomeOS.Hub.Tools.EnvironmentMonitor.EnvironmentMonitor homeMonitor;
+        //HomeOS.Hub.Tools.EnvironmentMonitor.EnvironmentMonitor homeMonitor;
 
         /// <summary>
         /// authentication service
@@ -246,9 +246,9 @@ namespace HomeOS.Hub.Platform
             //rebuild the addin tokens
             this.rebuildAddInTokens();
 
-            this.homeMonitor = new HomeOS.Hub.Tools.EnvironmentMonitor.EnvironmentMonitor(this, logger);
-            SafeThread homeMonitorThread = new SafeThread(this.homeMonitor.Start, "HomeMonitor", logger);
-            homeMonitorThread.Start();
+            //this.homeMonitor = new HomeOS.Hub.Tools.EnvironmentMonitor.EnvironmentMonitor(this, logger);
+            //SafeThread homeMonitorThread = new SafeThread(this.homeMonitor.Start, "HomeMonitor", logger);
+            //homeMonitorThread.Start();
 
             homeStoreInfo = new HomeStoreInfo(logger);
             _consoleHandler = new PlatformConsoleCtrlHandlerDelegate(ConsoleEventHandler);

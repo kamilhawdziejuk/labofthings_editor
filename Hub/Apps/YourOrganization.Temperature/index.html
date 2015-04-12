@@ -7,6 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
    <script type="text/javascript" src="../GuiWeb/jquery-1.7.1.js"></script>
   <script type="text/javascript" src="../GuiWeb/common.js"></script>
+  <script type="text/javascript" src='js/Chart.min.js'></script>
   <link rel="Stylesheet" type="text/css" href="Styles/AppAlertsStyleSheet.css" />
  
     <script>
@@ -60,6 +61,13 @@
             updateColors();
         }
     </script>
+
+
+    <script>
+        var buyers = document.getElementById('temperatures').getContext('2d');
+        new Chart(buyers).Line(buyerData);
+    </script>
+
 </head>
 <body>
         <div class="dashboard_toolbar">
@@ -84,6 +92,9 @@
             </div>
         </div>
 
+        <div id="historicalData">
+            <canvas id="temperatures" width="600" height="400"></canvas>
+        </div>
         <!--Used for debugging messages, set style="display:none" to turn off showing them, common.js will put text into div with id =divDebugInfo when calls are made to service -->
         <div id="divServiceDebug" style="display:block">
         Service Status Debug Info: <p id="divDebugInfo"></p>
