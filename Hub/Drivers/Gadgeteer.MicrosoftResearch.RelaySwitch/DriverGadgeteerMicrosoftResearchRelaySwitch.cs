@@ -24,6 +24,9 @@ namespace HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.RelaySwitch
     public class DriverGadgeteerMicrosoftResearchRelaySwitch : DriverGadgeteerBase
     {
         double lastValue = 0;
+        /// <summary>
+        /// For loging information about turning on/off relay switch
+        /// </summary>
         VLogger driverLogger;
 
         protected override List<VRole> GetRoleList()
@@ -33,8 +36,7 @@ namespace HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.RelaySwitch
 
         public override void Start()
         {
-            driverLogger = new Logger(moduleInfo.WorkingDir() +"\\" + "module.log");   
-            driverLogger.Log("Relay switch sensor started");
+            driverLogger = new Logger(moduleInfo.WorkingDir() +"\\" + "module.csv");   
 
             base.Start();
         }
@@ -90,11 +92,11 @@ namespace HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.RelaySwitch
 
         private void Log(int isOn)
         {
-            if (isOn > -1)
+            if (isOn > -1 && false)
             {
                 logger.Log("Gadgeteer Relay: {0}", isOn.ToString());
                 DateTime date = DateTime.Now;
-                driverLogger.Log("Relay: {0}", isOn.ToString());
+                driverLogger.Log(";{0}", isOn.ToString());
             }
         }
 

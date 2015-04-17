@@ -25,6 +25,9 @@ namespace HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.TempHumiditySensor
     {
         const int TempThreshold = 1;
         double lastValue = 0;
+        /// <summary>
+        /// For loging temperatures to CSV file
+        /// </summary>
         VLogger driverLogger;
 
         protected override List<VRole> GetRoleList()
@@ -34,8 +37,7 @@ namespace HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.TempHumiditySensor
 
         public override void Start()
         {
-            driverLogger = new Logger(moduleInfo.WorkingDir() +"\\" + "module.log");   
-            //driverLogger.Log("Temperature sensor started");
+            driverLogger = new Logger(moduleInfo.WorkingDir() +"\\" + "module.csv");   
 
             base.Start();
         }
@@ -97,11 +99,11 @@ namespace HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.TempHumiditySensor
 
         private void Log(double temperature)
         {
-            if (temperature > 0)
+            if (temperature > 0 && false)
             {
                 logger.Log("Gadgeteer Temperature: {0}", temperature.ToString());
                 DateTime date = DateTime.Now;
-                driverLogger.Log(", {0}", temperature.ToString());
+                driverLogger.Log(";{0}", temperature.ToString());
             }
         }
 
