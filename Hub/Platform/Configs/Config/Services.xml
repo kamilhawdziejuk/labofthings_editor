@@ -1,5 +1,5 @@
 <Services>
-  <Service FriendlyName="TempHumidityDevice" Location="Home" Module="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.TempHumiditySensor for TempHumiditySensor" ModuleFacingName="gadgeteer-HomeOSGadgeteerDevice_TempHumiditySensor_MicrosoftResearch_99120677974095575435">
+  <Service FriendlyName="TempHumidityDevice" Location="Home" Module="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.TempHumiditySensor" ModuleFacingName="gadgeteer-HomeOSGadgeteerDevice_TempHumiditySensor_MicrosoftResearch_99120677974095575435">
     <Role Name=":sensor:" />
   </Service>
   <Service FriendlyName="LightDevice" Location="Home" Module="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.LightSensor for LightSensor" ModuleFacingName="gadgeteer-HomeOSGadgeteerDevice_LightSensor_MicrosoftResearch_80352854565106614545">

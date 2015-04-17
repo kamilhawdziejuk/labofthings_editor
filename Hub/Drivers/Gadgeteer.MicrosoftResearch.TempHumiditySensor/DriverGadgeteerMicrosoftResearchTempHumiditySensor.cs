@@ -35,7 +35,7 @@ namespace HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.TempHumiditySensor
         public override void Start()
         {
             driverLogger = new Logger(moduleInfo.WorkingDir() +"\\" + "module.log");   
-            driverLogger.Log("Temperature sensor started");
+            //driverLogger.Log("Temperature sensor started");
 
             base.Start();
         }
@@ -101,7 +101,7 @@ namespace HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.TempHumiditySensor
             {
                 logger.Log("Gadgeteer Temperature: {0}", temperature.ToString());
                 DateTime date = DateTime.Now;
-                driverLogger.Log("Temperature: {0}", temperature.ToString());
+                driverLogger.Log(", {0}", temperature.ToString());
             }
         }
 

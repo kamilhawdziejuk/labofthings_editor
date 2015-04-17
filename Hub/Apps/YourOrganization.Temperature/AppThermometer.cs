@@ -107,6 +107,11 @@ namespace HomeOS.Hub.Apps.Thermometer
             }
         }
 
+        public string GetHistoricalTemps()
+        {
+            return "";
+        }
+
         public override void PortDeregistered(VPort port)
         {
             lock (this)
