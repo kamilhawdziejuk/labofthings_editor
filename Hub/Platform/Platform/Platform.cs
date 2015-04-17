@@ -312,7 +312,7 @@ namespace HomeOS.Hub.Platform
             {
             if (runningScouts.ContainsKey(sInfo.Name))
             {
-                logger.Log("Error: Scout {0} is already running; cannot start again");
+                logger.Log("Error: Scout {0} is already running; cannot start again", sInfo.Name);
                 return;
             }
 
@@ -324,25 +324,66 @@ namespace HomeOS.Hub.Platform
             {
                 string dllFullPath = Path.GetFullPath(dllPath);
 
+                Version vDesired = new Version(sInfo.DesiredVersion);
+
                 if (!File.Exists(dllFullPath))
+                {
+                    logger.Log("{0} is not present locally. Will try to get version {1} from Repository", sInfo.Name, sInfo.DesiredVersion);
+
                     GetScoutFromRep(sInfo); // now attempt to start what we got (if we did)
+                }
                 else
                 {
-                    string currentScoutVersion = Utils.GetHomeOSUpdateVersion(dllFullPath + ".config", logger);
-                    // we are using file versions for the Versioning and not Assembly versions because to read that 
-                    // the assembly needs to be loaded. But unloading the assembly is a pain (in case of version mismatch)
+                    
+                    Version vLocal = new Version(Utils.GetHomeOSUpdateVersion(dllFullPath + ".config", logger));
 
-                    if (!CompareModuleVersions(currentScoutVersion, sInfo.DesiredVersion))
-                        GetScoutFromRep(sInfo);// if we didn't get the right version, lets start what we have
-
-                    currentScoutVersion = Utils.GetHomeOSUpdateVersion(dllFullPath + ".config", logger);
-                    if (!CompareModuleVersions(currentScoutVersion, sInfo.DesiredVersion))
+                    //if local version and desired versions differ ... 
+                    if (vLocal.CompareTo(vDesired) != 0)
                     {
-                        logger.Log("WARNING: starting an inexact version of {0}", sInfo.Name);                       
+                        //if the desired version is unspecified, pick between the most recent of the latest-on-rep and local
+                        if (vDesired.CompareTo(new Version(Constants.UnknownHomeOSUpdateVersionValue)) == 0)
+                        {
+                            Version vLatestOnRep = new Version(GetVersionFromRep(Settings.RepositoryURIs, sInfo.DllName));
+
+                            if (vLatestOnRep.CompareTo(vLocal) > 0)
+                            {
+                                logger.Log("Local verison ({0}) is lower than the latest rep version ({1}) for {2}", vLocal.ToString(), vDesired.ToString(), sInfo.Name);
+
+                                GetScoutFromRep(sInfo);
+                            }
+                            else
+                            {
+                                logger.Log("Local verison ({0}) is already latest for {1}", vLocal.ToString(), sInfo.Name);
+                            }
+                        }
+                        //we a specific version is desired
+                        else
+                        {
+                            logger.Log("Will try to get specific version {0} for {1} from Repository", sInfo.DesiredVersion, sInfo.Name);
+
+                            GetScoutFromRep(sInfo); // now attempt to start what we got (if we did)
+                        }
+                    }
+                    else
+                    {
+                        logger.Log("Local verison ({0}) is same as desired version for {1}. Starting that", vDesired.ToString(), sInfo.Name);
                     }
                 }
 
-                logger.Log("starting scout {0} using dll {1} at url {2}", sInfo.Name, dllPath, baseUrl);
+                if (!File.Exists(dllFullPath))
+                {
+                    logger.Log("Error: Could not fine Scout {0} anywhere; not starting", sInfo.Name);
+                    return;
+                }
+
+                var vAboutToRun = new Version(Utils.GetHomeOSUpdateVersion(dllFullPath + ".config", logger));
+
+                if (vDesired.CompareTo(new Version(Constants.UnknownHomeOSUpdateVersionValue)) != 0 && vDesired.CompareTo(vAboutToRun) != 0)
+                {
+                    logger.Log("WARNING: couldn't get the desired version {0} for {1}. Starting {2}", vDesired.ToString(), sInfo.Name, vAboutToRun.ToString());
+                }
+
+                logger.Log("starting scout {0} (v{1}) using dll {2} at url {3}", sInfo.Name, vAboutToRun.ToString(), dllPath, baseUrl);
 
                 System.Reflection.Assembly myLibrary = System.Reflection.Assembly.LoadFile(dllFullPath);
                 Type myClass = (from type in myLibrary.GetExportedTypes()
@@ -354,7 +395,7 @@ namespace HomeOS.Hub.Platform
 
                 scout.Init(baseUrl, baseDir, this, logger);
 
-                sInfo.SetRunningVersion(Utils.GetHomeOSUpdateVersion(dllFullPath + ".config", logger));
+                sInfo.SetRunningVersion(vAboutToRun.ToString());
 
                 runningScouts.Add(sInfo.Name, new Tuple<ScoutInfo, IScout>(sInfo, scout));
             }
@@ -402,6 +443,9 @@ namespace HomeOS.Hub.Platform
             // cache the version
             this.platformVersion = Utils.GetHomeOSUpdateVersion(this.GetType().Assembly.CodeBase + ".config", logger);
 
+            //configure the services the way we like
+            ServicePointManager.DnsRefreshTimeout = 30 * 1000; //30 seconds
+            ServicePointManager.DefaultConnectionLimit = 100;
 
             //start the basic services
             infoService = new InfoService(this, logger);
@@ -495,6 +539,9 @@ namespace HomeOS.Hub.Platform
                     StartModule(new ModuleInfo("webcamdriver", "DriverWebCam", "HomeOS.Hub.Drivers.WebCam", null, false, @"Microsoft® LifeCam VX-7000"));
                     StartModule(new ModuleInfo("AppCam", "AppCamera", "HomeOS.Hub.Apps.SmartCam", null, false));
 
+                    StartModule(new ModuleInfo("webcamdriver", "DriverWebCam", "HomeOS.Hub.Drivers.WebCam", null, false, @"Integrated"));
+                    StartModule(new ModuleInfo("camerapp", "AppCamera", "HomeOS.Hub.Apps.SmartCam", null, false));
+
                     //string para1 = "C:\\Users\\t-chuchu\\Desktop\\homeos\\homeos\\Apps\\AppTracking\\VideoTracking\\para_camera1.txt";
                     //string para2 = "C:\\Users\\t-chuchu\\Desktop\\homeos\\homeos\\Apps\\AppTracking\\VideoTracking\\para_camera2.txt";
                     //StartModule(new ModuleInfo("trackingapp", "AppTracking", "AppTracking", null, false, para1, para2));                   
@@ -505,8 +552,6 @@ namespace HomeOS.Hub.Platform
                     //StartModule(new ModuleInfo("switchapp", "AppSwitch", "HomeOS.Hub.Apps.Switch", null, false));
 
                     //StartModule(new ModuleInfo("alerts", "AppAlerts", "HomeOS.Hub.Apps.Alerts", null, false));
-
-                    //StartModule(new ModuleInfo("foscamdriver1", "DriverFoscam", "HomeOS.Hub.Drivers.Foscam", null, false, "192.168.1.125", "admin", ""));
 
                     //StartModule(new ModuleInfo("AppDummy1", "AppDummy1", "HomeOS.Hub.Apps.Dummy", null, false, null));
                     //StartModule(new ModuleInfo("DriverDummy1", "DriverDummy1", "HomeOS.Hub.Drivers.Dummy", null, false, null));
@@ -1112,7 +1157,7 @@ namespace HomeOS.Hub.Platform
                 rebuildAddInTokens(); */
             
 
-            foreach (ModuleInfo moduleInfo in config.allModules.Values)
+            foreach (ModuleInfo moduleInfo in config.GetAllModules())
             {
                 if (moduleInfo != null && moduleInfo.AutoStart)
                 {
@@ -1228,7 +1273,7 @@ namespace HomeOS.Hub.Platform
 
             ////delete the temp dir
             //System.IO.DirectoryInfo dir = new DirectoryInfo(tempPath);   
-            //if (dir.Exists)  
+            //if (dir.Exists)  r
             //dir.Delete(true);
 
             return ret;
@@ -2468,6 +2513,11 @@ namespace HomeOS.Hub.Platform
             return config.GetDeviceDriverParams(targetDevice);
         }
 
+        public List<ModuleInfo> GetAllConfiguredModules()
+        {
+            return config.GetAllModules();
+        }
+
         #endregion
 
         public void AddService(PortInfo portInfo, string friendlyName, bool highSecurity, string locationStr, string[] apps) {
@@ -2724,13 +2774,13 @@ namespace HomeOS.Hub.Platform
         }
 
 #region static helpers for Update Manager tool to access modules, scouts
-        public static Dictionary<string, ModuleInfo> GetConfigModules(string configDir)
+        public static List<ModuleInfo> GetConfigModules(string configDir)
         {
             Settings.Initialize();            
             Configuration config = new Configuration(configDir);
             config.ParseSettings();
             config.ReadConfiguration();
-            return config.allModules;
+            return config.GetAllModules();
         }
 
         public static List<ScoutInfo> GetConfigScouts(string configDir)
@@ -3213,14 +3263,10 @@ namespace HomeOS.Hub.Platform
 
                 string binaryversion = "Latest";
 
-                if (moduleInfo.GetDesiredVersion() != "0.0.0.0")
+                if (moduleInfo.GetDesiredVersion() != null && moduleInfo.GetDesiredVersion() != "0.0.0.0")
                 {
-                    if (moduleInfo.GetDesiredVersion() != null)
-                    {
-                        binaryversion = moduleInfo.GetDesiredVersion();
-                    }
+                    binaryversion = moduleInfo.GetDesiredVersion();
                 }
-
 
                 zipuri += '/' + binaryversion + '/' + moduleInfo.BinaryName() + ".zip";
 
@@ -3247,7 +3293,7 @@ namespace HomeOS.Hub.Platform
 
                 //by default platform should point to the Latest on the repository if a version of the binary isn't specified
                 string binaryversion = "Latest"; 
-                if (scoutInfo.DesiredVersion != null )
+                if (scoutInfo.DesiredVersion != null && scoutInfo.DesiredVersion != Constants.UnknownHomeOSUpdateVersionValue)
                 {
                     binaryversion = scoutInfo.DesiredVersion;
                 }

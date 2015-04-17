@@ -828,7 +828,9 @@ namespace HomeOS.Hub.Platform
                         continue;
 
                     //assume that we end up using homeStoreApp.AppName as friendly name in the new gui
-                    if (config.allModules.ContainsKey(homeStoreApp.AppName))
+                    //if (config.allModules.ContainsKey(homeStoreApp.AppName))
+                    //    continue;
+                    if (config.GetModule(homeStoreApp.AppName) != null)
                         continue;
 
                     //string triplet ugliness
@@ -920,11 +922,14 @@ namespace HomeOS.Hub.Platform
                     {
                         mNameList.Add("Unknown");
                         mNameList.Add("Unknown");
+                        mNameList.Add("Unknown");
                     }
                     else
                     {
                         mNameList.Add(app.Description);
                         mNameList.Add(app.IconUrl);
+                        string temp = mInfo.GetRunningVersion();
+                        mNameList.Add(mInfo.GetRunningVersion());
                     }
                 }
 
