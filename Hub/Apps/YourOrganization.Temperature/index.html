@@ -52,7 +52,7 @@
             var l = $('#activateChartId:checked').length;
 
             if (l > 0) {
-
+                $('#temperatures').show();
                 
                 var currentdate = new Date();
                 var datetime = currentdate.getDate() + "/"
@@ -88,11 +88,11 @@
                     responsive: true
                 });
             }
+            else
+            {
+                $('#temperatures').hide();
+            }
         }
-
-        $('#activateChartId').onchange(function () {
-            $('#temperatures').toggle();
-        });
 
         function RefreshTemperatureCallback(context, result) {
             currentTemperature = result.GetTemperatureResult;

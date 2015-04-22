@@ -17,7 +17,7 @@ using System.Net;
 using System.Text;
 using System.IO.Ports;
 
-namespace LightSensor
+namespace RelaySensor
 {
     public partial class Program
     {
@@ -93,7 +93,18 @@ namespace LightSensor
             HomeOSGadgeteer.Networking.WebServer.HttpMethod method, 
             HomeOSGadgeteer.Networking.Responder responder)
         {
-            this.relay_X1.Enabled = !this.relay_X1.Enabled;
+            int amount = 1;
+            if (responder.UrlParameters.Count > 0)
+            {
+                string a = responder.UrlParameters["amount"].ToString();
+                amount = Int32.Parse(a);
+            }
+
+            for (int i = 0; i < amount; i++)
+            {
+                this.SwitchAndWait();
+            }
+
             Debug.Print("Relay web event from " + responder.ClientEndpoint + " - response " + this.response);
             responder.Respond(this.webResponse);
         }
