@@ -7,7 +7,7 @@
   <Module FriendlyName="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.TempHumiditySensor" AppName="driver for TempHumiditySensor" BinaryName="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.TempHumiditySensor" WorkingDir="C:\labofthings.codeplex.EnvMon\Hub\output\binaries\Platform\..\..\Data\HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.TempHumiditySensor" AutoStart="1" Background="1">
     <Args Count="1" val1="HomeOSGadgeteerDevice_TempHumiditySensor_MicrosoftResearch_99120677974095575435" />
   </Module>
-  <Module FriendlyName="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.RelaySwitch for RelaySwitch" AppName="driver for RelaySwitch" BinaryName="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.RelaySwitch" WorkingDir="C:\labofthings.codeplex.EnvMon\Hub\output\binaries\Platform\..\..\Data\HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.RelaySwitch for RelaySwitch" AutoStart="1" Background="1">
+  <Module FriendlyName="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.RelaySwitch" AppName="driver for RelaySwitch" BinaryName="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.RelaySwitch" WorkingDir="C:\labofthings.codeplex.EnvMon\Hub\output\binaries\Platform\..\..\Data\HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.RelaySwitch" AutoStart="1" Background="1">
     <Args Count="1" val1="HomeOSGadgeteerDevice_RelaySwitch_MicrosoftResearch_32054443539427623454" />
   </Module>
   <Module FriendlyName="ThermoAlerts" AppName="ThermoAlerts" BinaryName="HomeOS.Hub.Apps.Thermometer" WorkingDir="C:\labofthings.codeplex.EnvMon\Hub\output\binaries\Platform\..\..\Data\ThermoAlerts" AutoStart="1" Background="0">

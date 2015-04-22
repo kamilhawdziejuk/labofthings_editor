@@ -32,7 +32,6 @@ namespace LightSensor
             hgd.SetupWebEvent("IsOn").WebEventReceived += this.RelayWebEventReceived;
            // hgd.SetupWebEvent("Switch").WebEventReceived += Program_WebEventReceived;
 
-           // this.joystick.JoystickPressed += joystick_JoystickPressed;
 
             this.SwitchAndWait();
 
@@ -42,13 +41,6 @@ namespace LightSensor
 
             Debug.Print("Program Started");
         }
-        //void relayTimer_Tick(GT.Timer timer)
-        //{
-        //    //this.relay_X1.Enabled = !this.relay_X1.Enabled;
-        //    Debug.Print(this.response);
-        //}
-      
-
         public void Switch()
         {   
             this.relay_X1.Enabled = !this.relay_X1.Enabled;

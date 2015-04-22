@@ -5,7 +5,7 @@
   <Device FriendlyName="TempHumiditySensor" UniqueName="HomeOSGadgeteerDevice_TempHumiditySensor_MicrosoftResearch_99120677974095575435" IPAddress="192.168.0.13" DriverBinaryName="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.TempHumiditySensor" Configured="True" DriverModuleFriendlyName="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.TempHumiditySensor">
     <DriverParams Count="1" Param0="HomeOSGadgeteerDevice_TempHumiditySensor_MicrosoftResearch_99120677974095575435" />
   </Device>
-  <Device FriendlyName="RelaySwitch" UniqueName="HomeOSGadgeteerDevice_RelaySwitch_MicrosoftResearch_32054443539427623454" IPAddress="192.168.0.13" DriverBinaryName="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.RelaySwitch" Configured="True" DriverModuleFriendlyName="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.RelaySwitch for RelaySwitch">
+  <Device FriendlyName="RelaySwitch" UniqueName="HomeOSGadgeteerDevice_RelaySwitch_MicrosoftResearch_32054443539427623454" IPAddress="192.168.0.16" DriverBinaryName="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.RelaySwitch" Configured="True" DriverModuleFriendlyName="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.RelaySwitch">
     <DriverParams Count="1" Param0="HomeOSGadgeteerDevice_RelaySwitch_MicrosoftResearch_32054443539427623454" />
   </Device>
 </Devices>
