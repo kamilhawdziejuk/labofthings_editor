@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+      <script type="text/javascript" src="jquery-1.7.1.js"></script>
+      <script type="text/javascript" src="common.js"></script>
+      <script type="text/javascript" src="DashboardWebJavascript.js"></script>
+    
+  <link rel="stylesheet" media="all" type="text/css" href="Styles/HomeOSMasterStyleSheet.css" />
+    <meta charset="utf-8" />
+    <title></title>
+
+    <script>
+        $(document).ready(function () {
+            GetModules();
+        });
+
+        function ReadModules() {
+            new PlatformServiceHelper().MakeServiceCall("webapp/GetModules", "", GetModulesCallback);
+        }
+    </script>
+
+</head>
+<body>
+    <div><h2>Home Environment Monitor -> Editor</h2></div>
+    <div> 
+        There are numer of modules running at your home. Choose one to define its states.
+
+        <select name="Modules">
+            <option value="light_sensor">Light sensor</option>
+            <option value="temp_sensor" selected="selected">Temperature sensor</option>
+            <option value="light_actuator">Light bulp</option>
+            <option value="motion_sensor">Motion sensor</option>
+        </select>
+    </div>
+
+    <div>
+        Attributes:
+        <ul>
+            <li>Attr 1</li>
+            <li>Attr 2</li>
+            <li>Attr 3</li>
+        </ul>
+        
+    </div>
+
+    <hr />
+    Write your expectation rule (ex. "When user enters a house then turn lights on"):     <textarea rows="2" cols="50"></textarea>
+    <br />
+    <button>Submit</button>
+</body>
+</html>

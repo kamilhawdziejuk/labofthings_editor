@@ -224,7 +224,7 @@ namespace HomeOS.Hub.Tools.EnvironmentMonitor
         public void Start()
         {
             //this.SaveHomeEnvAsPN();
-            //return;
+            return;
             //System.Threading.Thread.Sleep(5000);
             logger.Log("Environment Monitor agent has started...");
             while (true)
