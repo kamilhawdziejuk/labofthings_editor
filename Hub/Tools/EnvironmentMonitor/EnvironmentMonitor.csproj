@@ -65,6 +65,10 @@
     <Compile Include="Validators\StagnancyValidator.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Common\Bolt\DataStore\DataStore.csproj">
+      <Project>{540d10b0-39fe-47e7-86ab-aff845791daf}</Project>
+      <Name>DataStore</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Common\Common.csproj">
       <Project>{6f879b8b-c4b1-4e8d-9bf2-c6376b05e4ec}</Project>
       <Name>Common %28Common\Common%29</Name>
@@ -76,6 +80,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="HomeEditor.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SmartHouse.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

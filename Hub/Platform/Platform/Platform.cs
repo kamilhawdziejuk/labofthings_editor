@@ -15,6 +15,7 @@ using HomeOS.Hub.Platform.Authentication;
 using System.Xml;
 using System.Xml.Linq;
 using System.Diagnostics;
+using HomeOS.Hub.Tools.EnvironmentMonitor;
 
 //using HomeOS.Hub.Platform.VirtualRouter.Wlan;
 
@@ -115,7 +116,8 @@ namespace HomeOS.Hub.Platform
         /// <summary>
         /// System agents responsible for monitoring the environment
         /// </summary>
-        HomeOS.Hub.Tools.EnvironmentMonitor.EnvironmentMonitor homeMonitor;
+        //HomeOS.Hub.Tools.EnvironmentMonitor.EnvironmentMonitor homeMonitor;
+        IHomeMonitorServiceWeb envMonitorService;
 
         /// <summary>
         /// authentication service
@@ -246,9 +248,10 @@ namespace HomeOS.Hub.Platform
             //rebuild the addin tokens
             this.rebuildAddInTokens();
 
-            this.homeMonitor = new HomeOS.Hub.Tools.EnvironmentMonitor.EnvironmentMonitor(this, logger);
-            SafeThread homeMonitorThread = new SafeThread(this.homeMonitor.Start, "HomeMonitor", logger);
-            homeMonitorThread.Start();
+            //this.homeMonitor = new HomeOS.Hub.Tools.EnvironmentMonitor.EnvironmentMonitor(this, logger);
+            //SafeThread homeMonitorThread = new SafeThread(this.homeMonitor.Start, "HomeMonitor", logger);
+            //homeMonitorThread.Start();
+            //this.envMonitorService = new Tools.EnvironmentMonitor.HomeMonitorSvc(logger);
 
             homeStoreInfo = new HomeStoreInfo(logger);
             _consoleHandler = new PlatformConsoleCtrlHandlerDelegate(ConsoleEventHandler);
@@ -456,6 +459,15 @@ namespace HomeOS.Hub.Platform
             {
                 ConfiguredStart();
             }
+
+
+            string homeIdPart = "";
+            if (!string.IsNullOrWhiteSpace(Settings.HomeId))
+                homeIdPart = "/" + Settings.HomeId;
+            string url = Constants.InfoServiceAddress + homeIdPart + "/GuiWeb";
+            envMonitorService = new Tools.EnvironmentMonitor.HomeMonitorSvc(logger);
+            var envMonitorServiceHost = Tools.EnvironmentMonitor.HomeMonitorSvc.CreateServiceHost(envMonitorService, new Uri(url));
+            envMonitorServiceHost.Open();
 
             if (!Settings.RunningMode.Equals("unittesting", StringComparison.CurrentCultureIgnoreCase))
             {

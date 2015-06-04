@@ -14,10 +14,10 @@ using System.ServiceModel.Web;
 using System.ServiceModel.Description;
 
 
-namespace HomeOS.Hub.Apps.Light
+namespace HomeOS.Hub.Tools.EnvironmentMonitor
 {
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
-    public class HomeMonitorSvc : ISimplexLightNotifierContract
+    public class HomeMonitorSvc : IHomeMonitorServiceWeb
     {
         private VLogger logger;
 
@@ -26,30 +26,39 @@ namespace HomeOS.Hub.Apps.Light
             this.logger = _logger;
         }
 
-        public static SafeServiceHost CreateServiceHost(VLogger _logger, ModuleBase _moduleBase,
-            ISimplexLightNotifierContract _instance, string _address)
+        public static ServiceHost CreateServiceHost(IHomeMonitorServiceWeb instance, Uri baseAddress)
         {
-            SafeServiceHost service = new SafeServiceHost(_logger, _moduleBase, _instance, _address);
-            var contract = ContractDescription.GetContract(typeof(ISimplexLightNotifierContract));
+            ServiceHost service = new ServiceHost(instance, baseAddress);
+            var contract = ContractDescription.GetContract(typeof(IHomeMonitorServiceWeb));
+
             var webBinding = new WebHttpBinding();
-            var webEndPoint = new ServiceEndpoint(contract, webBinding, new EndpointAddress(service.BaseAddresses()[0]));
-            webEndPoint.EndpointBehaviors.Add(new WebHttpBehavior());
+
+            var webEndPoint = new ServiceEndpoint(contract, webBinding, new EndpointAddress(baseAddress));
+            WebHttpBehavior webBehaviour = new WebHttpBehavior();
+            webBehaviour.HelpEnabled = true;
+            webEndPoint.EndpointBehaviors.Add(webBehaviour);
+
             service.AddServiceEndpoint(webEndPoint);
-            service.AddServiceMetadataBehavior(new ServiceMetadataBehavior());
+
+            // service.Description.Behaviors.Add(new ServiceMetadataBehavior());
+            //var metaBinding = new BasicHttpBinding(BasicHttpSecurityMode.TransportCredentialOnly);
+            //metaBinding.Security.Transport.ClientCredentialType = HttpClientCredentialType.InheritedFromHost; 
+            //service.AddServiceEndpoint(typeof(IMetadataExchange), MetadataExchangeBindings.CreateMexHttpBinding(), "mex");
+
             return service;
         }
 
-        public double GetModules()
+        public double GetTestMethod()
         {
             return 0;
         }
     }
 
     [ServiceContract]
-    public interface ISimplexLightNotifierContract
+    public interface IHomeMonitorServiceWeb
     {
         [OperationContract]
-        [WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.Wrapped, ResponseFormat=WebMessageFormat.Json)]
-        double GetModules();
+        [WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.WrappedRequest, ResponseFormat = WebMessageFormat.Json)]
+        double GetTestMethod();
     }
 }
