@@ -229,19 +229,36 @@ namespace HomeOS.Hub.Tools.EnvironmentMonitor
             logger.Log("Environment Monitor agent has started...");
             while (true)
             {
-                IList<VModule> list = this.platform.GetModules(true);
-                if (list.Count > 0)
+                try
                 {
-                    foreach (VModule mod in list)
+                    IList<VModule> modules = this.platform.GetModules(true);
+                    IList<VModuleCondition> list = new List<VModuleCondition>();
+                    foreach (VModule mod in modules)
                     {
                         VModuleCondition modCondition = mod.GetCondition();
                         if (modCondition != null)
                         {
-                            this.AddToHistory(mod);
-                            this.UpdateValidators(mod);
-                            this.Validate(modCondition);
+                            list.Add(modCondition);
                         }
                     }
+                    if (modules.Count > 0)
+                    {
+                        foreach (VModule mod in modules)
+                        //foreach (VModuleCondition mod in list)
+                        {
+                            VModuleCondition modCondition = mod.GetCondition();
+                            if (modCondition != null)
+                            {
+                                this.AddToHistory(mod);
+                                this.UpdateValidators(mod);
+                                this.Validate(modCondition);
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+
                 }
                 System.Threading.Thread.Sleep(1000);
             }

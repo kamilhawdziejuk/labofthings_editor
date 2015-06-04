@@ -1,6 +1,6 @@
 <Devices>
-  <Device FriendlyName="LightSensor" UniqueName="HomeOSGadgeteerDevice_LightSensor_MicrosoftResearch_80352854565106614545" IPAddress="192.168.0.14" DriverBinaryName="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.LightSensor" Configured="True" DriverModuleFriendlyName="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.LightSensor for LightSensor">
-    <DriverParams Count="1" Param0="HomeOSGadgeteerDevice_LightSensor_MicrosoftResearch_80352854565106614545" />
+  <Device FriendlyName="LightSensor" UniqueName="HomeOSGadgeteerDevice_LightSensor_MicrosoftResearch_92007821304841296847" IPAddress="192.168.0.12" DriverBinaryName="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.LightSensor" Configured="True" DriverModuleFriendlyName="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.LightSensor">
+    <DriverParams Count="1" Param0="HomeOSGadgeteerDevice_LightSensor_MicrosoftResearch_92007821304841296847" />
   </Device>
   <Device FriendlyName="TempHumiditySensor" UniqueName="HomeOSGadgeteerDevice_TempHumiditySensor_MicrosoftResearch_99120677974095575435" IPAddress="192.168.0.13" DriverBinaryName="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.TempHumiditySensor" Configured="True" DriverModuleFriendlyName="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.TempHumiditySensor">
     <DriverParams Count="1" Param0="HomeOSGadgeteerDevice_TempHumiditySensor_MicrosoftResearch_99120677974095575435" />

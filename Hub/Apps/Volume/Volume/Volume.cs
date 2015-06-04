@@ -90,10 +90,10 @@ namespace HomeOS.Hub.Apps.Volume
             //throw new NotImplementedException();
         }
 
-        public override VModuleCondition GetCondition()
-        {
-            return this as VModuleCondition;
-        }
+        //public override VModuleCondition GetCondition()
+        //{
+        //    return this as VModuleCondition;
+        //}
 
         public double ExactValue
         {

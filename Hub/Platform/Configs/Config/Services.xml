@@ -2,7 +2,7 @@
   <Service FriendlyName="TempHumidityDevice" Location="Home" Module="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.TempHumiditySensor" ModuleFacingName="gadgeteer-HomeOSGadgeteerDevice_TempHumiditySensor_MicrosoftResearch_99120677974095575435">
     <Role Name=":sensor:" />
   </Service>
-  <Service FriendlyName="LightDevice" Location="Home" Module="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.LightSensor for LightSensor" ModuleFacingName="gadgeteer-HomeOSGadgeteerDevice_LightSensor_MicrosoftResearch_80352854565106614545">
+  <Service FriendlyName="LightDevice" Location="Home" Module="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.LightSensor" ModuleFacingName="gadgeteer-HomeOSGadgeteerDevice_LightSensor_MicrosoftResearch_92007821304841296847">
     <Role Name=":sensor:" />
   </Service>
   <Service FriendlyName="RelaySwitch" Location="Home" Module="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.RelaySwitch" ModuleFacingName="gadgeteer-HomeOSGadgeteerDevice_RelaySwitch_MicrosoftResearch_32054443539427623454">
@@ -11,6 +11,11 @@
   </Service>
   <Service FriendlyName="Camera" Location="Home" Module="HomeOS.Hub.Drivers.WebCam for Lenovo EasyCamera" ModuleFacingName="webcam - Lenovo EasyCamera">
     <Role Name=":camera:" />
+  </Service>
+  <Service FriendlyName="ZWaveSensor" Location="Home" Module="zwavezensys" ModuleFacingName="ZwaveNode::2">
+    <Role Name=":sensormultilevel::batterylevel:" />
+    <Role Name=":sensor:" />
+    <Role Name=":sensormultilevel:" />
   </Service>
   <Service FriendlyName="port - Volume" Module="Volume" ModuleFacingName="port" Location="Home" Configured="no" />
 </Services>

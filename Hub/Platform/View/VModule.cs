@@ -15,7 +15,7 @@ namespace HomeOS.Hub.Platform.Views
         public abstract VModuleInfo GetInfo();
         public virtual VModuleCondition GetCondition()
         {
-            return null;
+            return this as VModuleCondition;
         }
 
         public abstract void Initialize(VPlatform platform, VLogger logger, VModuleInfo info, int secret);

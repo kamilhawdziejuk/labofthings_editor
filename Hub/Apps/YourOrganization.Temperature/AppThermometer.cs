@@ -7,7 +7,7 @@ using HomeOS.Hub.Platform.Views;
 namespace HomeOS.Hub.Apps.Thermometer
 {
     [System.AddIn.AddIn("HomeOS.Hub.Apps.Thermometer")]
-    public class AppThermometer : ModuleBase
+    public class AppThermometer : ModuleBase, ModuleCondition
     {
         AppThermometerService service;
         SafeServiceHost serviceHost;
@@ -147,6 +147,48 @@ namespace HomeOS.Hub.Apps.Thermometer
                 logger.Log("{0}: got unexpected retvals [{1}] from {2}", ToString(), retVals.Count.ToString(), senderPort.ToString());
             }
         }
+
+        public double ExactValue
+        {
+            get
+            {
+                //throw new System.NotImplementedException();
+                return this.Temperature;
+            }
+            set
+            {
+                throw new System.NotImplementedException();
+            }
+        }
+
+        public double InterpretedValue
+        {
+            get 
+            {
+                return 0;// PossibleIntepretedValues[0];
+                //throw new System.NotImplementedException(); 
+            }
+        }
+
+        public Dictionary<double, string> PossibleIntepretedValues
+        {
+            get 
+            {
+                var d = new Dictionary<double, string>();
+                d.Add(0, "warm");
+                return d;
+                //throw new System.NotImplementedException(); 
+            }
+        }
+
+        public object Clone()
+        {
+            var app = new AppThermometer();
+            app.Temperature = this.Temperature;
+            return app;
+            //throw new System.NotImplementedException();
+        }
+
     }
 
 }

@@ -105,7 +105,9 @@
     <Compile Include="ConfigUpdaterWebService.cs" />
     <Compile Include="DiscoveryHelper.cs" />
     <Compile Include="GuiService.cs" />
-    <Compile Include="HeartbeatService.cs" />
+    <Compile Include="HeartbeatService.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="HomeStoreInfo.cs" />
     <Compile Include="InfoService.cs" />
     <Compile Include="Platform.cs" />
@@ -123,6 +125,10 @@
       <Project>{6F879B8B-C4B1-4E8D-9BF2-C6376B05E4EC}</Project>
       <Name>Common</Name>
       <Private>True</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Tools\EnvironmentMonitor\EnvironmentMonitor.csproj">
+      <Project>{47a3627a-13d3-4596-bbc1-33cbc5d0cde7}</Project>
+      <Name>EnvironmentMonitor</Name>
     </ProjectReference>
     <ProjectReference Include="..\Authentication\AuthenticationService.csproj">
       <Project>{db0e2f8c-2834-470b-8bc8-879a35df570b}</Project>

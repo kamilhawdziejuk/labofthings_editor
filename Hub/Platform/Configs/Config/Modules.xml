@@ -1,8 +1,8 @@
 <Modules>
   <Module FriendlyName="Volume" AppName="Volume" BinaryName="HomeOS.Hub.Apps.Volume" WorkingDir="C:\labofthings.codeplex.EnvMon\Hub\output\binaries\Platform\..\..\Data\Volume" AutoStart="1" Background="0" />
   <Module FriendlyName="Clock" AppName="Clock" BinaryName="HomeOS.Hub.Apps.Clock" WorkingDir="C:\labofthings.codeplex.EnvMon\Hub\output\binaries\Platform\..\..\Data\Clock" AutoStart="1" Background="0" />
-  <Module FriendlyName="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.LightSensor for LightSensor" AppName="driver for LightSensor" BinaryName="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.LightSensor" WorkingDir="C:\labofthings.codeplex.EnvMon\Hub\output\binaries\Platform\..\..\Data\HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.LightSensor for LightSensor" AutoStart="1" Background="1">
-    <Args Count="1" val1="HomeOSGadgeteerDevice_LightSensor_MicrosoftResearch_80352854565106614545" />
+  <Module FriendlyName="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.LightSensor" AppName="driver for LightSensor" BinaryName="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.LightSensor" WorkingDir="C:\labofthings.codeplex.EnvMon\Hub\output\binaries\Platform\..\..\Data\HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.LightSensor" AutoStart="1" Background="1">
+    <Args Count="1" val1="HomeOSGadgeteerDevice_LightSensor_MicrosoftResearch_92007821304841296847" />
   </Module>
   <Module FriendlyName="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.TempHumiditySensor" AppName="driver for TempHumiditySensor" BinaryName="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.TempHumiditySensor" WorkingDir="C:\labofthings.codeplex.EnvMon\Hub\output\binaries\Platform\..\..\Data\HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.TempHumiditySensor" AutoStart="1" Background="1">
     <Args Count="1" val1="HomeOSGadgeteerDevice_TempHumiditySensor_MicrosoftResearch_99120677974095575435" />
@@ -33,5 +33,8 @@
     <RoleList Optional="False">
       <Role Name=":camera:" />
     </RoleList>
+  </Module>
+  <Module FriendlyName="zwavezensys" AppName="zwave driver based on zensys sdk" BinaryName="HomeOS.Hub.Drivers.ZwaveZensys_4_55" AutoStart="1" Background="1">
+    <Args Count="0"/> 
   </Module>
 </Modules>
