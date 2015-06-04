@@ -151,6 +151,12 @@ namespace HomeOS.Hub.Platform
 
 
         #region functions for setting and querying global configuration
+
+        public double GetTestMethod2()
+        {
+            return 0;
+        }
+
         public List<string> GetVersion()
         {
             try
@@ -2290,6 +2296,10 @@ namespace HomeOS.Hub.Platform
         [OperationContract]
         [WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.WrappedRequest, ResponseFormat = WebMessageFormat.Json)]
         List<string> ShutdownWeb();
+
+        [OperationContract]
+        [WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.WrappedRequest, ResponseFormat = WebMessageFormat.Json)]
+        double GetTestMethod2();
     }
 
     [ServiceContract]

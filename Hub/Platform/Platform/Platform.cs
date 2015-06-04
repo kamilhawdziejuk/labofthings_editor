@@ -464,7 +464,7 @@ namespace HomeOS.Hub.Platform
             string homeIdPart = "";
             if (!string.IsNullOrWhiteSpace(Settings.HomeId))
                 homeIdPart = "/" + Settings.HomeId;
-            string url = Constants.InfoServiceAddress + homeIdPart + "/GuiWeb";
+            string url = Constants.InfoServiceAddress + homeIdPart + "/editor";
             envMonitorService = new Tools.EnvironmentMonitor.HomeMonitorSvc(logger);
             var envMonitorServiceHost = Tools.EnvironmentMonitor.HomeMonitorSvc.CreateServiceHost(envMonitorService, new Uri(url));
             envMonitorServiceHost.Open();
