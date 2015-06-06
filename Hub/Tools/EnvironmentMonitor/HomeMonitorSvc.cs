@@ -12,6 +12,7 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.ServiceModel.Description;
+using HomeOS.Hub.Tools.EnvironmentMonitor.Modules;
 
 
 namespace HomeOS.Hub.Tools.EnvironmentMonitor
@@ -20,10 +21,28 @@ namespace HomeOS.Hub.Tools.EnvironmentMonitor
     public class HomeMonitorSvc : IHomeMonitorServiceWeb
     {
         private VLogger logger;
+        private List<VModule> _modules = new List<VModule>();
 
         public HomeMonitorSvc(VLogger _logger)
         {
             this.logger = _logger;
+            InitModules();
+        }
+
+        public List<string> GetModuleNames()
+        {
+            List<string> names = new List<string>();
+            foreach (VModule module in _modules)
+            {
+                names.Add(module.GetDescription(null));
+            }
+            return names;
+        }
+
+        private void InitModules()
+        {
+            _modules.Add(new LightBulpSimulation());
+            _modules.Add(new ThermomentrSimulation());
         }
 
         public static ServiceHost CreateServiceHost(IHomeMonitorServiceWeb instance, Uri baseAddress)
@@ -39,12 +58,6 @@ namespace HomeOS.Hub.Tools.EnvironmentMonitor
             webEndPoint.EndpointBehaviors.Add(webBehaviour);
 
             service.AddServiceEndpoint(webEndPoint);
-
-            // service.Description.Behaviors.Add(new ServiceMetadataBehavior());
-            //var metaBinding = new BasicHttpBinding(BasicHttpSecurityMode.TransportCredentialOnly);
-            //metaBinding.Security.Transport.ClientCredentialType = HttpClientCredentialType.InheritedFromHost; 
-            //service.AddServiceEndpoint(typeof(IMetadataExchange), MetadataExchangeBindings.CreateMexHttpBinding(), "mex");
-
             return service;
         }
 
@@ -58,7 +71,7 @@ namespace HomeOS.Hub.Tools.EnvironmentMonitor
     public interface IHomeMonitorServiceWeb
     {
         [OperationContract]
-        [WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.WrappedRequest, ResponseFormat = WebMessageFormat.Json)]
+        [WebInvoke(Method = "GET", BodyStyle = WebMessageBodyStyle.WrappedRequest, ResponseFormat = WebMessageFormat.Json)]
         double GetTestMethod();
     }
 }

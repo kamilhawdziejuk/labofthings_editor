@@ -53,6 +53,8 @@
     <Compile Include="EnvironmentMonitor.cs" />
     <Compile Include="ISolution.cs" />
     <Compile Include="IValidator.cs" />
+    <Compile Include="Modules\ThermometrSimulation.cs" />
+    <Compile Include="Modules\LightBulpSimulation.cs" />
     <Compile Include="ProblematicSituation.cs" />
     <Compile Include="Problems\ExceedSituation.cs" />
     <Compile Include="Problems\StatesConflictSituation.cs" />
@@ -79,9 +81,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="HomeEditor.html">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="SmartHouse.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

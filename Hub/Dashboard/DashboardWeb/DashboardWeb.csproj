@@ -100,6 +100,9 @@
     <Content Include="ConfigureAppInstance.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="HomeEditor.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="homeos-1.1.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

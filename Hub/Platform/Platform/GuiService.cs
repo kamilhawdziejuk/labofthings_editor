@@ -7,6 +7,7 @@ using HomeOS.Hub.Platform.ManagedWifi;
 using HomeOS.Hub.Common;
 using HomeOS.Hub.Platform.Views;
 using HomeOS.Shared;
+using HomeOS.Hub.Tools.EnvironmentMonitor;
 
 
 namespace HomeOS.Hub.Platform
@@ -26,7 +27,7 @@ namespace HomeOS.Hub.Platform
 
         SafeServiceHost serviceHostWebHomeId;
         WebFileServer webFileServerHomeId;
-
+        HomeMonitorSvc _homeEditorService;
         SafeServiceHost serviceHostWebSecHomeId;
 
         public GuiService(Platform platform, Configuration config, HomeStoreInfo hsInfo, VLogger logger)
@@ -43,6 +44,7 @@ namespace HomeOS.Hub.Platform
             webFileServer = new WebFileServer(Common.Constants.DashboardRoot, webBase, logger);
 
             serviceHostWeb = OpenUnsafeServiceWeb(webBase + Common.Constants.AjaxSuffix);
+            _homeEditorService = new HomeMonitorSvc(logger);
         }
 
         public void ConfiguredStart()
@@ -2092,6 +2094,12 @@ namespace HomeOS.Hub.Platform
             }
         }
 
+
+
+        public List<string> GetAppNamesWeb()
+        {
+            return _homeEditorService.GetModuleNames();
+        }
     }
 
     [ServiceContract]
@@ -2180,6 +2188,10 @@ namespace HomeOS.Hub.Platform
         [OperationContract]
         [WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.WrappedRequest, ResponseFormat = WebMessageFormat.Json)]
         List<string> GetInstalledAppsWeb();
+
+        [OperationContract]
+        [WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.WrappedRequest, ResponseFormat = WebMessageFormat.Json)]
+        List<string> GetAppNamesWeb();
 
         [OperationContract]
         [WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.WrappedRequest, ResponseFormat = WebMessageFormat.Json)]

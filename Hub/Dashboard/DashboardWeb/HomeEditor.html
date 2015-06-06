@@ -5,38 +5,37 @@
       <script type="text/javascript" src="jquery-1.7.1.js"></script>
       <script type="text/javascript" src="common.js"></script>
       <script type="text/javascript" src="DashboardWebJavascript.js"></script>
-    
+      <script type="text/javascript" src="homeos-1.1.js"></script>
   <link rel="stylesheet" media="all" type="text/css" href="Styles/HomeOSMasterStyleSheet.css" />
     <meta charset="utf-8" />
     <title></title>
 
     <script>
         $(document).ready(function () {
-            GetModules();
+            new PlatformServiceHelper().MakeServiceCall("webapp/GetAppNamesWeb", "", GetTestMethodCallback);
         });
 
-        function GetModules() {
-            new PlatformServiceHelper().MakeServiceCall("webapp/GetTestMethod2", "", GetTestMethodCallback);
-        }
-
         function GetTestMethodCallback(context, result) {
+            $("#modules1Id").empty();
+            $("#modules2Id").empty();
+            for (var i = 0; i < result.length; i++) {
+                //i is deviceName, i+1 is location,      
+                $("#modules1Id").append('<option value="' + result[i] + '">' + result[i] + '</option>');
+                $("#modules2Id").append('<option value="' + result[i] + '">' + result[i] + '</option>');
+            }
             $("#testId").text("DONE");
         }
     </script>
 
 </head>
 <body>
-        <div><h2>Home Environment -> Editor</h2></div>
+        <div><h2>Home Environment -> Editor2</h2></div>
     <img src="SmartHouse.jpg" width="500" />
 
     <div> 
         <h3>* Rules defining</h3>
         WHEN module 
-        <select name="Modules">
-            <option value="light_sensor">Light sensor</option>
-            <option value="temp_sensor">Temperature sensor</option>
-            <option value="light_actuator" selected="selected">Light bulp</option>
-            <option value="motion_sensor">Motion sensor</option>
+        <select name="Modules" id="modules1Id">
         </select>
         is in state
        <select name="State">
@@ -45,11 +44,7 @@
             <option value="hot"> > 24</option>
         </select>
         THEN activate module 
-        <select name="Modules2">
-            <option value="light_sensor">Light sensor</option>
-            <option value="temp_sensor">Temperature sensor</option>
-            <option value="light_actuator"  selected="selected">Light bulp</option>
-            <option value="motion_sensor">Motion sensor</option>
+        <select name="Modules2" id="modules12d">
         </select>
         to state
        <select name="State2">
@@ -58,7 +53,7 @@
         </select>
 
     </div>
-        <button>Save</button>
+        <button onclick="GetModules()">Save</button>
     <div>
         
     </div>

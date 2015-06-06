@@ -455,12 +455,6 @@ namespace HomeOS.Hub.Platform
             guiService = new GuiService(this, config, homeStoreInfo, logger);
             discoveryHelperService = new DiscoveryHelper(this, logger);
 
-            if (!guiService.IsConfigNeeded())
-            {
-                ConfiguredStart();
-            }
-
-
             string homeIdPart = "";
             if (!string.IsNullOrWhiteSpace(Settings.HomeId))
                 homeIdPart = "/" + Settings.HomeId;
@@ -468,6 +462,12 @@ namespace HomeOS.Hub.Platform
             envMonitorService = new Tools.EnvironmentMonitor.HomeMonitorSvc(logger);
             var envMonitorServiceHost = Tools.EnvironmentMonitor.HomeMonitorSvc.CreateServiceHost(envMonitorService, new Uri(url));
             envMonitorServiceHost.Open();
+
+            if (!guiService.IsConfigNeeded())
+            {
+                ConfiguredStart();
+            }
+
 
             if (!Settings.RunningMode.Equals("unittesting", StringComparison.CurrentCultureIgnoreCase))
             {
