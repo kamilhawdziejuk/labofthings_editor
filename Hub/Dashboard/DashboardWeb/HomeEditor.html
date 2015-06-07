@@ -37,7 +37,7 @@
         }
 
         function FillStates2() {
-            var selectBox = document.getElementById("modules1Id");
+            var selectBox = document.getElementById("modules2Id");
             var selectedValue = selectBox.options[selectBox.selectedIndex].value;
             var parameters = '{"name":"' + selectedValue + '"}';
             new PlatformServiceHelper().MakeServiceCall("webapp/GetModuleStatesWeb", parameters, FillStatesCallback2);
@@ -61,19 +61,22 @@
 </head>
 <body>
         <div><h2>Home Environment -> Editor2</h2></div>
-        <button onsubmit="Init()">Initialize</button>
     <img src="SmartHouse.jpg" width="500" />
 
     <div> 
         <h3>* Rules defining</h3>
         WHEN module 
-        <select name="Modules" id="modules1Id" onchange="FillStates1();" />
+        <select name="Modules" id="modules1Id" onchange="FillStates1();">
+        </select>
         is in state
-       <select name="State" id="states1Id" />
+       <select name="State" id="states1Id" >
+        </select>
         THEN activate module 
-        <select name="Modules2" id="modules2Id" onchange="FillStates1();" />
+        <select name="Modules2" id="modules2Id" onchange="FillStates2();">
+        </select>
         to state
-       <select name="State2" id="states2Id" />
+       <select name="State2" id="states2Id" >
+        </select>
     </div>
         <button>Save</button>
     <div>
