@@ -62,6 +62,7 @@
     <Compile Include="SituationPriority.cs" />
     <Compile Include="SituationSolver.cs" />
     <Compile Include="Solutions\LoggerSolution.cs" />
+    <Compile Include="Modules\MotionSensorSimulation.cs" />
     <Compile Include="Validators\HistoryValidator.cs" />
     <Compile Include="Validators\LimitValidator.cs" />
     <Compile Include="Validators\StagnancyValidator.cs" />

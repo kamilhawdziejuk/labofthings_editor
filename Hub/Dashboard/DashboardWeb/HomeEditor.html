@@ -12,48 +12,70 @@
 
     <script>
         $(document).ready(function () {
-            new PlatformServiceHelper().MakeServiceCall("webapp/GetAppNamesWeb", "", GetTestMethodCallback);
+            Init();
         });
 
-        function GetTestMethodCallback(context, result) {
+        function Init() {
+            new PlatformServiceHelper().MakeServiceCall("webapp/GetAppNamesWeb", "", FillAppNamesCallback);
+        }
+
+        function FillAppNamesCallback(context, result) {
             $("#modules1Id").empty();
             $("#modules2Id").empty();
             for (var i = 0; i < result.length; i++) {
-                //i is deviceName, i+1 is location,      
-                $("#modules1Id").append('<option value="' + result[i] + '">' + result[i] + '</option>');
-                $("#modules2Id").append('<option value="' + result[i] + '">' + result[i] + '</option>');
+                var optionData = '<option value="' + result[i] + '">' + result[i] + '</option>';
+                $("#modules1Id").append(optionData);
+                $("#modules2Id").append(optionData);
             }
-            $("#testId").text("DONE");
+        }
+
+        function FillStates1() {
+            var selectBox = document.getElementById("modules1Id");
+            var selectedValue = selectBox.options[selectBox.selectedIndex].value;
+            var parameters = '{"name":"' + selectedValue + '"}';
+            new PlatformServiceHelper().MakeServiceCall("webapp/GetModuleStatesWeb", parameters, FillStatesCallback1);
+        }
+
+        function FillStates2() {
+            var selectBox = document.getElementById("modules1Id");
+            var selectedValue = selectBox.options[selectBox.selectedIndex].value;
+            var parameters = '{"name":"' + selectedValue + '"}';
+            new PlatformServiceHelper().MakeServiceCall("webapp/GetModuleStatesWeb", parameters, FillStatesCallback2);
+        }
+
+        function FillStatesCallback1(context, result) {
+            $("#states1Id").empty();
+            for (var i = 0; i < result.length; i++) {
+                $("#states1Id").append('<option value="' + result[i] + '">' + result[i] + '</option>');
+            }
+        }
+
+        function FillStatesCallback2(context, result) {
+            $("#states2Id").empty();
+            for (var i = 0; i < result.length; i++) {
+                $("#states2Id").append('<option value="' + result[i] + '">' + result[i] + '</option>');
+            }
         }
     </script>
 
 </head>
 <body>
         <div><h2>Home Environment -> Editor2</h2></div>
+        <button onsubmit="Init()">Initialize</button>
     <img src="SmartHouse.jpg" width="500" />
 
     <div> 
         <h3>* Rules defining</h3>
         WHEN module 
-        <select name="Modules" id="modules1Id">
-        </select>
+        <select name="Modules" id="modules1Id" onchange="FillStates1();" />
         is in state
-       <select name="State">
-            <option value="cold"> < 16 </option>
-            <option value="warm" selected="selected">16-24</option>
-            <option value="hot"> > 24</option>
-        </select>
+       <select name="State" id="states1Id" />
         THEN activate module 
-        <select name="Modules2" id="modules12d">
-        </select>
+        <select name="Modules2" id="modules2Id" onchange="FillStates1();" />
         to state
-       <select name="State2">
-            <option value="on" selected="selected">ON</option>
-            <option value="off">OFF</option>
-        </select>
-
+       <select name="State2" id="states2Id" />
     </div>
-        <button onclick="GetModules()">Save</button>
+        <button>Save</button>
     <div>
         
     </div>
@@ -63,5 +85,6 @@
     Write your expectation rule (ex. "When user enters a house then turn lights on"):     <textarea rows="2" cols="50"></textarea>
     <br />
     <span id="testId" ></span>
+
 </body>
 </html>

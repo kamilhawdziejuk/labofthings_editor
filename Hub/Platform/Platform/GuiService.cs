@@ -154,11 +154,6 @@ namespace HomeOS.Hub.Platform
 
         #region functions for setting and querying global configuration
 
-        public double GetTestMethod2()
-        {
-            return 0;
-        }
-
         public List<string> GetVersion()
         {
             try
@@ -2094,11 +2089,14 @@ namespace HomeOS.Hub.Platform
             }
         }
 
-
-
         public List<string> GetAppNamesWeb()
         {
             return _homeEditorService.GetModuleNames();
+        }
+
+        public List<string> GetModuleStatesWeb(string name)
+        {
+            return _homeEditorService.GetModuleStates(name);
         }
     }
 
@@ -2188,10 +2186,6 @@ namespace HomeOS.Hub.Platform
         [OperationContract]
         [WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.WrappedRequest, ResponseFormat = WebMessageFormat.Json)]
         List<string> GetInstalledAppsWeb();
-
-        [OperationContract]
-        [WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.WrappedRequest, ResponseFormat = WebMessageFormat.Json)]
-        List<string> GetAppNamesWeb();
 
         [OperationContract]
         [WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.WrappedRequest, ResponseFormat = WebMessageFormat.Json)]
@@ -2311,7 +2305,12 @@ namespace HomeOS.Hub.Platform
 
         [OperationContract]
         [WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.WrappedRequest, ResponseFormat = WebMessageFormat.Json)]
-        double GetTestMethod2();
+        List<string> GetModuleStatesWeb(string name);
+
+        [OperationContract]
+        [WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.WrappedRequest, ResponseFormat = WebMessageFormat.Json)]
+        List<string> GetAppNamesWeb();
+
     }
 
     [ServiceContract]

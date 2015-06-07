@@ -1,4 +1,5 @@
 ﻿using HomeOS.Hub.Common;
+using System.Collections.Generic;
 namespace HomeOS.Hub.Tools.EnvironmentMonitor.Modules
 {
     public class LightBulpSimulation : ModuleBase, ModuleCondition
@@ -10,7 +11,7 @@ namespace HomeOS.Hub.Tools.EnvironmentMonitor.Modules
 
         public override string GetDescription(string hint)
         {
-            return "Light bulp";
+            return "Light bulp simulation";
         }
 
         #region Simulation
@@ -55,9 +56,15 @@ namespace HomeOS.Hub.Tools.EnvironmentMonitor.Modules
             get { throw new System.NotImplementedException(); }
         }
 
-        public System.Collections.Generic.Dictionary<double, string> PossibleIntepretedValues
+        public Dictionary<double, string> PossibleIntepretedValues
         {
-            get { throw new System.NotImplementedException(); }
+            get 
+            {
+                Dictionary<double, string> result = new Dictionary<double, string>();
+                result.Add(0, "OFF");
+                result.Add(1, "ON");
+                return result;
+            }
         }
 
         public object Clone()

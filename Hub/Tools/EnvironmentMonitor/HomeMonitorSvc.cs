@@ -39,10 +39,22 @@ namespace HomeOS.Hub.Tools.EnvironmentMonitor
             return names;
         }
 
+        public List<string> GetModuleStates(string name)
+        {
+            VModule module = _modules.Where(m => m.GetDescription(null).Equals(name)).SingleOrDefault();
+            List<string> results = new List<string>();
+            foreach (var kvp in (module as ModuleCondition).PossibleIntepretedValues)
+            {
+                results.Add(kvp.Value);
+            }
+            return results;
+        }
+
         private void InitModules()
         {
             _modules.Add(new LightBulpSimulation());
             _modules.Add(new ThermomentrSimulation());
+            _modules.Add(new MotionSensorSimulation());
         }
 
         public static ServiceHost CreateServiceHost(IHomeMonitorServiceWeb instance, Uri baseAddress)

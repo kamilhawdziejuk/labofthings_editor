@@ -2,21 +2,21 @@
 using System.Collections.Generic;
 namespace HomeOS.Hub.Tools.EnvironmentMonitor.Modules
 {
-    public class ThermomentrSimulation : ModuleBase, ModuleCondition
+    public class MotionSensorSimulation : ModuleBase, ModuleCondition
     {
-        public ThermomentrSimulation()
+        public MotionSensorSimulation()
         {
             //moduleInfo = new ModuleInfo("Light bulp", "LightBulpSimulation", null, null, false, null);
         }
 
         public override string GetDescription(string hint)
         {
-            return "Thermometr simulation";
+            return "Motion sensor simulation";
         }
 
         #region Simulation
 
-      
+
         public override void Start()
         {
             throw new System.NotImplementedException();
@@ -62,9 +62,8 @@ namespace HomeOS.Hub.Tools.EnvironmentMonitor.Modules
             get
             {
                 Dictionary<double, string> result = new Dictionary<double, string>();
-                result.Add(0, "< 16");
-                result.Add(1, "[16; 25]");
-                result.Add(2, "> 25");
+                result.Add(0, "no move");
+                result.Add(1, "moving");
                 return result;
             }
         }
@@ -74,6 +73,4 @@ namespace HomeOS.Hub.Tools.EnvironmentMonitor.Modules
             throw new System.NotImplementedException();
         }
     }
-
-  
 }
