@@ -19,6 +19,16 @@
             new PlatformServiceHelper().MakeServiceCall("webapp/GetAppNamesWeb", "", FillAppNamesCallback);
         }
 
+        function InitStates() {
+            var selectBox = document.getElementById("modules1Id");
+            var selectedValue1 = selectBox.options[0].value;
+            new PlatformServiceHelper().MakeServiceCall("webapp/GetModuleStatesWeb", '{"name":"' + selectedValue1 + '"}', FillStatesCallback1);
+
+            var selectBox2 = document.getElementById("modules2Id");
+            var selectedValue2 = selectBox2.options[0].value;
+            new PlatformServiceHelper().MakeServiceCall("webapp/GetModuleStatesWeb", '{"name":"' + selectedValue2 + '"}', FillStatesCallback2);
+        }
+
         function FillAppNamesCallback(context, result) {
             $("#modules1Id").empty();
             $("#modules2Id").empty();
@@ -29,17 +39,37 @@
             }
         }
 
-        function FillStates1() {
+        function GetSelectedModule1() {
             var selectBox = document.getElementById("modules1Id");
             var selectedValue = selectBox.options[selectBox.selectedIndex].value;
-            var parameters = '{"name":"' + selectedValue + '"}';
+            return selectedValue;
+        }
+
+        function GetSelectedModule2() {
+            var selectBox = document.getElementById("modules2Id");
+            var selectedValue = selectBox.options[selectBox.selectedIndex].value;
+            return selectedValue;
+        }
+
+        function GetSelectedState1() {
+            var selectBox = document.getElementById("states1Id");
+            var selectedValue = selectBox.options[selectBox.selectedIndex].value;
+            return selectedValue;
+        }
+
+        function GetSelectedState2() {
+            var selectBox = document.getElementById("states2Id");
+            var selectedValue = selectBox.options[selectBox.selectedIndex].value;
+            return selectedValue;
+        }
+
+        function FillStates1() {
+            var parameters = '{"name":"' + GetSelectedModule1() + '"}';
             new PlatformServiceHelper().MakeServiceCall("webapp/GetModuleStatesWeb", parameters, FillStatesCallback1);
         }
 
         function FillStates2() {
-            var selectBox = document.getElementById("modules2Id");
-            var selectedValue = selectBox.options[selectBox.selectedIndex].value;
-            var parameters = '{"name":"' + selectedValue + '"}';
+            var parameters = '{"name":"' + GetSelectedModule2() + '"}';
             new PlatformServiceHelper().MakeServiceCall("webapp/GetModuleStatesWeb", parameters, FillStatesCallback2);
         }
 
@@ -56,15 +86,25 @@
                 $("#states2Id").append('<option value="' + result[i] + '">' + result[i] + '</option>');
             }
         }
+
+        function SaveRules() {
+            var mod1 = GetSelectedModule1();
+            var mod2 = GetSelectedModule2();
+            var state1 = GetSelectedState1();
+            var state2 = GetSelectedState2();
+            $("#rulesId").append(mod1 + '(' + state1 + ') -> ' + mod2 + '(' + state2 + ')');
+            $("#rulesId").append('<br/>');
+        }
     </script>
 
 </head>
 <body>
         <div><h2>Home Environment -> Editor2</h2></div>
+    <button onclick="InitStates();" >Init states</button>
     <img src="SmartHouse.jpg" width="500" />
 
     <div> 
-        <h3>* Rules defining</h3>
+        <h3>Rules defining</h3>
         WHEN module 
         <select name="Modules" id="modules1Id" onchange="FillStates1();">
         </select>
@@ -77,17 +117,20 @@
         to state
        <select name="State2" id="states2Id" >
         </select>
+        <button onclick="SaveRules();">Save this rule</button>
     </div>
-        <button>Save</button>
+        
     <div>
         
     </div>
 
     <hr />
-        <h3>* Rules detecting</h3>
+        <h3>Rules detecting</h3>
     Write your expectation rule (ex. "When user enters a house then turn lights on"):     <textarea rows="2" cols="50"></textarea>
-    <br />
-    <span id="testId" ></span>
-
+    <br /> <br /> <br />
+       <hr />
+            <h3>Rules saved</h3>
+    <span id="rulesId" ></span>
+    <!--  -->
 </body>
 </html>
