@@ -11,7 +11,7 @@ namespace HomeOS.Hub.Tools.EnvironmentMonitor.Modules
 
         public override string GetDescription(string hint)
         {
-            return "Thermometr simulation";
+            return "Thermometr";
         }
 
         #region Simulation

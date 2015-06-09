@@ -53,6 +53,9 @@
     <Compile Include="EnvironmentMonitor.cs" />
     <Compile Include="ISolution.cs" />
     <Compile Include="IValidator.cs" />
+    <Compile Include="Modules\ClockSimulation.cs" />
+    <Compile Include="Modules\LightSensorSimulation.cs" />
+    <Compile Include="Modules\SpeakerSimulation.cs" />
     <Compile Include="Modules\ThermometrSimulation.cs" />
     <Compile Include="Modules\LightBulpSimulation.cs" />
     <Compile Include="ProblematicSituation.cs" />

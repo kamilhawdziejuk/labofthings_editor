@@ -55,6 +55,9 @@ namespace HomeOS.Hub.Tools.EnvironmentMonitor
             _modules.Add(new LightBulpSimulation());
             _modules.Add(new ThermomentrSimulation());
             _modules.Add(new MotionSensorSimulation());
+            _modules.Add(new SpeakerSimulation());
+            _modules.Add(new ClockSimulation());
+            _modules.Add(new LightSensorSimulation());
         }
 
         public static ServiceHost CreateServiceHost(IHomeMonitorServiceWeb instance, Uri baseAddress)

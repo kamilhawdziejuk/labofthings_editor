@@ -1,22 +1,23 @@
 ﻿using HomeOS.Hub.Common;
 using System.Collections.Generic;
+
 namespace HomeOS.Hub.Tools.EnvironmentMonitor.Modules
 {
-    public class LightBulpSimulation : ModuleBase, ModuleCondition
+    public class ClockSimulation : ModuleBase, ModuleCondition
     {
-        public LightBulpSimulation()
+        public ClockSimulation()
         {
             //moduleInfo = new ModuleInfo("Light bulp", "LightBulpSimulation", null, null, false, null);
         }
 
         public override string GetDescription(string hint)
         {
-            return "Light bulp";
+            return "Clock";
         }
 
         #region Simulation
 
-      
+
         public override void Start()
         {
             throw new System.NotImplementedException();
@@ -58,11 +59,11 @@ namespace HomeOS.Hub.Tools.EnvironmentMonitor.Modules
 
         public Dictionary<double, string> PossibleIntepretedValues
         {
-            get 
+            get
             {
                 Dictionary<double, string> result = new Dictionary<double, string>();
-                result.Add(0, "OFF");
-                result.Add(1, "ON");
+                result.Add(0, "day [6;22]");
+                result.Add(1, "night (22;6)");
                 return result;
             }
         }

@@ -11,7 +11,7 @@ namespace HomeOS.Hub.Tools.EnvironmentMonitor.Modules
 
         public override string GetDescription(string hint)
         {
-            return "Motion sensor simulation";
+            return "Motion sensor";
         }
 
         #region Simulation
