@@ -24,18 +24,18 @@
             var selectedValue1 = selectBox.options[0].value;
             new PlatformServiceHelper().MakeServiceCall("webapp/GetModuleStatesWeb", '{"name":"' + selectedValue1 + '"}', FillStatesCallback1);
 
-            var selectBox2 = document.getElementById("modules2Id");
-            var selectedValue2 = selectBox2.options[0].value;
-            new PlatformServiceHelper().MakeServiceCall("webapp/GetModuleStatesWeb", '{"name":"' + selectedValue2 + '"}', FillStatesCallback2);
+            //var selectBox2 = document.getElementById("modules2Id");
+            //var selectedValue2 = selectBox2.options[0].value;
+            //new PlatformServiceHelper().MakeServiceCall("webapp/GetModuleStatesWeb", '{"name":"' + selectedValue2 + '"}', FillStatesCallback2);
         }
 
         function FillAppNamesCallback(context, result) {
             $("#modules1Id").empty();
-            $("#modules2Id").empty();
+           // $("#modules2Id").empty();
             for (var i = 0; i < result.length; i++) {
                 var optionData = '<option value="' + result[i] + '">' + result[i] + '</option>';
                 $("#modules1Id").append(optionData);
-                $("#modules2Id").append(optionData);
+               // $("#modules2Id").append(optionData);
             }
         }
 
@@ -112,36 +112,22 @@
     <button onclick="InitStates();" >Init states</button>
     <img src="SmartHouse.jpg" width="500" />
 
-
-    <div> 
-        <h3>Rules defining</h3>
-        WHEN module 
-        <select name="Modules" id="modules1Id" onchange="FillStates1();">
-        </select>
-        is in state
-       <select name="State" id="states1Id" >
-        </select>
-        THEN activate module 
-        <select name="Modules2" id="modules2Id" onchange="FillStates2();">
-        </select>
-        to state
-       <select name="State2" id="states2Id" >
-        </select>
-        <button onclick="SaveRules();">Save this rule</button>
-    </div>
-        
     <div>
-        <hr />
-            <h3>Rules detecting</h3>
-        Write your expectation rule (ex. "When user enters a house then turn lights on"):     <textarea rows="2" cols="50"></textarea>
-            <button>Check</button>
-        <br /> <br /> <br />
-        
-    </div>
+        Select module:
+            <select name="Modules" id="modules1Id" onchange="FillStates1();">
+            </select>
 
-       <hr />
-            <h3>Rules saved</h3>
-    <span id="rulesId" ></span>
+       Select attribute:
+            <select name="Attribute" id="AttributesId"">
+                <option value="Basic">Basic</option>
+            </select>
+
+        States:
+        <textarea>
+            ON
+            OFF
+        </textarea>
+    </div>
     <!--  -->
 </body>
 </html>
