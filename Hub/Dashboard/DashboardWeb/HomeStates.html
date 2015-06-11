@@ -74,9 +74,10 @@
         }
 
         function FillStatesCallback1(context, result) {
-            $("#states1Id").empty();
+            $("#areaId").empty();
             for (var i = 0; i < result.length; i++) {
-                $("#states1Id").append('<option value="' + result[i] + '">' + result[i] + '</option>');
+                $("#areaId").append(result[i]);
+                $("#areaId").append("; <br />");
             }
         }
 
@@ -118,12 +119,12 @@
             </select>
 
        Select attribute:
-            <select name="Attribute" id="AttributesId"">
+            <select name="Attribute" id="AttributesId">
                 <option value="Basic">Basic</option>
             </select>
 
         States:
-        <textarea>
+        <textarea id="areaId">
             ON
             OFF
         </textarea>

@@ -50,6 +50,18 @@ namespace HomeOS.Hub.Tools.EnvironmentMonitor
             return results;
         }
 
+        public List<string> GetModuleAttribValues(string name)
+        {
+            return null;
+            //VModule module = _modules.Where(m => m.GetDescription(null).Equals(name)).SingleOrDefault();
+            //List<string> results = new List<string>();
+            //foreach (var kvp in (module as ModuleCondition).PossibleIntepretedValues)
+            //{
+            //    results.Add(kvp.Value);
+            //}
+            //return results;            
+        }
+
         private void InitModules()
         {
             _modules.Add(new LightBulpSimulation());

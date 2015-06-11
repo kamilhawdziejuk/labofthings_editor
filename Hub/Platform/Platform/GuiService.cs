@@ -2098,6 +2098,11 @@ namespace HomeOS.Hub.Platform
         {
             return _homeEditorService.GetModuleStates(name);
         }
+
+        public List<string> GetModuleAttribValuesWeb(string name)
+        {
+            return _homeEditorService.GetModuleAttribValues(name);            
+        }
     }
 
     [ServiceContract]
@@ -2310,6 +2315,8 @@ namespace HomeOS.Hub.Platform
         [OperationContract]
         [WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.WrappedRequest, ResponseFormat = WebMessageFormat.Json)]
         List<string> GetAppNamesWeb();
+
+        List<string> GetModuleAttribValuesWeb(string name);
 
     }
 
