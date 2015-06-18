@@ -2103,6 +2103,11 @@ namespace HomeOS.Hub.Platform
         {
             return _homeEditorService.GetModuleAttribValues(name);            
         }
+
+        public List<string> CheckRuleWeb(string ruleText)
+        {
+            return _homeEditorService.CheckRule(ruleText);
+        }
     }
 
     [ServiceContract]
@@ -2315,6 +2320,11 @@ namespace HomeOS.Hub.Platform
         [OperationContract]
         [WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.WrappedRequest, ResponseFormat = WebMessageFormat.Json)]
         List<string> GetAppNamesWeb();
+
+        [OperationContract]
+        [WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.WrappedRequest, ResponseFormat = WebMessageFormat.Json)]
+        List<string> CheckRuleWeb(string ruleText);
+
 
         List<string> GetModuleAttribValuesWeb(string name);
 

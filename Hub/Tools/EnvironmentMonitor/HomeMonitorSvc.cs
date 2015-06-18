@@ -50,6 +50,12 @@ namespace HomeOS.Hub.Tools.EnvironmentMonitor
             return results;
         }
 
+        public List<string> CheckRule(string ruleText)
+        {
+            var moduleNames = this.GetModuleNames();
+            return new List<string>();
+        }
+
         public List<string> GetModuleAttribValues(string name)
         {
             return null;
