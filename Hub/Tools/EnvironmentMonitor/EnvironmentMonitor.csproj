@@ -85,6 +85,12 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="HomeEditor.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="HomeStates.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="SmartHouse.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

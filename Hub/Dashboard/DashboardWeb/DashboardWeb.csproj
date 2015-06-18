@@ -100,9 +100,6 @@
     <Content Include="ConfigureAppInstance.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="HomeEditor.html">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="homeos-1.1.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -144,9 +141,6 @@
     </Content>
     <Content Include="SignIn.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="HomeStates.html">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Styles\HomeOSMasterStyleSheet.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
