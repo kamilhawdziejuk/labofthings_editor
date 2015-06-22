@@ -50,10 +50,36 @@ namespace HomeOS.Hub.Tools.EnvironmentMonitor
             return results;
         }
 
+        private string GetModuleNrInRule(string ruleText, List<string> names)
+        {
+            for (int i = 0; i < names.Count; i++)
+            {
+                if (ruleText.Contains(names[i]))
+                {
+                    return i.ToString();
+                }
+            }
+            return (-1).ToString();
+        }
+
         public List<string> CheckRule(string ruleText)
         {
+            var results = new List<string>();
             var moduleNames = this.GetModuleNames();
-            return new List<string>();
+
+            int thenIndex = ruleText.IndexOf("THEN");
+            if (thenIndex != -1)
+            {
+                var first = ruleText.Substring(0, thenIndex);
+                var second = ruleText.Substring(thenIndex + 4);
+
+                var module1 = GetModuleNrInRule(first, moduleNames);
+                var module2 = this.GetModuleNrInRule(second, moduleNames);
+
+                results.Add(module1);
+                results.Add(module2);
+            }
+            return results;
         }
 
         public List<string> GetModuleAttribValues(string name)
