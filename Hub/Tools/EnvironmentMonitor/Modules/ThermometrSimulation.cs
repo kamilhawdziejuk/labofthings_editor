@@ -1,8 +1,9 @@
-﻿using HomeOS.Hub.Common;
+﻿using EnvironmentMonitor;
+using HomeOS.Hub.Common;
 using System.Collections.Generic;
 namespace HomeOS.Hub.Tools.EnvironmentMonitor.Modules
 {
-    public class ThermomentrSimulation : ModuleBase, ModuleCondition
+    public class ThermomentrSimulation : ModuleBase, ModuleCondition, IModuleLinks
     {
         public ThermomentrSimulation()
         {
@@ -72,6 +73,15 @@ namespace HomeOS.Hub.Tools.EnvironmentMonitor.Modules
         public object Clone()
         {
             throw new System.NotImplementedException();
+        }
+
+
+        public List<string> Links
+        {
+            get
+            {
+                return new List<string>() { "temp.", "temperature", "hot", "cold", "thermometr" };
+            }
         }
     }
 

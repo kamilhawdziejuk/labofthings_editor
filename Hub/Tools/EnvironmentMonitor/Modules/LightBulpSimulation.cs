@@ -1,8 +1,9 @@
-﻿using HomeOS.Hub.Common;
+﻿using EnvironmentMonitor;
+using HomeOS.Hub.Common;
 using System.Collections.Generic;
 namespace HomeOS.Hub.Tools.EnvironmentMonitor.Modules
 {
-    public class LightBulpSimulation : ModuleBase, ModuleCondition
+    public class LightBulpSimulation : ModuleBase, ModuleCondition, IModuleLinks
     {
         public LightBulpSimulation()
         {
@@ -70,6 +71,14 @@ namespace HomeOS.Hub.Tools.EnvironmentMonitor.Modules
         public object Clone()
         {
             throw new System.NotImplementedException();
+        }
+
+        public List<string> Links
+        {
+            get
+            {
+                return new List<string>() { "bulp", "contact"};
+            }
         }
     }
 }

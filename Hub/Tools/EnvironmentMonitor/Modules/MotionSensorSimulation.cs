@@ -1,8 +1,9 @@
-﻿using HomeOS.Hub.Common;
+﻿using EnvironmentMonitor;
+using HomeOS.Hub.Common;
 using System.Collections.Generic;
 namespace HomeOS.Hub.Tools.EnvironmentMonitor.Modules
 {
-    public class MotionSensorSimulation : ModuleBase, ModuleCondition
+    public class MotionSensorSimulation : ModuleBase, ModuleCondition, IModuleLinks
     {
         public MotionSensorSimulation()
         {
@@ -71,6 +72,15 @@ namespace HomeOS.Hub.Tools.EnvironmentMonitor.Modules
         public object Clone()
         {
             throw new System.NotImplementedException();
+        }
+
+
+        public List<string> Links
+        {
+            get
+            {
+                return new List<string>() { "move", "movement", "enter", "enters", "leave", "leaves", "door" };
+            }
         }
     }
 }

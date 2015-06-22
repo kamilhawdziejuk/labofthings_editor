@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using EnvironmentMonitor;
 using HomeOS.Hub.Common;
 using HomeOS.Hub.Platform.Views;
 using System.Net;
@@ -42,7 +42,7 @@ namespace HomeOS.Hub.Tools.EnvironmentMonitor
         public List<string> GetModuleStates(string name)
         {
             VModule module = _modules.Where(m => m.GetDescription(null).Equals(name)).SingleOrDefault();
-            List<string> results = new List<string>();
+            var results = new List<string>();
             foreach (var kvp in (module as ModuleCondition).PossibleIntepretedValues)
             {
                 results.Add(kvp.Value);
@@ -50,11 +50,18 @@ namespace HomeOS.Hub.Tools.EnvironmentMonitor
             return results;
         }
 
+        public List<string> GetModuleLinks(string name)
+        {
+            VModule module = _modules.Where(m => m.GetDescription(null).Equals(name)).SingleOrDefault();
+            return ((IModuleLinks) module).Links;
+        }
+
         private string GetModuleNrInRule(string ruleText, List<string> names)
         {
             for (int i = 0; i < names.Count; i++)
             {
-                if (ruleText.Contains(names[i]))
+                var links = GetModuleLinks(names[i]);
+                if (links.Any(l => ruleText.Contains(l.ToLower())))
                 {
                     return i.ToString();
                 }
@@ -67,11 +74,11 @@ namespace HomeOS.Hub.Tools.EnvironmentMonitor
             var results = new List<string>();
             var moduleNames = this.GetModuleNames();
 
-            int thenIndex = ruleText.IndexOf("THEN");
+            int thenIndex = ruleText.ToLower().IndexOf("then");
             if (thenIndex != -1)
             {
-                var first = ruleText.Substring(0, thenIndex);
-                var second = ruleText.Substring(thenIndex + 4);
+                var first = ruleText.ToLower().Substring(0, thenIndex);
+                var second = ruleText.ToLower().Substring(thenIndex + 4);
 
                 var module1 = GetModuleNrInRule(first, moduleNames);
                 var module2 = this.GetModuleNrInRule(second, moduleNames);
