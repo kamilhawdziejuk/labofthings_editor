@@ -1149,26 +1149,26 @@ namespace HomeOS.Hub.Platform
 
             //*** Checking if modules to be auto-started, as per config, are present in the rep 
             // if not download and rebuild tokens
-           /* Dictionary<string, string> tokenNameVersion = new Dictionary<string, string>();
-            bool rebuild=false; 
-            foreach (AddInToken token in allAddinTokens)
-            {
-                tokenNameVersion.Add(token.Name , token.Version);
-            }
+            /* Dictionary<string, string> tokenNameVersion = new Dictionary<string, string>();
+             bool rebuild=false; 
+             foreach (AddInToken token in allAddinTokens)
+             {
+                 tokenNameVersion.Add(token.Name , token.Version);
+             }
 
-            foreach (ModuleInfo moduleInfo in config.allModules.Values)
-            {
-                KeyValuePair<string,string> moduleNameVersion = new KeyValuePair<string,string>(moduleInfo.BinaryName(),moduleInfo.GetVersion() );
-                if (moduleInfo != null && moduleInfo.AutoStart && !tokenNameVersion.Contains(moduleNameVersion) ) 
-                { // if module is to be auto-started and is not present in tokens
-                    if (GetAddInFromRep(moduleInfo, false))
-                        rebuild = true;
-                }
-            }
-            if(rebuild)
-                rebuildAddInTokens(); */
-            
+             foreach (ModuleInfo moduleInfo in config.allModules.Values)
+             {
+                 KeyValuePair<string,string> moduleNameVersion = new KeyValuePair<string,string>(moduleInfo.BinaryName(),moduleInfo.GetVersion() );
+                 if (moduleInfo != null && moduleInfo.AutoStart && !tokenNameVersion.Contains(moduleNameVersion) ) 
+                 { // if module is to be auto-started and is not present in tokens
+                     if (GetAddInFromRep(moduleInfo, false))
+                         rebuild = true;
+                 }
+             }
+             if(rebuild)
+                 rebuildAddInTokens(); */
 
+            var modules = config.GetAllModules();
             foreach (ModuleInfo moduleInfo in config.GetAllModules())
             {
                 if (moduleInfo != null && moduleInfo.AutoStart)

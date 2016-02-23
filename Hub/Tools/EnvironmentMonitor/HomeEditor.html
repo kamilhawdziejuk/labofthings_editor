@@ -130,8 +130,8 @@
 
 
     <div> 
-        <h3>Rules defining</h3>
-        WHEN module 
+        <h3>Defining rules</h3>
+        IF module 
         <select name="Modules" id="modules1Id" onchange="FillStates1();">
         </select>
         is in state
@@ -143,20 +143,20 @@
         to state
        <select name="State2" id="states2Id" >
         </select>
-        <button onclick="SaveRules();">Save this rule</button>
+        <button onclick="SaveRules();">Add</button>
     </div>
         
-    <div>
+<!--    <div>
         <hr />
             <h3>Rules detecting</h3>
         Write your expectation rule (ex. "When user enters a house then turn lights on"):     <textarea rows="2" cols="50" id="ruleTextId"></textarea>
             <button onclick="CheckRule();">Check</button>
         <br /> <br /> <br />
         
-    </div>
+    </div>-->
 
        <hr />
-            <h3>Rules saved</h3>
+            <h3>Rules added</h3>
     <span id="rulesId" ></span>
     <!--  -->
 </body>

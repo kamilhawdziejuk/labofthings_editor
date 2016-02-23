@@ -1,6 +1,6 @@
 <Modules>
-  <Module FriendlyName="Volume" AppName="Volume" BinaryName="HomeOS.Hub.Apps.Volume" WorkingDir="C:\labofthings.codeplex.EnvMon\Hub\output\binaries\Platform\..\..\Data\Volume" AutoStart="1" Background="0" />
-  <Module FriendlyName="Clock" AppName="Clock" BinaryName="HomeOS.Hub.Apps.Clock" WorkingDir="C:\labofthings.codeplex.EnvMon\Hub\output\binaries\Platform\..\..\Data\Clock" AutoStart="1" Background="0" />
+  <Module FriendlyName="Volume" AppName="Volume" BinaryName="HomeOS.Hub.Apps.Volume" WorkingDir="C:\labofthings.codeplex.EnvMon\Hub\output\binaries\Platform\..\..\Data\Volume" AutoStart="0" Background="0" />
+  <Module FriendlyName="Clock" AppName="Clock" BinaryName="HomeOS.Hub.Apps.Clock" WorkingDir="C:\labofthings.codeplex.EnvMon\Hub\output\binaries\Platform\..\..\Data\Clock" AutoStart="0" Background="0" />
   <Module FriendlyName="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.LightSensor" AppName="driver for LightSensor" BinaryName="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.LightSensor" WorkingDir="C:\labofthings.codeplex.EnvMon\Hub\output\binaries\Platform\..\..\Data\HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.LightSensor" AutoStart="1" Background="1">
     <Args Count="1" val1="HomeOSGadgeteerDevice_LightSensor_MicrosoftResearch_92007821304841296847" />
   </Module>
@@ -10,26 +10,37 @@
   <Module FriendlyName="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.RelaySwitch" AppName="driver for RelaySwitch" BinaryName="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.RelaySwitch" WorkingDir="C:\labofthings.codeplex.EnvMon\Hub\output\binaries\Platform\..\..\Data\HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.RelaySwitch" AutoStart="1" Background="1">
     <Args Count="1" val1="HomeOSGadgeteerDevice_RelaySwitch_MicrosoftResearch_32054443539427623454" />
   </Module>
-  <Module FriendlyName="ThermoAlerts" AppName="ThermoAlerts" BinaryName="HomeOS.Hub.Apps.Thermometer" WorkingDir="C:\labofthings.codeplex.EnvMon\Hub\output\binaries\Platform\..\..\Data\ThermoAlerts" AutoStart="1" Background="0">
+  <Module FriendlyName="ThermoAlerts" AppName="ThermoAlerts" BinaryName="HomeOS.Hub.Apps.Thermometer" WorkingDir="C:\labofthings.codeplex.EnvMon\Hub\output\binaries\Platform\..\..\Data\ThermoAlerts" AutoStart="0" Background="0">
     <RoleList Optional="False">
       <Role Name=":sensor:" />
     </RoleList>
   </Module>
-  <Module FriendlyName="LightAlerts" AppName="LightAlerts" BinaryName="HomeOS.Hub.Apps.Light" WorkingDir="C:\labofthings.codeplex.EnvMon\Hub\output\binaries\Platform\..\..\Data\LightAlerts" AutoStart="1" Background="0">
+  <Module FriendlyName="LightAlerts" AppName="LightAlerts" BinaryName="HomeOS.Hub.Apps.Light" WorkingDir="C:\labofthings.codeplex.EnvMon\Hub\output\binaries\Platform\..\..\Data\LightAlerts" AutoStart="0" Background="0">
     <RoleList Optional="False">
       <Role Name=":sensor:" />
     </RoleList>
   </Module>
-  <Module FriendlyName="RelaySwitch" AppName="RelaySwitch" BinaryName="HomeOS.Hub.Apps.RelaySwitch" WorkingDir="C:\labofthings.codeplex.EnvMon\Hub\output\binaries\Platform\..\..\Data\RelaySwitch" AutoStart="1" Background="0">
+  <Module FriendlyName="RelaySwitch" AppName="RelaySwitch" BinaryName="HomeOS.Hub.Apps.RelaySwitch" WorkingDir="C:\labofthings.codeplex.EnvMon\Hub\output\binaries\Platform\..\..\Data\RelaySwitch" AutoStart="0" Background="0">
     <RoleList Optional="False">
       <Role Name=":sensor:" />
       <Role Name=":actuator:" />
     </RoleList>
   </Module>
-  <Module FriendlyName="HomeOS.Hub.Drivers.WebCam for Lenovo EasyCamera" AppName="driver for Lenovo EasyCamera" BinaryName="HomeOS.Hub.Drivers.WebCam" WorkingDir="C:\labofthings.codeplex.EnvMon\Hub\output\binaries\Platform\..\..\Data\HomeOS.Hub.Drivers.WebCam for Lenovo EasyCamera" AutoStart="1" Background="1">
+
+  <Module AppName="AzureEventHubSample" BinaryName="HomeOS.Hub.Apps.AzureEventHubSample" Description="A sample app to demonstrate how to send sensor data to an Azure Event Hub" AutoStart="1" Rating="5" IconUrl="icon.png">
+    <RoleList Optional="true">
+      <Role Name=":sensor:"/>
+    </RoleList>
+    <RoleList Optional="true">
+      <Role Name=":dummy:"/>
+    </RoleList>
+  </Module>
+
+
+  <Module FriendlyName="HomeOS.Hub.Drivers.WebCam for Lenovo EasyCamera" AppName="driver for Lenovo EasyCamera" BinaryName="HomeOS.Hub.Drivers.WebCam" WorkingDir="C:\labofthings.codeplex.EnvMon\Hub\output\binaries\Platform\..\..\Data\HomeOS.Hub.Drivers.WebCam for Lenovo EasyCamera" AutoStart="0" Background="1">
     <Args Count="1" val1="Lenovo EasyCamera" />
   </Module>
-  <Module FriendlyName="CameraViewer" AppName="CameraViewer" BinaryName="HomeOS.Hub.Apps.SmartCam" WorkingDir="C:\labofthings.codeplex.EnvMon\Hub\output\binaries\Platform\..\..\Data\CameraViewer" AutoStart="1" Background="0">
+  <Module FriendlyName="CameraViewer" AppName="CameraViewer" BinaryName="HomeOS.Hub.Apps.SmartCam" WorkingDir="C:\labofthings.codeplex.EnvMon\Hub\output\binaries\Platform\..\..\Data\CameraViewer" AutoStart="0" Background="0">
     <RoleList Optional="False">
       <Role Name=":camera:" />
     </RoleList>
