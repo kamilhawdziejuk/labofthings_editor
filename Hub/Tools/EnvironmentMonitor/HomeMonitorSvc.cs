@@ -23,10 +23,21 @@ namespace HomeOS.Hub.Tools.EnvironmentMonitor
         private VLogger logger;
         private List<VModule> _modules = new List<VModule>();
 
+        /// <summary>
+        /// Rules in the format of component(state:A) -> component2(state:B)
+        /// </summary>
+        private List<string> _rules = new List<string>();
+
         public HomeMonitorSvc(VLogger _logger)
         {
             this.logger = _logger;
             InitModules();
+        }
+
+        public List<string> AddRule(string rule)
+        {
+            _rules.Add(rule);
+            return _rules;
         }
 
         public List<string> GetModuleNames()

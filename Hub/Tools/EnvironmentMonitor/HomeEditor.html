@@ -103,12 +103,19 @@
             }
         }
 
+        function EmptyCallback(context, result) {
+
+        }
+
         function SaveRules() {
             var mod1 = GetSelectedModule1();
             var mod2 = GetSelectedModule2();
             var state1 = GetSelectedState1();
             var state2 = GetSelectedState2();
-            $("#rulesId").append(mod1 + '(state:' + state1 + ') -> ' + mod2 + '(state:' + state2 + ')');
+
+            var ruleDefinition = mod1 + '(state:' + state1 + ') -> ' + mod2 + '(state:' + state2 + ')';
+            new PlatformServiceHelper().MakeServiceCall("webapp/AddRuleWeb", '{"rule":"' + ruleDefinition + '"}', EmptyCallback);
+            $("#rulesId").append(parameters);
             $("#rulesId").append('<br/>');
         }
     </script>
