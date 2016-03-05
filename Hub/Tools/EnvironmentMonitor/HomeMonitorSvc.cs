@@ -13,7 +13,7 @@ using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.ServiceModel.Description;
 using HomeOS.Hub.Tools.EnvironmentMonitor.Modules;
-
+using PetrinetTool;
 
 namespace HomeOS.Hub.Tools.EnvironmentMonitor
 {
@@ -21,24 +21,30 @@ namespace HomeOS.Hub.Tools.EnvironmentMonitor
     public class HomeMonitorSvc : IHomeMonitorServiceWeb
     {
         private VLogger logger;
+        private RulesManager _rulesManager;
         private List<VModule> _modules = new List<VModule>();
-
-        /// <summary>
-        /// Rules in the format of component(state:A) -> component2(state:B)
-        /// </summary>
-        private List<string> _rules = new List<string>();
 
         public HomeMonitorSvc(VLogger _logger)
         {
             this.logger = _logger;
+            _rulesManager = new RulesManager();
             InitModules();
         }
 
         public List<string> AddRule(string rule)
         {
-            _rules.Add(rule);
-            return _rules;
+            string[] data = rule.Split(',');
+            string mod1 = data[0];
+            string state1 = data[1];
+            string mod2 = data[2];
+            string state2 = data[3];
+
+            _rulesManager.AddRule(mod1, state1, mod2, state2);
+
+            return new List<string>();
         }
+
+
 
         public List<string> GetModuleNames()
         {

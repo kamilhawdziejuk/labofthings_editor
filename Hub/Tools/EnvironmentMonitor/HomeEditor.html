@@ -113,7 +113,8 @@
             var state1 = GetSelectedState1();
             var state2 = GetSelectedState2();
 
-            var ruleDefinition = mod1 + '(state:' + state1 + ') -> ' + mod2 + '(state:' + state2 + ')';
+            //var ruleDefinition = mod1 + '(state:' + state1 + ') -> ' + mod2 + '(state:' + state2 + ')';
+            var ruleDefinition = mod1 + ',' + state1 + ',' + mod2 + ',' + state2;
             new PlatformServiceHelper().MakeServiceCall("webapp/AddRuleWeb", '{"rule":"' + ruleDefinition + '"}', EmptyCallback);
             $("#rulesId").append(parameters);
             $("#rulesId").append('<br/>');
