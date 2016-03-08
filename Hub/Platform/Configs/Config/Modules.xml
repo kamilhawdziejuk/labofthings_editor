@@ -10,7 +10,12 @@
   <Module FriendlyName="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.RelaySwitch" AppName="driver for RelaySwitch" BinaryName="HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.RelaySwitch" WorkingDir="C:\labofthings.codeplex.EnvMon\Hub\output\binaries\Platform\..\..\Data\HomeOS.Hub.Drivers.Gadgeteer.MicrosoftResearch.RelaySwitch" AutoStart="1" Background="1">
     <Args Count="1" val1="HomeOSGadgeteerDevice_RelaySwitch_MicrosoftResearch_32054443539427623454" />
   </Module>
-  <Module FriendlyName="ThermoAlerts" AppName="ThermoAlerts" BinaryName="HomeOS.Hub.Apps.Thermometer" WorkingDir="C:\labofthings.codeplex.EnvMon\Hub\output\binaries\Platform\..\..\Data\ThermoAlerts" AutoStart="0" Background="0">
+  <Module FriendlyName="ThermoAlerts" AppName="ThermoAlerts" BinaryName="HomeOS.Hub.Apps.Thermometer" WorkingDir="C:\labofthings.codeplex.EnvMon\Hub\output\binaries\Platform\..\..\Data\ThermoAlerts" AutoStart="1" Background="0">
+    <RoleList Optional="False">
+      <Role Name=":sensor:" />
+    </RoleList>
+  </Module>
+  <Module FriendlyName="Clock" AppName="ClockApp" BinaryName="HomeOS.Hub.Apps.Clock" WorkingDir="C:\labofthings.codeplex.EnvMon\Hub\output\binaries\Platform\..\..\Data\Clock" AutoStart="1" Background="0">
     <RoleList Optional="False">
       <Role Name=":sensor:" />
     </RoleList>

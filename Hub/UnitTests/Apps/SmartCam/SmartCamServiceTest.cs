@@ -101,7 +101,7 @@ namespace HomeOS.Hub.UnitTests.Apps.SmartCam
 
             this.platform = new HomeOS.Hub.Platform.Platform(new[] { "-r", "unittesting" });
             this.platform.Start();
-            int moduleCount = platform.GetRunningModules().Count;
+            int moduleCount = platform.GetModules(true).Count;
             Assert.IsTrue(moduleCount == 0);
 
             // ensure that the test data recorded video files have the write times for our test

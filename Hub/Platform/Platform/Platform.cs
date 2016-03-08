@@ -530,7 +530,11 @@ namespace HomeOS.Hub.Platform
 
             InitHomeService();
 
-            if (Settings.RunningMode.Equals("standard"))
+            if (true)
+            {
+                StartModule(new ModuleInfo("Clock", "Clock", "HomeOS.Hub.Apps.Clock", null, true));
+            }
+            else if (Settings.RunningMode.Equals("standard"))
             {
                 InitAutoStartModules();
             }

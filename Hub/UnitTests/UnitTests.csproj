@@ -49,10 +49,6 @@
     <CustomPath>$(TeamBuildOutDir)\$(SolutionName)</CustomPath>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="HomeOS.Hub.Apps.SmartCam">
-      <HintPath>$(CustomPath)\output\binaries\Pipeline\AddIns\HomeOS.Hub.Apps.SmartCam\HomeOS.Hub.Apps.SmartCam.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="HomeOS.Hub.Apps.SmartCam.SmartRecorder">
       <HintPath>$(CustomPath)\output\binaries\Pipeline\AddIns\HomeOS.Hub.Apps.SmartCam\HomeOS.Hub.Apps.SmartCam.SmartRecorder.dll</HintPath>
       <Private>True</Private>

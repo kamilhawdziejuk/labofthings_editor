@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using HomeOS.Hub.Common;
 using HomeOS.Hub.Platform.Views;
+using System.Configuration;
+using Microsoft.ServiceBus.Messaging;
+using Microsoft.ServiceBus;
+
 
 namespace HomeOS.Hub.Apps.Clock
 {
@@ -13,7 +15,19 @@ namespace HomeOS.Hub.Apps.Clock
     [System.AddIn.AddIn("HomeOS.Hub.Apps.Clock")]
     public class Clock : ModuleBase, ModuleCondition
     {
+
+        //####################EVENT HUB related code####################################
+
+        static string connectionString = GetServiceBusConnectionString();
+        NamespaceManager namespaceManager = NamespaceManager.CreateFromConnectionString(connectionString);
+        static string eventHubName = ConfigurationManager.AppSettings["EventHubName"];
+
+        Sender sender = new Sender(eventHubName);
+
+        //###############################################################################
+
         private DateTime dateTime;
+        string gHome_Id;
 
         public override void Start()
         {
@@ -23,6 +37,8 @@ namespace HomeOS.Hub.Apps.Clock
             IList<VPort> allPortsList = GetAllPortsFromPlatform();
 
             dateTime = DateTime.Now;
+            gHome_Id = GetConfSetting("HomeId");
+
             Work();
         }
 
@@ -52,7 +68,9 @@ namespace HomeOS.Hub.Apps.Clock
             {
                 //simulate one hour every 1 seconds
                 dateTime = dateTime.Add(TimeSpan.FromTicks(TimeSpan.TicksPerHour));
-                System.Threading.Thread.Sleep(1 * 1000);
+                bool bIsEventSent = sender.SendEvents(gHome_Id, DateTime.Now, "Clock", "Time", DateTime.Now.ToString());
+
+                System.Threading.Thread.Sleep(1 * 5000);
             }
         }
 
@@ -102,6 +120,19 @@ namespace HomeOS.Hub.Apps.Clock
                 dict.Add(1, "Day");
                 return dict;
             }
+        }
+
+        private static string GetServiceBusConnectionString()
+        {
+            string connectionString = ConfigurationManager.AppSettings["Microsoft.ServiceBus.ConnectionString"];
+            if (string.IsNullOrEmpty(connectionString))
+            {
+                Console.WriteLine("Did not find Service Bus connections string in appsettings (app.config)");
+                return string.Empty;
+            }
+            ServiceBusConnectionStringBuilder builder = new ServiceBusConnectionStringBuilder(connectionString);
+            builder.TransportType = TransportType.Amqp;
+            return builder.ToString();
         }
     }
 }
