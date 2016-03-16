@@ -1,4 +1,5 @@
 ﻿using PetrinetTool;
+using StaMa;
 using System;
 using System.Collections.Generic;
 
@@ -65,7 +66,54 @@ namespace EnvironmentMonitor
             //PN.Save("D://testNet.xml");
         }
 
+        private void TestOfUsingStateMachineLibrary()
+        {
+            StateMachineTemplate t = new StateMachineTemplate();
+            t.Region("Stopped", false);
+            t.State("Stopped");
+            t.Transition("T1", "Running", "Play");
+            t.EndState();
+            t.State("Loaded", StartMotor, StopMotor);
+            t.Transition("T2", "Stopped", "Stop");
+            t.Region("Running", false);
+            t.State("Running", EngageHead, ReleaseHead);
+            t.Transition("T3", "Paused", "Pause");
+            t.EndState();
+            t.State("Paused");
+            t.Transition("T4", "Running", "Play");
+            t.EndState();
+            t.EndRegion();
+            t.EndState();
+            t.EndRegion();
 
+            StateMachine stateMachine = t.CreateStateMachine();
+
+            stateMachine.Startup();
+            stateMachine.SendTriggerEvent("Play");
+            stateMachine.SendTriggerEvent("Pause");
+            stateMachine.SendTriggerEvent("Stop");
+            stateMachine.Finish();
+        }
+
+        private void StartMotor(StateMachine stateMachine, object triggerEvent, EventArgs eventArgs)
+        {
+            System.Console.WriteLine("StartMotor");
+        }
+
+        private void StopMotor(StateMachine stateMachine, object triggerEvent, EventArgs eventArgs)
+        {
+            System.Console.WriteLine("StopMotor");
+        }
+
+        private void EngageHead(StateMachine stateMachine, object triggerEvent, EventArgs eventArgs)
+        {
+            System.Console.WriteLine("EngageHead");
+        }
+
+        private void ReleaseHead(StateMachine stateMachine, object triggerEvent, EventArgs eventArgs)
+        {
+            System.Console.WriteLine("ReleaseHead");
+        }
 
         //private void SaveHomeEnvAsPN()
         //{
