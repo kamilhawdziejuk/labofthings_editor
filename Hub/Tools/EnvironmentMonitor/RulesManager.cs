@@ -62,12 +62,19 @@ namespace EnvironmentMonitor
             _page.Transitions.Add(transition);
             _page.Arcs.Add(arc1);
             _page.Arcs.Add(arc2);
-
+            
             //PN.Save("D://testNet.xml");
         }
 
         private void TestOfUsingStateMachineLibrary()
         {
+            /*
+            Stopped->Runnig (play)
+            Loaded->Stopped (stop)
+            Running->Paused (pause)
+            Paused->Running (play)
+            */
+
             StateMachineTemplate t = new StateMachineTemplate();
             t.Region("Stopped", false);
             t.State("Stopped");

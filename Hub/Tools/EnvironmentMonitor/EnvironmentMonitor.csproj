@@ -96,6 +96,10 @@
     <Content Include="HomeStates.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Rules\LeavingTheHome.xml" />
+    <Content Include="Rules\MotionLampRule.xml" />
+    <Content Include="Rules\WakeUpRule.xml" />
+    <Content Include="Rules\WatchingFilmRule.xml" />
     <Content Include="SmartHouse.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

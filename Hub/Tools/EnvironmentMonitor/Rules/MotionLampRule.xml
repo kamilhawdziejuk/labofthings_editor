@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<scxml xmlns="http://www.w3.org/2005/07/scxml" version="1.0" initial="ready">
+  <state id="MotionSensor(OFF)">
+    <transition event="motion.exist" target="LightBulb(ON)"/>
+    <transition event="motion.exist" target="MotionSensor(ON)"/>
+  </state>
+  <state id="MotionSensor(ON)">
+    <transition event="motion.notExist" target="MotionSensor(OFF)"/>
+  </state>
+  <state id="LightBulb(ON)">
+    <transition event="switch.off" target="LightBulb(OFF)"/>
+  </state>
+  <state id="LightBulb(OFF)">
+    <transition event="switch.on" target="LightBulb(ON)"/>
+  </state>
+</scxml>

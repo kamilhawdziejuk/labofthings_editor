@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<scxml xmlns="http://www.w3.org/2005/07/scxml" version="1.0" initial="ready">
+  <state id="Clock(6:00)">
+    <transition event="alarm.exist" target="Ring(ON)"/>
+    <transition event="shutters.opening" target="Shutters(Opened)" />
+    <transition event="coffeexpress.start" target="CoffeExpress(Started)" />
+  </state>
+  <state id="Ring(ON)">
+    <transition event="alarm.turnedOff" target="Ring(OFF)"/>
+    <transition event="alarm.passed" if="30secs" target="Ring(OFF)"/>
+  </state>
+  <state id="Ring(OFF)">
+  </state>
+  <state id="CoffeExpress(Started)">
+  </state>
+  <state id="Shutters(Opened)">
+  </state>
+</scxml>

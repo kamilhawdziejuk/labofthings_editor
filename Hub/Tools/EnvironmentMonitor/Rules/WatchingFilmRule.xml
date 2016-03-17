@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<scxml xmlns="http://www.w3.org/2005/07/scxml" version="1.0" initial="ready">
+  <state id="VoiceCommander(Cinema)">
+    <transition event="shutters.closing" target="Shutters(Closed)" />
+    <transition event="radio.off" target="Radio(OFF)" />
+    <transition event="light.off" target="Light(OFF)" />
+    <transition event="tv.start" target="TV(MovieModeOn)" />
+  </state>
+</scxml>
