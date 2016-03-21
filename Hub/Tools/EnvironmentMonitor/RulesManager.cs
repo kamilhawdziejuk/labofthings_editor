@@ -1,10 +1,82 @@
-﻿using PetrinetTool;
+﻿using HomeOS.Hub.Common;
+using PetrinetTool;
 using StaMa;
 using System;
 using System.Collections.Generic;
 
 namespace EnvironmentMonitor
 {
+
+    public class HomeModule
+    {
+        public string Name { get; set; }
+        public string StateDesc { get; set; }
+        public string Id
+        {
+            get 
+            {
+                return string.Format("{0}({1})", Name, StateDesc);
+            }
+        }
+
+        public Place Place
+        {
+            get
+            {
+                return new Place() { Name = this.Name, Id = Id };
+            }
+        }
+    }
+
+    public class HomeRule
+    {
+        public HomeModule FromModule;
+        public HomeModule ToModule;
+
+        public Arc Arc1
+        {
+            get
+            {
+                var arc1 = new Arc()
+                {
+                    SourceID = FromModule.Id,
+                    TargetID = Transition.Id,
+                    Weight = 1,
+                    Id = String.Format("{0}->{1}", FromModule.Id, Transition.Id)
+                };
+                return arc1;
+            }
+        }
+
+        public Arc Arc2
+        { 
+            get
+            {
+                var arc2 = new Arc()
+                {
+                    SourceID = Transition.Id,
+                    TargetID = ToModule.Id,
+                    Weight = 1,
+                    Id = String.Format("{0}->{1}", Transition.Id, ToModule.Id)
+                };
+                return arc2;
+            }
+        }
+
+        public PetrinetTool.Transition Transition
+        {
+            get
+            {
+                var transition = new PetrinetTool.Transition()
+                {
+                    Name = String.Format("Event{0}->{1}", FromModule.Name, ToModule.Name),
+                    Id = String.Format("{0}_{1}", FromModule.Name, ToModule.Name)
+                };
+                return transition;
+            }
+        }
+    }
+
     public class RulesManager
     {
         /// <summary>
@@ -14,6 +86,8 @@ namespace EnvironmentMonitor
 
         private List<string> _modules = new List<string>();
         private List<string> _states = new List<string>();
+
+        private List<HomeModule> _homeModules = new List<HomeModule>();
 
         Petrinet _petriNet = new Petrinet();
         Page _page = new Page();
@@ -26,44 +100,34 @@ namespace EnvironmentMonitor
 
         public void AddRule(string mod1, string state1, string mod2, string state2)
         {
-            if (!_modules.Contains(mod1))
-            {
-                _modules.Add(mod1);
-            }
-            if (!_modules.Contains(mod2))
-            {
-                _modules.Add(mod2);
-            }
+            HomeModule moduleFrom = new HomeModule() { Name = mod1, StateDesc = state1 };
+            HomeModule moduleTo = new HomeModule() { Name = mod2, StateDesc = state2 };
 
-            string modState1 = String.Format("{0}_{1}", mod1, state1);
-            string modState2 = String.Format("{0}_{1}", mod2, state2);
-
-            if (!_states.Contains(modState1))
+            if (!_homeModules.Contains(moduleFrom))
             {
-                _states.Add(modState1);
-            }
-            if (!_states.Contains(modState2))
-            {
-                _states.Add(modState2);
+                _homeModules.Add(moduleFrom);
             }
 
-            //Preparing P/N representation
-            //places
-            var place1 = new Place() { Name = modState1, Id = String.Format("p{0}", modState1) };
-            var place2 = new Place() { Name = modState2, Id = String.Format("p{0}", modState2) };
-
-            var transition = new Transition() { Name = String.Format("Event{0}->{1}", modState1, modState2), Id = String.Format("{0}_{1}", modState1, modState2) };
-            var arc1 = new Arc() { SourceID = place1.Id, TargetID = transition.Id, Weight = 1, Id = String.Format("{0}->{1}", place1.Id, transition.Id) };
-            var arc2 = new Arc() { SourceID = transition.Id, TargetID = place2.Id, Weight = 1, Id = String.Format("{0}->{1}", transition.Id, place2.Id) };
-
-            _page.Places.Add(place1);
-            _page.Places.Add(place2);
-
-            _page.Transitions.Add(transition);
-            _page.Arcs.Add(arc1);
-            _page.Arcs.Add(arc2);
+            if (!_homeModules.Contains(moduleTo))
+            {
+                _homeModules.Add(moduleTo);
+            }
             
+            HomeRule homeRule = new HomeRule() { FromModule = moduleFrom, ToModule = moduleTo };
+
+            AddToPetriNet(homeRule);
+
             //PN.Save("D://testNet.xml");
+        }
+
+        private void AddToPetriNet(HomeRule homeRule)
+        {
+            _page.Places.Add(homeRule.FromModule.Place);
+            _page.Places.Add(homeRule.ToModule.Place);
+
+            _page.Transitions.Add(homeRule.Transition);
+            _page.Arcs.Add(homeRule.Arc1);
+            _page.Arcs.Add(homeRule.Arc2);
         }
 
         private void TestOfUsingStateMachineLibrary()
