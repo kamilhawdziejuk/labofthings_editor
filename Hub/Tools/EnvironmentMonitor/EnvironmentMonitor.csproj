@@ -54,9 +54,12 @@
   <ItemGroup>
     <Compile Include="HomeMonitorSvc.cs" />
     <Compile Include="EnvironmentMonitor.cs" />
+    <Compile Include="HomeModule.cs" />
+    <Compile Include="HomeRule.cs" />
     <Compile Include="ISolution.cs" />
     <Compile Include="IValidator.cs" />
     <Compile Include="IModuleLinks.cs" />
+    <Compile Include="IXmlProvider.cs" />
     <Compile Include="Modules\ClockSimulation.cs" />
     <Compile Include="Modules\LightSensorSimulation.cs" />
     <Compile Include="Modules\SpeakerSimulation.cs" />
@@ -98,7 +101,9 @@
     </Content>
     <Content Include="Rules\LeavingTheHome.xml" />
     <Content Include="Rules\MotionLampRule.xml" />
-    <Content Include="Rules\WakeUpRule.xml" />
+    <Content Include="Rules\WakeUpRule.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Rules\WatchingFilmRule.xml" />
     <Content Include="SmartHouse.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -109,6 +114,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

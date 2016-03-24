@@ -3,80 +3,11 @@ using PetrinetTool;
 using StaMa;
 using System;
 using System.Collections.Generic;
+using System.Xml;
+using System.Xml.Linq;
 
 namespace EnvironmentMonitor
 {
-
-    public class HomeModule
-    {
-        public string Name { get; set; }
-        public string StateDesc { get; set; }
-        public string Id
-        {
-            get 
-            {
-                return string.Format("{0}({1})", Name, StateDesc);
-            }
-        }
-
-        public Place Place
-        {
-            get
-            {
-                return new Place() { Name = this.Name, Id = Id };
-            }
-        }
-    }
-
-    public class HomeRule
-    {
-        public HomeModule FromModule;
-        public HomeModule ToModule;
-
-        public Arc Arc1
-        {
-            get
-            {
-                var arc1 = new Arc()
-                {
-                    SourceID = FromModule.Id,
-                    TargetID = Transition.Id,
-                    Weight = 1,
-                    Id = String.Format("{0}->{1}", FromModule.Id, Transition.Id)
-                };
-                return arc1;
-            }
-        }
-
-        public Arc Arc2
-        { 
-            get
-            {
-                var arc2 = new Arc()
-                {
-                    SourceID = Transition.Id,
-                    TargetID = ToModule.Id,
-                    Weight = 1,
-                    Id = String.Format("{0}->{1}", Transition.Id, ToModule.Id)
-                };
-                return arc2;
-            }
-        }
-
-        public PetrinetTool.Transition Transition
-        {
-            get
-            {
-                var transition = new PetrinetTool.Transition()
-                {
-                    Name = String.Format("Event{0}->{1}", FromModule.Name, ToModule.Name),
-                    Id = String.Format("{0}_{1}", FromModule.Name, ToModule.Name)
-                };
-                return transition;
-            }
-        }
-    }
-
     public class RulesManager
     {
         /// <summary>
@@ -114,6 +45,23 @@ namespace EnvironmentMonitor
             }
             
             HomeRule homeRule = new HomeRule() { FromModule = moduleFrom, ToModule = moduleTo };
+            string name = string.Format("Rules/{0}.xml", homeRule.Name);
+            XmlWriter writer = XmlWriter.Create(name);
+
+            writer.WriteStartDocument();
+
+            writer.WriteStartElement("scxml");
+            XNamespace ns = "http://www.w3.org/2005/07/scxml";
+
+            //writer.WriteAttributeString("xmlns", ns.ToString());
+            writer.WriteAttributeString("version", "1.0");
+            writer.WriteAttributeString("initial", "ready");
+
+            homeRule.Export(writer);
+
+            writer.WriteEndElement();
+            writer.WriteEndDocument();
+            writer.Close();
 
             AddToPetriNet(homeRule);
 
@@ -130,61 +78,61 @@ namespace EnvironmentMonitor
             _page.Arcs.Add(homeRule.Arc2);
         }
 
-        private void TestOfUsingStateMachineLibrary()
-        {
-            /*
-            Stopped->Runnig (play)
-            Loaded->Stopped (stop)
-            Running->Paused (pause)
-            Paused->Running (play)
-            */
+        //private void TestOfUsingStateMachineLibrary()
+        //{
+        //    /*
+        //    Stopped->Runnig (play)
+        //    Loaded->Stopped (stop)
+        //    Running->Paused (pause)
+        //    Paused->Running (play)
+        //    */
 
-            StateMachineTemplate t = new StateMachineTemplate();
-            t.Region("Stopped", false);
-            t.State("Stopped");
-            t.Transition("T1", "Running", "Play");
-            t.EndState();
-            t.State("Loaded", StartMotor, StopMotor);
-            t.Transition("T2", "Stopped", "Stop");
-            t.Region("Running", false);
-            t.State("Running", EngageHead, ReleaseHead);
-            t.Transition("T3", "Paused", "Pause");
-            t.EndState();
-            t.State("Paused");
-            t.Transition("T4", "Running", "Play");
-            t.EndState();
-            t.EndRegion();
-            t.EndState();
-            t.EndRegion();
+        //    StateMachineTemplate t = new StateMachineTemplate();
+        //    t.Region("Stopped", false);
+        //    t.State("Stopped");
+        //    t.Transition("T1", "Running", "Play");
+        //    t.EndState();
+        //    t.State("Loaded", StartMotor, StopMotor);
+        //    t.Transition("T2", "Stopped", "Stop");
+        //    t.Region("Running", false);
+        //    t.State("Running", EngageHead, ReleaseHead);
+        //    t.Transition("T3", "Paused", "Pause");
+        //    t.EndState();
+        //    t.State("Paused");
+        //    t.Transition("T4", "Running", "Play");
+        //    t.EndState();
+        //    t.EndRegion();
+        //    t.EndState();
+        //    t.EndRegion();
 
-            StateMachine stateMachine = t.CreateStateMachine();
+        //    StateMachine stateMachine = t.CreateStateMachine();
 
-            stateMachine.Startup();
-            stateMachine.SendTriggerEvent("Play");
-            stateMachine.SendTriggerEvent("Pause");
-            stateMachine.SendTriggerEvent("Stop");
-            stateMachine.Finish();
-        }
+        //    stateMachine.Startup();
+        //    stateMachine.SendTriggerEvent("Play");
+        //    stateMachine.SendTriggerEvent("Pause");
+        //    stateMachine.SendTriggerEvent("Stop");
+        //    stateMachine.Finish();
+        //}
 
-        private void StartMotor(StateMachine stateMachine, object triggerEvent, EventArgs eventArgs)
-        {
-            System.Console.WriteLine("StartMotor");
-        }
+        //private void StartMotor(StateMachine stateMachine, object triggerEvent, EventArgs eventArgs)
+        //{
+        //    System.Console.WriteLine("StartMotor");
+        //}
 
-        private void StopMotor(StateMachine stateMachine, object triggerEvent, EventArgs eventArgs)
-        {
-            System.Console.WriteLine("StopMotor");
-        }
+        //private void StopMotor(StateMachine stateMachine, object triggerEvent, EventArgs eventArgs)
+        //{
+        //    System.Console.WriteLine("StopMotor");
+        //}
 
-        private void EngageHead(StateMachine stateMachine, object triggerEvent, EventArgs eventArgs)
-        {
-            System.Console.WriteLine("EngageHead");
-        }
+        //private void EngageHead(StateMachine stateMachine, object triggerEvent, EventArgs eventArgs)
+        //{
+        //    System.Console.WriteLine("EngageHead");
+        //}
 
-        private void ReleaseHead(StateMachine stateMachine, object triggerEvent, EventArgs eventArgs)
-        {
-            System.Console.WriteLine("ReleaseHead");
-        }
+        //private void ReleaseHead(StateMachine stateMachine, object triggerEvent, EventArgs eventArgs)
+        //{
+        //    System.Console.WriteLine("ReleaseHead");
+        //}
 
         //private void SaveHomeEnvAsPN()
         //{
