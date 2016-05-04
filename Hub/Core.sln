@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Platform", "Platform", "{0CAFEF7D-158E-4036-950E-8993D97301C6}"
 EndProject
@@ -230,6 +230,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureEventHubSample", "Apps\AzureEventHubSample\AzureEventHubSample.csproj", "{86B7ED6E-590E-43BC-A9BB-5C0A67EFFF8E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{BCED5CED-5AE7-4684-A9A4-277DADB04857}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PetrinetTool", "..\..\PetriNetTool_Decompiled\PetrinetTool.csproj", "{B8B2EE20-FC09-4164-A520-4568D64B4544}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -1480,6 +1482,33 @@ Global
 		{BCED5CED-5AE7-4684-A9A4-277DADB04857}.Release|x64.Build.0 = Release|Any CPU
 		{BCED5CED-5AE7-4684-A9A4-277DADB04857}.Release|x86.ActiveCfg = Release|Any CPU
 		{BCED5CED-5AE7-4684-A9A4-277DADB04857}.Release|x86.Build.0 = Release|Any CPU
+		{B8B2EE20-FC09-4164-A520-4568D64B4544}.ClientDebug|Any CPU.ActiveCfg = Debug|x86
+		{B8B2EE20-FC09-4164-A520-4568D64B4544}.ClientDebug|ARM.ActiveCfg = Debug|x86
+		{B8B2EE20-FC09-4164-A520-4568D64B4544}.ClientDebug|Mixed Platforms.ActiveCfg = Debug|x86
+		{B8B2EE20-FC09-4164-A520-4568D64B4544}.ClientDebug|Mixed Platforms.Build.0 = Debug|x86
+		{B8B2EE20-FC09-4164-A520-4568D64B4544}.ClientDebug|Win32.ActiveCfg = Debug|x86
+		{B8B2EE20-FC09-4164-A520-4568D64B4544}.ClientDebug|Win32.Build.0 = Debug|x86
+		{B8B2EE20-FC09-4164-A520-4568D64B4544}.ClientDebug|x64.ActiveCfg = Debug|x86
+		{B8B2EE20-FC09-4164-A520-4568D64B4544}.ClientDebug|x86.ActiveCfg = Debug|x86
+		{B8B2EE20-FC09-4164-A520-4568D64B4544}.ClientDebug|x86.Build.0 = Debug|x86
+		{B8B2EE20-FC09-4164-A520-4568D64B4544}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{B8B2EE20-FC09-4164-A520-4568D64B4544}.Debug|ARM.ActiveCfg = Debug|x86
+		{B8B2EE20-FC09-4164-A520-4568D64B4544}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{B8B2EE20-FC09-4164-A520-4568D64B4544}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{B8B2EE20-FC09-4164-A520-4568D64B4544}.Debug|Win32.ActiveCfg = Debug|x86
+		{B8B2EE20-FC09-4164-A520-4568D64B4544}.Debug|Win32.Build.0 = Debug|x86
+		{B8B2EE20-FC09-4164-A520-4568D64B4544}.Debug|x64.ActiveCfg = Debug|x86
+		{B8B2EE20-FC09-4164-A520-4568D64B4544}.Debug|x86.ActiveCfg = Debug|x86
+		{B8B2EE20-FC09-4164-A520-4568D64B4544}.Debug|x86.Build.0 = Debug|x86
+		{B8B2EE20-FC09-4164-A520-4568D64B4544}.Release|Any CPU.ActiveCfg = Release|x86
+		{B8B2EE20-FC09-4164-A520-4568D64B4544}.Release|ARM.ActiveCfg = Release|x86
+		{B8B2EE20-FC09-4164-A520-4568D64B4544}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{B8B2EE20-FC09-4164-A520-4568D64B4544}.Release|Mixed Platforms.Build.0 = Release|x86
+		{B8B2EE20-FC09-4164-A520-4568D64B4544}.Release|Win32.ActiveCfg = Release|x86
+		{B8B2EE20-FC09-4164-A520-4568D64B4544}.Release|Win32.Build.0 = Release|x86
+		{B8B2EE20-FC09-4164-A520-4568D64B4544}.Release|x64.ActiveCfg = Release|x86
+		{B8B2EE20-FC09-4164-A520-4568D64B4544}.Release|x86.ActiveCfg = Release|x86
+		{B8B2EE20-FC09-4164-A520-4568D64B4544}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -1545,5 +1574,6 @@ Global
 		{80A8BD0B-89D0-4F19-BF33-E8A7C33E6238} = {FBE82C12-EA9D-4F97-AE1A-D80FB3AA22D0}
 		{072F0502-9F60-4C9C-B849-230AEBD10B2F} = {FBE82C12-EA9D-4F97-AE1A-D80FB3AA22D0}
 		{86B7ED6E-590E-43BC-A9BB-5C0A67EFFF8E} = {7EF50C0F-42A9-4737-8EF2-B9AC73FFACA4}
+		{B8B2EE20-FC09-4164-A520-4568D64B4544} = {FBE82C12-EA9D-4F97-AE1A-D80FB3AA22D0}
 	EndGlobalSection
 EndGlobal

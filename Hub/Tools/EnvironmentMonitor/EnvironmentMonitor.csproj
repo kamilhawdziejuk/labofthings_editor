@@ -30,15 +30,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="PetrinetTool">
-      <HintPath>..\..\..\..\PetriNetTool_Decompiled\bin\Debug\PetrinetTool.dll</HintPath>
-    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -75,6 +73,10 @@
     <Compile Include="Validators\StagnancyValidator.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\PetriNetTool_Decompiled\PetrinetTool.csproj">
+      <Project>{b8b2ee20-fc09-4164-a520-4568d64b4544}</Project>
+      <Name>PetrinetTool</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Common\Bolt\DataStore\DataStore.csproj">
       <Project>{540d10b0-39fe-47e7-86ab-aff845791daf}</Project>
       <Name>DataStore</Name>
