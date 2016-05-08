@@ -29,6 +29,11 @@
             new PlatformServiceHelper().MakeServiceCall("webapp/GetModuleStatesWeb", '{"name":"' + selectedValue2 + '"}', FillStatesCallback2);
         }
 
+        //
+        function ValidateStates() {
+            new PlatformServiceHelper().MakeServiceCall("webapp/ValidateStatesWeb", "", ValidationStatesCallback);
+        }
+
         function CheckRule() {
             var ruleText = document.getElementById("ruleTextId").value;
             new PlatformServiceHelper().MakeServiceCall("webapp/CheckRuleWeb", '{"ruleText":"' + ruleText + '"}', CheckRuleCallback);
@@ -103,6 +108,13 @@
             }
         }
 
+        function ValidationStatesCallback(context, result) {
+            $("#validationsId").empty();
+            for (var i = 0; i < result.length; i++) {
+                $("#validationsId").append('<option value="' + result[i] + '">' + result[i] + '</option>');
+            }
+        }
+
         function EmptyCallback(context, result) {
 
         }
@@ -166,6 +178,11 @@
        <hr />
             <h3>Rules added</h3>
     <span id="rulesId" ></span>
+    
+    <button onclick="ValidateStates();">Validate set of rules</button>
+    
+    <h3>Validation results</h3>
+    <span id="validationsId"></span>
     <!--  -->
 </body>
 </html>

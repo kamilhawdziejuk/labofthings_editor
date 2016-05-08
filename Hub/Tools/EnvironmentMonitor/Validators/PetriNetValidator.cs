@@ -9,7 +9,7 @@ namespace HomeOS.Hub.Tools.EnvironmentMonitor.Validators
     {
         public Result CheckDeadlock(Petrinet petriNet)
         {
-            var result = new Result();
+            var result = new Result() {Name = "Deadlock"};
             var deadlock = new Deadlock(petriNet, 5);
             try
             {
@@ -26,7 +26,7 @@ namespace HomeOS.Hub.Tools.EnvironmentMonitor.Validators
 
         public Result CheckBoundness(Petrinet petriNet)
         {
-            var result = new Result();
+            var result = new Result() {Name = "Boundness"};
             var bounded = new Bounded(petriNet, 5);
             try
             {

@@ -8,6 +8,7 @@ namespace EnvironmentMonitor
 {
     public class Result
     {
+        public string Name { get; set; }
         public bool Success { get; set; }
         public string ErrorMessage { get; set; }
     }

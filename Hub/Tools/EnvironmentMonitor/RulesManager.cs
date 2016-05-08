@@ -52,24 +52,79 @@ namespace EnvironmentMonitor
 
             AddToPetriNet(homeRule);
 
+           
+           
+        }
+
+        public List<Result> GetPetrinetProperties()
+        {
+            var results = new List<Result>();
             Result deadlockExistance = petriNetValidator.CheckDeadlock(_petriNet);
             Result boundnessExistance = petriNetValidator.CheckBoundness(_petriNet);
-           
+
+            results.Add(deadlockExistance);
+            results.Add(boundnessExistance);
+            return results;
+        }
+
+        private void TryAddPlace(Place place)
+        {
+            try
+            {
+                _page.Places.Add(place);
+            }
+            catch (Exception ex)
+            {
+                
+            }
+        }
+
+        private void TryAddTransition(Transition transition)
+        {
+            try
+            {
+                _page.Transitions.Add(transition);
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+        private void TryAddArc(Arc arc)
+        {
+            try
+            {
+                _page.Arcs.Add(arc);
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
 
         private void AddToPetriNet(HomeRule homeRule)
         {
-            _page.Places.Add(homeRule.FromModule.Place);
-            _page.Places.Add(homeRule.ToModule.Place);
+            try
+            {
+                TryAddPlace(homeRule.FromModule.Place);
+                TryAddPlace(homeRule.ToModule.Place);
 
-            _page.Transitions.Add(homeRule.Transition);
-            _page.Arcs.Add(homeRule.Arc1);
-            _page.Arcs.Add(homeRule.Arc2);
+                TryAddTransition(homeRule.Transition);
+                TryAddArc(homeRule.Arc1);
+                TryAddArc(homeRule.Arc2);
+            }
+            catch (Exception ex)
+            {
+                
+                throw;
+            }
+          
         }
 
         private void Export(HomeRule homeRule)
         {
-            string name = string.Format("Rules/{0}.xml", homeRule.Name);
+            string name = string.Format("{0}.xml", homeRule.Name);
             XmlWriter writer = XmlWriter.Create(name);
 
             writer.WriteStartDocument();

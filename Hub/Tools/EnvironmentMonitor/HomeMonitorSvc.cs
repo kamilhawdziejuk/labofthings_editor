@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using EnvironmentMonitor;
 using HomeOS.Hub.Common;
 using HomeOS.Hub.Platform.Views;
@@ -57,6 +58,17 @@ namespace HomeOS.Hub.Tools.EnvironmentMonitor
             foreach (var kvp in (module as ModuleCondition).PossibleIntepretedValues)
             {
                 results.Add(kvp.Value);
+            }
+            return results;
+        }
+
+        public List<string> ValidateStates()
+        {
+            var results = new List<string>();
+            foreach (var p in _rulesManager.GetPetrinetProperties())
+            {
+                results.Add(p.Name);
+                results.Add(p.Success.ToString());
             }
             return results;
         }
