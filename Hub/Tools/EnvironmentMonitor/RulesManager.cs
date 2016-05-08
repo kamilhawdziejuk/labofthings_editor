@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using HomeOS.Hub.Common;
+using HomeOS.Hub.Tools.EnvironmentMonitor.Validators;
 using PetrinetTool;
 using System;
 using System.Collections.Generic;
@@ -24,6 +25,7 @@ namespace EnvironmentMonitor
         Petrinet _petriNet = new Petrinet();
         Page _page = new Page();
 
+        PetriNetValidator petriNetValidator = new PetriNetValidator();
 
         public RulesManager()
         {
@@ -50,17 +52,8 @@ namespace EnvironmentMonitor
 
             AddToPetriNet(homeRule);
 
-            Deadlock deadlock = new Deadlock(_petriNet, 5);
-            try
-            {
-                deadlock.Run();
-                bool isDeadlock = deadlock.IsDeadlock;
-            }
-            catch (Exception ex)
-            {
-                
-                //throw;
-            }
+            Result deadlockExistance = petriNetValidator.CheckDeadlock(_petriNet);
+            Result boundnessExistance = petriNetValidator.CheckBoundness(_petriNet);
            
         }
 

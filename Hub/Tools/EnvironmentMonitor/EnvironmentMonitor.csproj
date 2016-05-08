@@ -63,6 +63,7 @@
     <Compile Include="Problems\ExceedSituation.cs" />
     <Compile Include="Problems\StatesConflictSituation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Result.cs" />
     <Compile Include="RulesManager.cs" />
     <Compile Include="SituationPriority.cs" />
     <Compile Include="SituationSolver.cs" />
@@ -70,6 +71,7 @@
     <Compile Include="Modules\MotionSensorSimulation.cs" />
     <Compile Include="Validators\HistoryValidator.cs" />
     <Compile Include="Validators\LimitValidator.cs" />
+    <Compile Include="Validators\PetriNetValidator.cs" />
     <Compile Include="Validators\StagnancyValidator.cs" />
   </ItemGroup>
   <ItemGroup>

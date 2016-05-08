@@ -1,19 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using EnvironmentMonitor;
 using HomeOS.Hub.Common;
 using HomeOS.Hub.Platform.Views;
-using System.Net;
-using System.Runtime.Serialization;
-//using System.Runtime.Serialization.Json;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.ServiceModel.Description;
 using HomeOS.Hub.Tools.EnvironmentMonitor.Modules;
-using PetrinetTool;
 
 namespace HomeOS.Hub.Tools.EnvironmentMonitor
 {
