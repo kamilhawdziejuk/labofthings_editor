@@ -103,8 +103,9 @@
 
         function FillStatesCallback2(context, result) {
             $("#states2Id").empty();
-            for (var i = 0; i < result.length; i++) {
-                $("#states2Id").append('<option value="' + result[i] + '">' + result[i] + '</option>');
+            for (var i = 0; i < result.length; i+=2) {
+                $("#states2Id").append(result[i] + '=' + result[i + 1] + "</br>");
+
             }
         }
 
@@ -141,7 +142,6 @@
             <ul>
                 <li><a href="HomeStates.html">States Editor</a></li>
                 <li><a href="HomeEditor.html">Rules Editor</a></li>
-                <li><a href="link">Validation Tool</a></li>
             </ul>
         </nav>
     </section>
