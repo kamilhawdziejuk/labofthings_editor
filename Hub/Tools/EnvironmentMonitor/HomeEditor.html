@@ -5,7 +5,12 @@
       <script type="text/javascript" src="jquery-1.7.1.js"></script>
       <script type="text/javascript" src="common.js"></script>
       <script type="text/javascript" src="DashboardWebJavascript.js"></script>
-      <script type="text/javascript" src="homeos-1.1.js"></script>
+    <script type="text/javascript" src="homeos-1.1.js"></script>
+
+
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+
+    <script type="text/javascript" src="ApplicationCtrl.js"></script>
   <link rel="stylesheet" media="all" type="text/css" href="Styles/HomeOSMasterStyleSheet.css" />
     <meta charset="utf-8" />
     <title></title>
@@ -103,16 +108,21 @@
 
         function FillStatesCallback2(context, result) {
             $("#states2Id").empty();
-            for (var i = 0; i < result.length; i+=2) {
-                $("#states2Id").append(result[i] + '=' + result[i + 1] + "</br>");
-
+            for (var i = 0; i < result.length; i++) {
+                $("#states2Id").append('<option value="' + result[i] + '">' + result[i] + '</option>');
             }
         }
 
         function ValidationStatesCallback(context, result) {
             $("#validationsId").empty();
-            for (var i = 0; i < result.length; i++) {
-                $("#validationsId").append('<option value="' + result[i] + '">' + result[i] + '</option>');
+
+            var validationResponse = JSON.parse(result);
+
+            for (index = 0; index < validationResponse.Validations.length; ++index) {
+
+                var v = validationResponse.Validations[index];
+                $("#validationsId").append('ValidatorName:' + v.Name + ' result=' + v.IsValid + '</br>');
+               
             }
         }
 
@@ -126,63 +136,64 @@
             var state1 = GetSelectedState1();
             var state2 = GetSelectedState2();
 
-            //var ruleDefinition = mod1 + '(state:' + state1 + ') -> ' + mod2 + '(state:' + state2 + ')';
+            var ruleDefinitionDisplay = mod1 + '(state:' + state1 + ') -> ' + mod2 + '(state:' + state2 + ')';
             var ruleDefinition = mod1 + ',' + state1 + ',' + mod2 + ',' + state2;
             new PlatformServiceHelper().MakeServiceCall("webapp/AddRuleWeb", '{"rule":"' + ruleDefinition + '"}', EmptyCallback);
-            $("#rulesId").append(parameters);
+            $("#rulesId").append(ruleDefinitionDisplay);
+            $("#rulesId").append('<button onclick="RemoveRule();">Remove</button>');
             $("#rulesId").append('<br/>');
         }
     </script>
 
 </head>
-<body>
-        <div><h2>Home Environment -> </h2></div>
-        <section>
-        <nav>
-            <ul>
-                <li><a href="HomeStates.html">States Editor</a></li>
-                <li><a href="HomeEditor.html">Rules Editor</a></li>
-            </ul>
-        </nav>
-    </section>
-    <button onclick="InitStates();" >Init states</button>
-    <img src="SmartHouse.jpg" width="500" />
+    <body>
+        <div ng-app="APP" ng-controller="APP.ApplicationCtrl" ng-model="name">
+            <!--<h1>Hello {{ name }}!</h1>-->
+            <div><h2>Home Environment -> </h2></div>
+            <section>
+                <nav>
+                    <ul>
+                        <li><a href="HomeStates.html">States Editor</a></li>
+                        <li><a href="HomeEditor.html">Rules Editor</a></li>
+                    </ul>
+                </nav>
+            </section>
+            <button onclick="InitStates();">Init states</button>
+            <img src="SmartHouse.jpg" width="500" />
 
 
-    <div> 
-        <h3>Defining rules</h3>
-        IF module 
-        <select name="Modules" id="modules1Id" onchange="FillStates1();">
-        </select>
-        is in state
-       <select name="State" id="states1Id" >
-        </select>
-        THEN activate module 
-        <select name="Modules2" id="modules2Id" onchange="FillStates2();">
-        </select>
-        to state
-       <select name="State2" id="states2Id" >
-        </select>
-        <button onclick="SaveRules();">Add</button>
-    </div>
-        
-<!--    <div>
-        <hr />
-            <h3>Rules detecting</h3>
-        Write your expectation rule (ex. "When user enters a house then turn lights on"):     <textarea rows="2" cols="50" id="ruleTextId"></textarea>
-            <button onclick="CheckRule();">Check</button>
-        <br /> <br /> <br />
-        
-    </div>-->
+            <div>
+                <h3>Defining rules</h3>
+                IF module
+                <select name="Modules" id="modules1Id" onchange="FillStates1();"></select>
+                is in state
+                <select name="State" id="states1Id"></select>
+                THEN activate module
+                <select name="Modules2" id="modules2Id" onchange="FillStates2();"></select>
+                to state
+                <select name="State2" id="states2Id"></select>
+                <button onclick="SaveRules();">Add</button>
+            </div>
 
-       <hr />
+            <!--    <div>
+                    <hr />
+                    <h3>Rules detecting</h3>
+                    Write your expectation rule (ex. "When user enters a house then turn lights on"):     <textarea rows="2" cols="50" id="ruleTextId"></textarea>
+                    <button onclick="CheckRule();">Check</button>
+                    <br /> <br /> <br />
+
+                </div>-->
+
+            <hr />
             <h3>Rules added</h3>
-    <span id="rulesId" ></span>
-    
-    <button onclick="ValidateStates();">Validate set of rules</button>
-    
-    <h3>Validation results</h3>
-    <span id="validationsId"></span>
-    <!--  -->
-</body>
+            <span id="rulesId"></span>
+
+            <button onclick="ValidateStates();">Validate set of rules</button>
+
+            <h3>Validation results</h3>
+            <span id="validationsId"></span>
+            <!--  -->
+
+        </div>
+    </body>
 </html>

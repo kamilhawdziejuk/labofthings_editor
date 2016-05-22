@@ -30,6 +30,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
@@ -69,6 +73,8 @@
     <Compile Include="SituationSolver.cs" />
     <Compile Include="Solutions\LoggerSolution.cs" />
     <Compile Include="Modules\MotionSensorSimulation.cs" />
+    <Compile Include="ValidationResponse.cs" />
+    <Compile Include="ValidationsResponse.cs" />
     <Compile Include="Validators\HistoryValidator.cs" />
     <Compile Include="Validators\LimitValidator.cs" />
     <Compile Include="Validators\PetriNetValidator.cs" />
@@ -99,6 +105,9 @@
     <Content Include="HomeStates.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="ApplicationCtrl.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Rules\LeavingTheHome.xml" />
     <Content Include="Rules\MotionLampRule.xml" />
     <Content Include="Rules\WakeUpRule.xml">
@@ -114,7 +123,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

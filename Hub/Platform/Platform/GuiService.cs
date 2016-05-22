@@ -2099,7 +2099,7 @@ namespace HomeOS.Hub.Platform
             return _homeEditorService.GetModuleStates(name);
         }
 
-        public List<string> ValidateStatesWeb()
+        public string ValidateStatesWeb()
         {
             return _homeEditorService.ValidateStates();
         }
@@ -2333,7 +2333,7 @@ namespace HomeOS.Hub.Platform
 
         [OperationContract]
         [WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.WrappedRequest, ResponseFormat = WebMessageFormat.Json)]
-        List<string> ValidateStatesWeb();
+        string ValidateStatesWeb();
 
         [OperationContract]
         [WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.WrappedRequest, ResponseFormat = WebMessageFormat.Json)]

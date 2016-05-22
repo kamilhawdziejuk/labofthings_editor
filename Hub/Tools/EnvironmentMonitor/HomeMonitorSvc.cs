@@ -9,6 +9,7 @@ using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.ServiceModel.Description;
 using HomeOS.Hub.Tools.EnvironmentMonitor.Modules;
+using Newtonsoft.Json;
 
 namespace HomeOS.Hub.Tools.EnvironmentMonitor
 {
@@ -62,15 +63,21 @@ namespace HomeOS.Hub.Tools.EnvironmentMonitor
             return results;
         }
 
-        public List<string> ValidateStates()
+        public string ValidateStates()
         {
-            var results = new List<string>();
+            var results = new ValidationsResponse();
+
             foreach (var p in _rulesManager.GetPetrinetProperties())
             {
-                results.Add(p.Name);
-                results.Add(p.Success.ToString());
+                var res = new ValidationResponse();
+                res.Name = p.Name;
+                res.IsValid = p.Success;
+
+                results.Validations.Add(res);
             }
-            return results;
+
+            var result = JsonConvert.SerializeObject(results);
+            return result;
         }
 
         public List<string> GetModuleLinks(string name)
