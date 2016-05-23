@@ -1,41 +1,31 @@
-﻿using System.Linq;
-using HomeOS.Hub.Common;
-using HomeOS.Hub.Tools.EnvironmentMonitor.Validators;
-using PetrinetTool;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Xml;
-using System.Xml.Linq;
-using PetrinetTool.AnalysisTools;
+using HomeOS.Hub.Tools.EnvironmentMonitor.Validators;
+using PetrinetTool;
 
 namespace EnvironmentMonitor
 {
     public class RulesManager
     {
-        /// <summary>
-        /// Rules in the format of component, state_A, component2, state_B
-        /// </summary>
-        //private List<string> _rules = new List<string>();
+        private readonly HomeConfiguration _configuration;
+        private readonly List<HomeModule> _homeModules = new List<HomeModule>();
 
-        private List<string> _modules = new List<string>();
-        private List<string> _states = new List<string>();
+        private readonly Page _page = new Page();
+        private readonly Petrinet _petriNet = new Petrinet();
 
-        private List<HomeModule> _homeModules = new List<HomeModule>();
-
-        Petrinet _petriNet = new Petrinet();
-        Page _page = new Page();
-
-        PetriNetValidator petriNetValidator = new PetriNetValidator();
+        private readonly PetriNetValidator petriNetValidator = new PetriNetValidator();
 
         public RulesManager()
         {
+            _configuration = new HomeConfiguration();
             _petriNet.Pages.Add("current", _page);
         }
 
         public void AddRule(string mod1, string state1, string mod2, string state2)
         {
-            HomeModule moduleFrom = new HomeModule() { Name = mod1, StateDesc = state1 };
-            HomeModule moduleTo = new HomeModule() { Name = mod2, StateDesc = state2 };
+            var moduleFrom = new HomeModule {Name = mod1, StateDesc = state1};
+            var moduleTo = new HomeModule {Name = mod2, StateDesc = state2};
 
             if (!_homeModules.Contains(moduleFrom))
             {
@@ -46,14 +36,15 @@ namespace EnvironmentMonitor
             {
                 _homeModules.Add(moduleTo);
             }
+
+            var homeRule = new HomeRule {FromModule = moduleFrom, ToModule = moduleTo};
+            _configuration.AddRule(homeRule);
+
+
+            XmlWriter writer = XmlWriter.Create("HomeConfiguration.xml");
+            _configuration.Export(writer);
             
-            HomeRule homeRule = new HomeRule() { FromModule = moduleFrom, ToModule = moduleTo };
-            this.Export(homeRule);
-
             AddToPetriNet(homeRule);
-
-           
-           
         }
 
         public List<Result> GetPetrinetProperties()
@@ -75,7 +66,6 @@ namespace EnvironmentMonitor
             }
             catch (Exception ex)
             {
-                
             }
         }
 
@@ -87,7 +77,6 @@ namespace EnvironmentMonitor
             }
             catch (Exception ex)
             {
-
             }
         }
 
@@ -99,7 +88,6 @@ namespace EnvironmentMonitor
             }
             catch (Exception ex)
             {
-
             }
         }
 
@@ -116,32 +104,9 @@ namespace EnvironmentMonitor
             }
             catch (Exception ex)
             {
-                
                 throw;
             }
-          
         }
-
-        private void Export(HomeRule homeRule)
-        {
-            string name = string.Format("{0}.xml", homeRule.Name);
-            XmlWriter writer = XmlWriter.Create(name);
-
-            writer.WriteStartDocument();
-
-            writer.WriteStartElement("scxml");
-            XNamespace ns = "http://www.w3.org/2005/07/scxml";
-
-            //writer.WriteAttributeString("xmlns", ns.ToString());
-            writer.WriteAttributeString("version", "1.0");
-            writer.WriteAttributeString("initial", "ready");
-
-            homeRule.Export(writer);
-
-            writer.WriteEndElement();
-            writer.WriteEndDocument();
-            writer.Close();
-
-        }
+       
     }
 }
