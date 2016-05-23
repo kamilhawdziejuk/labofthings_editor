@@ -1,14 +1,36 @@
 ﻿using System;
+using System.IO;
 using System.Windows.Documents;
 using System.Xml;
+using Newtonsoft.Json;
 using PetrinetTool;
 
 namespace EnvironmentMonitor
 {
+    public class HomeRuleDbEntry
+    {
+        [JsonProperty(PropertyName = "id")]
+        public string Id { get; set; }
+        public string Data { get; set; }
+
+        public HomeRuleDbEntry(HomeRule rule)
+        {
+            Id = Guid.NewGuid().ToString();
+            Data = rule.Data;
+        }
+    }
+
     public class HomeRule : IXmlProvider
     {
+
+
         public HomeModule FromModule;
         public HomeModule ToModule;
+
+        public HomeRule()
+        {
+            
+        }
 
         public string Name
         {
@@ -58,6 +80,21 @@ namespace EnvironmentMonitor
                     Id = String.Format("{0}_{1}", FromModule.Name, ToModule.Name)
                 };
                 return transition;
+            }
+        }
+
+        public string Data
+        {
+            get
+            {
+                using (var sw = new StringWriter())
+                {
+                    using (var xw = XmlWriter.Create(sw))
+                    {
+                        this.Export(xw);
+                    }
+                    return sw.ToString();
+                }
             }
         }
 

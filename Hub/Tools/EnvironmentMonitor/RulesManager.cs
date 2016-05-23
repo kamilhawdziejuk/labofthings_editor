@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Xml;
 using HomeOS.Hub.Tools.EnvironmentMonitor.Validators;
 using PetrinetTool;
@@ -14,7 +15,7 @@ namespace EnvironmentMonitor
         private readonly Page _page = new Page();
         private readonly Petrinet _petriNet = new Petrinet();
 
-        private readonly PetriNetValidator petriNetValidator = new PetriNetValidator();
+        private readonly PetriNetValidator _petriNetValidator = new PetriNetValidator();
 
         public RulesManager()
         {
@@ -43,6 +44,10 @@ namespace EnvironmentMonitor
 
             XmlWriter writer = XmlWriter.Create("HomeConfiguration.xml");
             _configuration.Export(writer);
+            writer.Dispose();
+
+
+            _configuration.CreateDocumentIfNotExists(HomeConfigurationAzureDocumentDb.DatabaseName, HomeConfigurationAzureDocumentDb.CollectionName, new HomeRuleDbEntry(homeRule));
             
             AddToPetriNet(homeRule);
         }
@@ -50,8 +55,8 @@ namespace EnvironmentMonitor
         public List<Result> GetPetrinetProperties()
         {
             var results = new List<Result>();
-            Result deadlockExistance = petriNetValidator.CheckDeadlock(_petriNet);
-            Result boundnessExistance = petriNetValidator.CheckBoundness(_petriNet);
+            Result deadlockExistance = _petriNetValidator.CheckDeadlock(_petriNet);
+            Result boundnessExistance = _petriNetValidator.CheckBoundness(_petriNet);
 
             results.Add(deadlockExistance);
             results.Add(boundnessExistance);
