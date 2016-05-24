@@ -40,7 +40,10 @@ namespace HomeOS.Hub.Tools.EnvironmentMonitor
             return new List<string>();
         }
 
-
+        public List<string> GetRules()
+        {
+            return _rulesManager.GetRules();
+        }
 
         public List<string> GetModuleNames()
         {

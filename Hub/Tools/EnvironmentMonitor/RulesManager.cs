@@ -23,6 +23,13 @@ namespace EnvironmentMonitor
             _petriNet.Pages.Add("current", _page);
         }
 
+
+        public List<string> GetRules()
+        {
+            _configuration.ExecuteSimpleQuery(HomeConfigurationAzureDocumentDb.DatabaseName, HomeConfigurationAzureDocumentDb.CollectionName); 
+            return new List<string>();
+        }
+
         public void AddRule(string mod1, string state1, string mod2, string state2)
         {
             var moduleFrom = new HomeModule {Name = mod1, StateDesc = state1};

@@ -22,6 +22,8 @@
 
         function Init() {
             new PlatformServiceHelper().MakeServiceCall("webapp/GetAppNamesWeb", "", FillAppNamesCallback);
+
+            PresentRules();
         }
 
         function InitStates() {
@@ -136,13 +138,28 @@
             var state1 = GetSelectedState1();
             var state2 = GetSelectedState2();
 
-            var ruleDefinitionDisplay = mod1 + '(state:' + state1 + ') -> ' + mod2 + '(state:' + state2 + ')';
+            //var ruleDefinitionDisplay = mod1 + '(state:' + state1 + ') -> ' + mod2 + '(state:' + state2 + ')';
             var ruleDefinition = mod1 + ',' + state1 + ',' + mod2 + ',' + state2;
             new PlatformServiceHelper().MakeServiceCall("webapp/AddRuleWeb", '{"rule":"' + ruleDefinition + '"}', EmptyCallback);
-            $("#rulesId").append(ruleDefinitionDisplay);
-            $("#rulesId").append('<button onclick="RemoveRule();">Remove</button>');
-            $("#rulesId").append('<br/>');
+            //$("#rulesId").append(ruleDefinitionDisplay);
+            //$("#rulesId").append('<button onclick="RemoveRule();">Remove</button>');
+            //$("#rulesId").append('<br/>');
+
+            PresentRules();
         }
+
+        function PresentRules() {
+            new PlatformServiceHelper().MakeServiceCall("webapp/GetRulesWeb", "", FillRulesCallback);
+        }
+
+        function FillRulesCallback(context, result) {
+            $("#rulesId").empty();
+            for (var i = 0; i < result.length; i++) {
+                $("#rulesId").append(result[i]);
+                $("#rulesId").append('<br/>');
+            }
+        }
+
     </script>
 
 </head>

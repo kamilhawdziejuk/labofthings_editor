@@ -11,18 +11,24 @@ namespace EnvironmentMonitor
     {
         [JsonProperty(PropertyName = "id")]
         public string Id { get; set; }
-        public string Data { get; set; }
+
+        public string Action { get; set; }
+        public string StateFrom { get; set; }
+
+        public string StateTo { get; set; }
+
 
         public HomeRuleDbEntry(HomeRule rule)
         {
             Id = Guid.NewGuid().ToString();
-            Data = rule.Data;
+            StateFrom = rule.FromModule.Description;
+            StateTo = rule.ToModule.Description;
+            Action = rule.Transition.Name;
         }
     }
 
     public class HomeRule : IXmlProvider
     {
-
 
         public HomeModule FromModule;
         public HomeModule ToModule;
@@ -46,10 +52,10 @@ namespace EnvironmentMonitor
             {
                 var arc1 = new Arc()
                 {
-                    SourceID = FromModule.Id,
+                    SourceID = FromModule.Description,
                     TargetID = Transition.Id,
                     Weight = 1,
-                    Id = String.Format("{0}->{1}", FromModule.Id, Transition.Id)
+                    Id = String.Format("{0}->{1}", FromModule.Description, Transition.Id)
                 };
                 return arc1;
             }
@@ -62,9 +68,9 @@ namespace EnvironmentMonitor
                 var arc2 = new Arc()
                 {
                     SourceID = Transition.Id,
-                    TargetID = ToModule.Id,
+                    TargetID = ToModule.Description,
                     Weight = 1,
-                    Id = String.Format("{0}->{1}", Transition.Id, ToModule.Id)
+                    Id = String.Format("{0}->{1}", Transition.Id, ToModule.Description)
                 };
                 return arc2;
             }
@@ -76,7 +82,7 @@ namespace EnvironmentMonitor
             {
                 var transition = new PetrinetTool.Transition()
                 {
-                    Name = String.Format("Event{0}->{1}", FromModule.Name, ToModule.Name),
+                    Name = String.Format("Event({0}->{1})", FromModule.Name, ToModule.Name),
                     Id = String.Format("{0}_{1}", FromModule.Name, ToModule.Name)
                 };
                 return transition;
@@ -101,11 +107,11 @@ namespace EnvironmentMonitor
         public void Export(XmlWriter writer)
         {
             writer.WriteStartElement("state");
-            writer.WriteAttributeString("id", FromModule.Id);
+            writer.WriteAttributeString("id", FromModule.Description);
 
             writer.WriteStartElement("transition");
             writer.WriteAttributeString("event", Transition.Name);
-            writer.WriteAttributeString("target", ToModule.Id);
+            writer.WriteAttributeString("target", ToModule.Description);
             
             writer.WriteEndElement();
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Linq;
@@ -20,13 +21,14 @@ namespace EnvironmentMonitor
         public HomeConfiguration()
         {
             _homeRules = new List<HomeRule>();
+
+            this.client = new DocumentClient(new Uri(HomeConfigurationAzureDocumentDb.EndpointUri), HomeConfigurationAzureDocumentDb.PrimaryKey);
         }
 
         public async Task CreateDocumentIfNotExists(string databaseName, string collectionName, HomeRuleDbEntry entry)
         {
             try
             {
-                this.client = new DocumentClient(new Uri(HomeConfigurationAzureDocumentDb.EndpointUri), HomeConfigurationAzureDocumentDb.PrimaryKey);
                 await this.client.CreateDocumentAsync(UriFactory.CreateDocumentCollectionUri(databaseName, collectionName), entry);
             }
             catch (Exception ex)
@@ -34,6 +36,48 @@ namespace EnvironmentMonitor
                 throw;
             }
             
+        }
+
+        public void ExecuteSimpleQuery(string databaseName, string collectionName)
+        {
+            try
+            {
+                // Set some common query options
+                FeedOptions queryOptions = new FeedOptions { MaxItemCount = 10};
+
+                // Here we find the Andersen family via its LastName
+                IQueryable<HomeRuleDbEntry> familyQuery = this.client.CreateDocumentQuery<HomeRuleDbEntry>(
+                    UriFactory.CreateDocumentCollectionUri(databaseName, collectionName), queryOptions);
+                //.Where(f => f.LastName == "Andersen");
+
+                // The query is executed synchronously here, but can also be executed asynchronously via the IDocumentQuery<T> interface
+                Console.WriteLine("Running LINQ query...");
+                foreach (HomeRuleDbEntry family in familyQuery)
+                {
+                    Console.WriteLine("\tRead {0}", family);
+                }
+
+                // Now execute the same query via direct SQL
+                IQueryable<HomeRuleDbEntry> familyQueryInSql = this.client.CreateDocumentQuery<HomeRuleDbEntry>(
+                        UriFactory.CreateDocumentCollectionUri(databaseName, collectionName),
+                        "SELECT * FROM rules",//" WHERE Family.lastName = 'Andersen'",
+                        queryOptions);
+
+                Console.WriteLine("Running direct SQL query...");
+                foreach (HomeRuleDbEntry family in familyQueryInSql)
+                {
+                    Console.WriteLine("\tRead {0}", family);
+                }
+
+                Console.WriteLine("Press any key to continue ...");
+                Console.ReadKey();
+            }
+            catch (Exception ex)
+            {
+                
+                throw;
+            }
+           
         }
 
         public void AddRule(HomeRule rule)

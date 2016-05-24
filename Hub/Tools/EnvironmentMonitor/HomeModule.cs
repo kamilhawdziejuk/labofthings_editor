@@ -11,7 +11,7 @@ namespace EnvironmentMonitor
     {
         public string Name { get; set; }
         public string StateDesc { get; set; }
-        public string Id
+        public string Description
         {
             get
             {
@@ -23,7 +23,7 @@ namespace EnvironmentMonitor
         {
             get
             {
-                return new Place() { Name = this.Name, Id = Id };
+                return new Place() { Name = this.Name, Id = Description };
             }
         }
 
