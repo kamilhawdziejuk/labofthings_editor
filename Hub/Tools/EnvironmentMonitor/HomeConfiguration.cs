@@ -38,10 +38,27 @@ namespace EnvironmentMonitor
             
         }
 
-        public void ExecuteSimpleQuery(string databaseName, string collectionName)
+        public List<string> ExecuteSimpleQuery(string databaseName, string collectionName)
         {
             try
             {
+                var results = new List<string>();
+
+                var dataExist = client.CreateDocumentQuery(UriFactory.CreateDocumentCollectionUri(databaseName, collectionName))
+                       .AsEnumerable()
+                       .Any();
+
+                if (dataExist)
+                {
+                    var data = client.CreateDocumentQuery(UriFactory.CreateDocumentCollectionUri(databaseName, collectionName)).AsEnumerable();
+                    foreach (dynamic rule in data)
+                    {
+                       results.Add(rule.Action); 
+                    }
+                }
+
+                return results;
+
                 // Set some common query options
                 FeedOptions queryOptions = new FeedOptions { MaxItemCount = 10};
 
