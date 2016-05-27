@@ -147,6 +147,10 @@
             new PlatformServiceHelper().MakeServiceCall("webapp/GetRulesWeb", "", FillRulesCallback);
         }
 
+        function RemoveRule(id) {
+            new PlatformServiceHelper().MakeServiceCall("webapp/RemoveRuleWeb", 'ok', EmptyCallback);
+        }
+
         function FillRulesCallback(context, result) {
             $("#rulesId").empty();
 
@@ -156,7 +160,7 @@
                 var rule = config.Rules[index];
                 var nr = index + 1;
                 $("#rulesId").append(nr + '. ' + rule.StateFrom + ' -> ' + rule.StateTo);
-                $("#rulesId").append('<button onclick="deleteRule();">Remove</button></br>');
+                $("#rulesId").append('<button onclick="RemoveRule(\'' + rule.id + '\');">Remove</button></br>');
             }
         }
 

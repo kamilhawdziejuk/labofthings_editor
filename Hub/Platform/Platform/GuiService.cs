@@ -2114,6 +2114,11 @@ namespace HomeOS.Hub.Platform
             return _homeEditorService.GetRules();
         }
 
+        public List<string> RemoveRuleWeb(string id)
+        {
+            return _homeEditorService.RemoveRule(id);
+        }
+
         public List<string> GetModuleAttribValuesWeb(string name)
         {
             return _homeEditorService.GetModuleAttribValues(name);            
@@ -2347,6 +2352,10 @@ namespace HomeOS.Hub.Platform
         [OperationContract]
         [WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.WrappedRequest, ResponseFormat = WebMessageFormat.Json)]
         string GetRulesWeb();
+
+        [OperationContract]
+        [WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.WrappedRequest, ResponseFormat = WebMessageFormat.Json)]
+        List<string> RemoveRuleWeb(string id);
 
         [OperationContract]
         [WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.WrappedRequest, ResponseFormat = WebMessageFormat.Json)]

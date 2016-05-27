@@ -47,6 +47,11 @@ namespace HomeOS.Hub.Tools.EnvironmentMonitor
             return result;
         }
 
+        public List<string> RemoveRule(string id)
+        {
+            return new List<string>();
+        }
+
         public List<string> GetModuleNames()
         {
             List<string> names = new List<string>();
