@@ -24,7 +24,7 @@ namespace EnvironmentMonitor
         }
 
 
-        public List<string> GetRules()
+        public HomeConfigurationDb GetRules()
         {
             return _configuration.ExecuteSimpleQuery(HomeConfigurationAzureDocumentDb.DatabaseName, HomeConfigurationAzureDocumentDb.CollectionName); 
         }

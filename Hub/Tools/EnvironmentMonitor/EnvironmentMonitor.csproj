@@ -56,12 +56,14 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Db\HomeConfigurationDb.cs" />
     <Compile Include="HomeConfigurationAzureDocumentDb.cs" />
     <Compile Include="HomeConfiguration.cs" />
     <Compile Include="HomeMonitorSvc.cs" />
     <Compile Include="EnvironmentMonitor.cs" />
     <Compile Include="HomeModule.cs" />
     <Compile Include="HomeRule.cs" />
+    <Compile Include="Db\HomeRuleDbEntry.cs" />
     <Compile Include="ISolution.cs" />
     <Compile Include="IValidator.cs" />
     <Compile Include="IModuleLinks.cs" />

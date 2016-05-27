@@ -40,9 +40,11 @@ namespace HomeOS.Hub.Tools.EnvironmentMonitor
             return new List<string>();
         }
 
-        public List<string> GetRules()
+        public string GetRules()
         {
-            return _rulesManager.GetRules();
+            HomeConfigurationDb config = _rulesManager.GetRules();
+            var result = JsonConvert.SerializeObject(config);
+            return result;
         }
 
         public List<string> GetModuleNames()

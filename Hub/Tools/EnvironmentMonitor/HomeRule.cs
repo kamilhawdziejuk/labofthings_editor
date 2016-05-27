@@ -2,31 +2,10 @@
 using System.IO;
 using System.Windows.Documents;
 using System.Xml;
-using Newtonsoft.Json;
 using PetrinetTool;
 
 namespace EnvironmentMonitor
 {
-    public class HomeRuleDbEntry
-    {
-        [JsonProperty(PropertyName = "id")]
-        public string Id { get; set; }
-
-        public string Action { get; set; }
-        public string StateFrom { get; set; }
-
-        public string StateTo { get; set; }
-
-
-        public HomeRuleDbEntry(HomeRule rule)
-        {
-            Id = Guid.NewGuid().ToString();
-            StateFrom = rule.FromModule.Description;
-            StateTo = rule.ToModule.Description;
-            Action = rule.Transition.Name;
-        }
-    }
-
     public class HomeRule : IXmlProvider
     {
 

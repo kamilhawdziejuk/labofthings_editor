@@ -38,12 +38,12 @@ namespace EnvironmentMonitor
             
         }
 
-        public List<string> ExecuteSimpleQuery(string databaseName, string collectionName)
+        public HomeConfigurationDb ExecuteSimpleQuery(string databaseName, string collectionName)
         {
             try
             {
-                var results = new List<string>();
-
+                var config = new HomeConfigurationDb();
+              
                 var dataExist = client.CreateDocumentQuery(UriFactory.CreateDocumentCollectionUri(databaseName, collectionName))
                        .AsEnumerable()
                        .Any();
@@ -53,11 +53,12 @@ namespace EnvironmentMonitor
                     var data = client.CreateDocumentQuery(UriFactory.CreateDocumentCollectionUri(databaseName, collectionName)).AsEnumerable();
                     foreach (dynamic rule in data)
                     {
-                       results.Add(rule.Action); 
+                        var entry = new HomeRuleDbEntry(rule.id, rule.Action, rule.StateFrom, rule.StateTo);
+                        config.Rules.Add(entry);
                     }
                 }
 
-                return results;
+                return config;
 
                 // Set some common query options
                 FeedOptions queryOptions = new FeedOptions { MaxItemCount = 10};
