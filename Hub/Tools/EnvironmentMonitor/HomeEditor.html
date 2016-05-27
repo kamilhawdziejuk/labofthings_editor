@@ -154,7 +154,9 @@
             for (index = 0; index < config.Rules.length; ++index) {
 
                 var rule = config.Rules[index];
-                $("#rulesId").append(index + ' ' + rule.StateFrom + ' -> ' + rule.StateTo + '</br>');
+                var nr = index + 1;
+                $("#rulesId").append(nr + '. ' + rule.StateFrom + ' -> ' + rule.StateTo);
+                $("#rulesId").append('<button onclick="deleteRule();">Remove</button></br>');
             }
         }
 
@@ -174,7 +176,7 @@
                 </nav>
             </section>
             <button onclick="InitStates();">Init states</button>
-            <img src="SmartHouse.jpg" width="500" />
+            <img src="SmartHouse.jpg" width="400" />
 
 
             <div>
