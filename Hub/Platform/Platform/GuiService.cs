@@ -6,7 +6,6 @@ using System.ServiceModel.Description;
 using HomeOS.Hub.Platform.ManagedWifi;
 using HomeOS.Hub.Common;
 using HomeOS.Hub.Platform.Views;
-using HomeOS.Shared;
 using HomeOS.Hub.Tools.EnvironmentMonitor;
 
 
@@ -2114,9 +2113,10 @@ namespace HomeOS.Hub.Platform
             return _homeEditorService.GetRules();
         }
 
-        public List<string> RemoveRuleWeb(string id)
+        public string RemoveRuleWeb(string id)
         {
-            return _homeEditorService.RemoveRule(id);
+            _homeEditorService.RemoveRule(id);
+            return string.Empty;
         }
 
         public List<string> GetModuleAttribValuesWeb(string name)
@@ -2355,7 +2355,7 @@ namespace HomeOS.Hub.Platform
 
         [OperationContract]
         [WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.WrappedRequest, ResponseFormat = WebMessageFormat.Json)]
-        List<string> RemoveRuleWeb(string id);
+        string RemoveRuleWeb(string id);
 
         [OperationContract]
         [WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.WrappedRequest, ResponseFormat = WebMessageFormat.Json)]

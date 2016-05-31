@@ -148,7 +148,9 @@
         }
 
         function RemoveRule(id) {
-            new PlatformServiceHelper().MakeServiceCall("webapp/RemoveRuleWeb", 'ok', EmptyCallback);
+            var parameters = '{"id":"' + id + '"}';
+            new PlatformServiceHelper().MakeServiceCall("webapp/RemoveRuleWeb", parameters, EmptyCallback);
+            PresentRules();
         }
 
         function FillRulesCallback(context, result) {

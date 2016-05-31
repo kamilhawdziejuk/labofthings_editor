@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices;
 using EnvironmentMonitor;
 using HomeOS.Hub.Common;
 using HomeOS.Hub.Platform.Views;
@@ -47,14 +46,14 @@ namespace HomeOS.Hub.Tools.EnvironmentMonitor
             return result;
         }
 
-        public List<string> RemoveRule(string id)
+        public string RemoveRule(string id)
         {
-            return new List<string>();
+            return string.Empty;
         }
 
         public List<string> GetModuleNames()
         {
-            List<string> names = new List<string>();
+            var names = new List<string>();
             foreach (VModule module in _modules)
             {
                 names.Add(module.GetDescription(null));
