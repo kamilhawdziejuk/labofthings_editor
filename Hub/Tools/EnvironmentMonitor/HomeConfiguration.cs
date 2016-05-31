@@ -38,6 +38,22 @@ namespace EnvironmentMonitor
             
         }
 
+        public async Task DeleteDocumentIfExists(string databaseName, string collectionName, string id)
+        {
+            try
+            {
+                Document document =
+                    client.CreateDocumentQuery(UriFactory.CreateDocumentCollectionUri(databaseName, collectionName)).AsEnumerable().FirstOrDefault(elem => elem.Id == id);
+
+                ResourceResponse<Document> response = await client.DeleteDocumentAsync(document.SelfLink);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+
+        }
+
         public HomeConfigurationDb ExecuteSimpleQuery(string databaseName, string collectionName)
         {
             try

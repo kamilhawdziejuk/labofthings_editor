@@ -48,6 +48,7 @@ namespace HomeOS.Hub.Tools.EnvironmentMonitor
 
         public string RemoveRule(string id)
         {
+            _rulesManager.RemoveRule(id);
             return string.Empty;
         }
 

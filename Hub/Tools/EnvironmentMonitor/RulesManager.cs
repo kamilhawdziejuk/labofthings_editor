@@ -29,6 +29,11 @@ namespace EnvironmentMonitor
             return _configuration.ExecuteSimpleQuery(HomeConfigurationAzureDocumentDb.DatabaseName, HomeConfigurationAzureDocumentDb.CollectionName); 
         }
 
+        public void RemoveRule(string id)
+        {
+            _configuration.DeleteDocumentIfExists(HomeConfigurationAzureDocumentDb.DatabaseName, HomeConfigurationAzureDocumentDb.CollectionName, id);
+        }
+
         public void AddRule(string mod1, string state1, string mod2, string state2)
         {
             var moduleFrom = new HomeModule {Name = mod1, StateDesc = state1};
