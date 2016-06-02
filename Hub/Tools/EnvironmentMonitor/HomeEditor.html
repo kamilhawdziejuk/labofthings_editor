@@ -1,201 +1,177 @@
 ﻿<!DOCTYPE html>
 
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
-<head>
-      <script type="text/javascript" src="jquery-1.7.1.js"></script>
-      <script type="text/javascript" src="common.js"></script>
-      <script type="text/javascript" src="DashboardWebJavascript.js"></script>
-    <script type="text/javascript" src="homeos-1.1.js"></script>
+    <head>
+        <script type="text/javascript" src="jquery-1.7.1.js"></script>
+        <script type="text/javascript" src="common.js"></script>
+        <script type="text/javascript" src="DashboardWebJavascript.js"></script>
+        <script type="text/javascript" src="homeos-1.1.js"></script>
 
 
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 
-    <script type="text/javascript" src="ApplicationCtrl.js"></script>
-  <link rel="stylesheet" media="all" type="text/css" href="Styles/HomeOSMasterStyleSheet.css" />
-    <meta charset="utf-8" />
-    <title></title>
-    <style>
-        ul {
-    list-style-type: none;
-    margin: 2px;
-    padding: 2px;
-    width: 400px;
-    background-color: lightslategray;
-}
+        <script type="text/javascript" src="ApplicationCtrl.js"></script>
+        <link rel="stylesheet" media="all" type="text/css" href="Styles/HomeOSMasterStyleSheet.css" />
+        <link rel="stylesheet" type="text/css" href="Editor.css">
+        <meta charset="utf-8" />
+        <title></title>
+    
+        <script>
+            $(document).ready(function() {
+                Init();
+            });
 
-li {
-    display: inline;
-}
-li a {
-    display: inline;
-    color: white;
-    padding: 8px 0 8px 16px;
-    text-decoration: none;
-}
+            function Init() {
+                new PlatformServiceHelper().MakeServiceCall("webapp/GetAppNamesWeb", "", FillAppNamesCallback);
 
-/* Change the link color on hover */
-li a:hover {
-    background-color: #555;
-    color: lightblue;
-}
-
-    </style>
-    <script>
-        $(document).ready(function () {
-            Init();
-        });
-
-        function Init() {
-            new PlatformServiceHelper().MakeServiceCall("webapp/GetAppNamesWeb", "", FillAppNamesCallback);
-
-            PresentRules();
-        }
-
-        function InitStates() {
-            var selectBox = document.getElementById("modules1Id");
-            var selectedValue1 = selectBox.options[0].value;
-            new PlatformServiceHelper().MakeServiceCall("webapp/GetModuleStatesWeb", '{"name":"' + selectedValue1 + '"}', FillStatesCallback1);
-
-            var selectBox2 = document.getElementById("modules2Id");
-            var selectedValue2 = selectBox2.options[0].value;
-            new PlatformServiceHelper().MakeServiceCall("webapp/GetModuleStatesWeb", '{"name":"' + selectedValue2 + '"}', FillStatesCallback2);
-        }
-
-        //
-        function ValidateStates() {
-            new PlatformServiceHelper().MakeServiceCall("webapp/ValidateStatesWeb", "", ValidationStatesCallback);
-        }
-
-        function CheckRule() {
-            var ruleText = document.getElementById("ruleTextId").value;
-            new PlatformServiceHelper().MakeServiceCall("webapp/CheckRuleWeb", '{"ruleText":"' + ruleText + '"}', CheckRuleCallback);
-        }
-
-        function CheckRuleCallback(context, result) {
-            var moduleNr1 = result[0];
-            var moduleNr2 = result[1];
-
-            var selectBox = document.getElementById("modules1Id");
-            selectBox.selectedIndex = moduleNr1;
-
-            var selectBox2 = document.getElementById("modules2Id");
-            selectBox2.selectedIndex = moduleNr2;
-        }
-
-        function FillAppNamesCallback(context, result) {
-            $("#modules1Id").empty();
-            $("#modules2Id").empty();
-            for (var i = 0; i < result.length; i++) {
-                var optionData = '<option value="' + result[i] + '">' + result[i] + '</option>';
-                $("#modules1Id").append(optionData);
-                $("#modules2Id").append(optionData);
+                PresentRules();
             }
-        }
 
-        function GetSelectedModule1() {
-            var selectBox = document.getElementById("modules1Id");
-            var selectedValue = selectBox.options[selectBox.selectedIndex].value;
-            return selectedValue;
-        }
+            function InitStates() {
+                var selectBox = document.getElementById("modules1Id");
+                var selectedValue1 = selectBox.options[0].value;
+                new PlatformServiceHelper().MakeServiceCall("webapp/GetModuleStatesWeb", '{"name":"' + selectedValue1 + '"}', FillStatesCallback1);
 
-        function GetSelectedModule2() {
-            var selectBox = document.getElementById("modules2Id");
-            var selectedValue = selectBox.options[selectBox.selectedIndex].value;
-            return selectedValue;
-        }
-
-        function GetSelectedState1() {
-            var selectBox = document.getElementById("states1Id");
-            var selectedValue = selectBox.options[selectBox.selectedIndex].value;
-            return selectedValue;
-        }
-
-        function GetSelectedState2() {
-            var selectBox = document.getElementById("states2Id");
-            var selectedValue = selectBox.options[selectBox.selectedIndex].value;
-            return selectedValue;
-        }
-
-        function FillStates1() {
-            var parameters = '{"name":"' + GetSelectedModule1() + '"}';
-            new PlatformServiceHelper().MakeServiceCall("webapp/GetModuleStatesWeb", parameters, FillStatesCallback1);
-        }
-
-        function FillStates2() {
-            var parameters = '{"name":"' + GetSelectedModule2() + '"}';
-            new PlatformServiceHelper().MakeServiceCall("webapp/GetModuleStatesWeb", parameters, FillStatesCallback2);
-        }
-
-        function FillStatesCallback1(context, result) {
-            $("#states1Id").empty();
-            for (var i = 0; i < result.length; i++) {
-                $("#states1Id").append('<option value="' + result[i] + '">' + result[i] + '</option>');
+                var selectBox2 = document.getElementById("modules2Id");
+                var selectedValue2 = selectBox2.options[0].value;
+                new PlatformServiceHelper().MakeServiceCall("webapp/GetModuleStatesWeb", '{"name":"' + selectedValue2 + '"}', FillStatesCallback2);
             }
-        }
 
-        function FillStatesCallback2(context, result) {
-            $("#states2Id").empty();
-            for (var i = 0; i < result.length; i++) {
-                $("#states2Id").append('<option value="' + result[i] + '">' + result[i] + '</option>');
+            //
+            function ValidateStates() {
+                new PlatformServiceHelper().MakeServiceCall("webapp/ValidateStatesWeb", "", ValidationStatesCallback);
             }
-        }
 
-        function ValidationStatesCallback(context, result) {
-            $("#validationsId").empty();
-
-            var validationResponse = JSON.parse(result);
-
-            for (index = 0; index < validationResponse.Validations.length; ++index) {
-
-                var v = validationResponse.Validations[index];
-                $("#validationsId").append('ValidatorName:' + v.Name + ' result=' + v.IsValid + '</br>');
+            function CheckRule() {
+                var ruleText = document.getElementById("ruleTextId").value;
+                new PlatformServiceHelper().MakeServiceCall("webapp/CheckRuleWeb", '{"ruleText":"' + ruleText + '"}', CheckRuleCallback);
             }
-        }
 
-        function EmptyCallback(context, result) {
+            function CheckRuleCallback(context, result) {
+                var moduleNr1 = result[0];
+                var moduleNr2 = result[1];
 
-        }
+                var selectBox = document.getElementById("modules1Id");
+                selectBox.selectedIndex = moduleNr1;
 
-        function SaveRules() {
-            var mod1 = GetSelectedModule1();
-            var mod2 = GetSelectedModule2();
-            var state1 = GetSelectedState1();
-            var state2 = GetSelectedState2();
-
-            var ruleDefinition = mod1 + ',' + state1 + ',' + mod2 + ',' + state2;
-            new PlatformServiceHelper().MakeServiceCall("webapp/AddRuleWeb", '{"rule":"' + ruleDefinition + '"}', EmptyCallback);
-
-            PresentRules();
-        }
-
-        function PresentRules() {
-            new PlatformServiceHelper().MakeServiceCall("webapp/GetRulesWeb", "", FillRulesCallback);
-            ValidateStates();
-        }
-
-        function RemoveRule(id) {
-            var parameters = '{"id":"' + id + '"}';
-            new PlatformServiceHelper().MakeServiceCall("webapp/RemoveRuleWeb", parameters, EmptyCallback);
-            PresentRules();
-        }
-
-        function FillRulesCallback(context, result) {
-            $("#rulesId").empty();
-
-            var config = JSON.parse(result);
-            for (index = 0; index < config.Rules.length; ++index) {
-
-                var rule = config.Rules[index];
-                var nr = index + 1;
-                $("#rulesId").append(nr + '. ' + rule.StateFrom + ' -> ' + rule.StateTo);
-                $("#rulesId").append('<button onclick="RemoveRule(\'' + rule.id + '\');">Remove</button></br>');
+                var selectBox2 = document.getElementById("modules2Id");
+                selectBox2.selectedIndex = moduleNr2;
             }
-        }
 
-    </script>
+            function FillAppNamesCallback(context, result) {
+                $("#modules1Id").empty();
+                $("#modules2Id").empty();
+                for (var i = 0; i < result.length; i++) {
+                    var optionData = '<option value="' + result[i] + '">' + result[i] + '</option>';
+                    $("#modules1Id").append(optionData);
+                    $("#modules2Id").append(optionData);
+                }
+            }
+
+            function GetSelectedModule1() {
+                var selectBox = document.getElementById("modules1Id");
+                var selectedValue = selectBox.options[selectBox.selectedIndex].value;
+                return selectedValue;
+            }
+
+            function GetSelectedModule2() {
+                var selectBox = document.getElementById("modules2Id");
+                var selectedValue = selectBox.options[selectBox.selectedIndex].value;
+                return selectedValue;
+            }
+
+            function GetSelectedState1() {
+                var selectBox = document.getElementById("states1Id");
+                var selectedValue = selectBox.options[selectBox.selectedIndex].value;
+                return selectedValue;
+            }
+
+            function GetSelectedState2() {
+                var selectBox = document.getElementById("states2Id");
+                var selectedValue = selectBox.options[selectBox.selectedIndex].value;
+                return selectedValue;
+            }
+
+            function FillStates1() {
+                var parameters = '{"name":"' + GetSelectedModule1() + '"}';
+                new PlatformServiceHelper().MakeServiceCall("webapp/GetModuleStatesWeb", parameters, FillStatesCallback1);
+            }
+
+            function FillStates2() {
+                var parameters = '{"name":"' + GetSelectedModule2() + '"}';
+                new PlatformServiceHelper().MakeServiceCall("webapp/GetModuleStatesWeb", parameters, FillStatesCallback2);
+            }
+
+            function FillStatesCallback1(context, result) {
+                $("#states1Id").empty();
+                for (var i = 0; i < result.length; i++) {
+                    $("#states1Id").append('<option value="' + result[i] + '">' + result[i] + '</option>');
+                }
+            }
+
+            function FillStatesCallback2(context, result) {
+                $("#states2Id").empty();
+                for (var i = 0; i < result.length; i++) {
+                    $("#states2Id").append('<option value="' + result[i] + '">' + result[i] + '</option>');
+                }
+            }
+
+            function ValidationStatesCallback(context, result) {
+                $("#validationsId").empty();
+
+                var validationResponse = JSON.parse(result);
+
+                for (index = 0; index < validationResponse.Validations.length; ++index) {
+
+                    var v = validationResponse.Validations[index];
+                    $("#validationsId").append('ValidatorName:' + v.Name + ' result=' + v.IsValid + '</br>');
+                }
+            }
+
+            function EmptyCallback(context, result) {
+
+            }
+
+            function SaveRules() {
+                var mod1 = GetSelectedModule1();
+                var mod2 = GetSelectedModule2();
+                var state1 = GetSelectedState1();
+                var state2 = GetSelectedState2();
+
+                var ruleDefinition = mod1 + ',' + state1 + ',' + mod2 + ',' + state2;
+                new PlatformServiceHelper().MakeServiceCall("webapp/AddRuleWeb", '{"rule":"' + ruleDefinition + '"}', EmptyCallback);
+
+                PresentRules();
+            }
+
+            function PresentRules() {
+                new PlatformServiceHelper().MakeServiceCall("webapp/GetRulesWeb", "", FillRulesCallback);
+                ValidateStates();
+            }
+
+            function RemoveRule(id) {
+                var parameters = '{"id":"' + id + '"}';
+                new PlatformServiceHelper().MakeServiceCall("webapp/RemoveRuleWeb", parameters, EmptyCallback);
+                PresentRules();
+            }
+
+            function FillRulesCallback(context, result) {
+                $("#rulesId").empty();
+
+                var config = JSON.parse(result);
+                for (index = 0; index < config.Rules.length; ++index) {
+
+                    var rule = config.Rules[index];
+                    var nr = index + 1;
+                    $("#rulesId").append(nr + '. ' + rule.StateFrom + ' -> ' + rule.StateTo);
+                    $("#rulesId").append('<button onclick="RemoveRule(\'' + rule.id + '\');">Remove</button></br>');
+                }
+            }
+
+        </script>
     
 
-</head>
+    </head>
     <body>
         <div ng-app="APP" ng-controller="APP.ApplicationCtrl" ng-model="name">
             <!--<h1>Hello {{ name }}!</h1>-->
@@ -211,31 +187,31 @@ li a:hover {
             <hr />
             <img src="SmartHouse.jpg" width="400" />
             <hr />
-            <button onclick="InitStates();">Init states</button>
+            <button onclick=" InitStates(); ">Init states</button>
             
 
 
             <div>
                 <h3>Defining rules:</h3>
                 IF module
-                <select name="Modules" id="modules1Id" onchange="FillStates1();"></select>
+                <select name="Modules" id="modules1Id" onchange=" FillStates1(); "></select>
                 is in state
                 <select name="State" id="states1Id"></select>
                 THEN activate module
-                <select name="Modules2" id="modules2Id" onchange="FillStates2();"></select>
+                <select name="Modules2" id="modules2Id" onchange=" FillStates2(); "></select>
                 to state
                 <select name="State2" id="states2Id"></select>
-                <button onclick="SaveRules();">Add</button>
+                <button onclick=" SaveRules(); ">Add</button>
             </div>
 
             <!--    <div>
-                    <hr />
-                    <h3>Rules detecting</h3>
-                    Write your expectation rule (ex. "When user enters a house then turn lights on"):     <textarea rows="2" cols="50" id="ruleTextId"></textarea>
-                    <button onclick="CheckRule();">Check</button>
-                    <br /> <br /> <br />
+                        <hr />
+                        <h3>Rules detecting</h3>
+                        Write your expectation rule (ex. "When user enters a house then turn lights on"):     <textarea rows="2" cols="50" id="ruleTextId"></textarea>
+                        <button onclick="CheckRule();">Check</button>
+                        <br /> <br /> <br />
 
-                </div>-->
+                    </div>-->
 
             <hr />
             <h3>Rules added:</h3>

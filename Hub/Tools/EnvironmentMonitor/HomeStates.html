@@ -1,134 +1,135 @@
 ﻿<!DOCTYPE html>
 
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
-<head>
-      <script type="text/javascript" src="jquery-1.7.1.js"></script>
-      <script type="text/javascript" src="common.js"></script>
-      <script type="text/javascript" src="DashboardWebJavascript.js"></script>
-      <script type="text/javascript" src="homeos-1.1.js"></script>
-  <link rel="stylesheet" media="all" type="text/css" href="Styles/HomeOSMasterStyleSheet.css" />
-    <meta charset="utf-8" />
-    <title></title>
+    <head>
+        <script type="text/javascript" src="jquery-1.7.1.js"></script>
+        <script type="text/javascript" src="common.js"></script>
+        <script type="text/javascript" src="DashboardWebJavascript.js"></script>
+        <script type="text/javascript" src="homeos-1.1.js"></script>
+        <link rel="stylesheet" media="all" type="text/css" href="Styles/HomeOSMasterStyleSheet.css" />
+        <link rel="stylesheet" type="text/css" href="Editor.css">
+        <meta charset="utf-8" />
+        <title></title>
 
-    <script>
-        $(document).ready(function () {
-            Init();
-        });
+        <script>
+            $(document).ready(function() {
+                Init();
+            });
 
-        function Init() {
-            new PlatformServiceHelper().MakeServiceCall("webapp/GetAppNamesWeb", "", FillAppNamesCallback);
-        }
-
-        function InitStates() {
-            var selectBox = document.getElementById("modules1Id");
-            var selectedValue1 = selectBox.options[0].value;
-            new PlatformServiceHelper().MakeServiceCall("webapp/GetModuleStatesWeb", '{"name":"' + selectedValue1 + '"}', FillStatesCallback1);
-
-            //var selectBox2 = document.getElementById("modules2Id");
-            //var selectedValue2 = selectBox2.options[0].value;
-            //new PlatformServiceHelper().MakeServiceCall("webapp/GetModuleStatesWeb", '{"name":"' + selectedValue2 + '"}', FillStatesCallback2);
-        }
-
-        function FillAppNamesCallback(context, result) {
-            $("#modules1Id").empty();
-           // $("#modules2Id").empty();
-            for (var i = 0; i < result.length; i++) {
-                var optionData = '<option value="' + result[i] + '">' + result[i] + '</option>';
-                $("#modules1Id").append(optionData);
-               // $("#modules2Id").append(optionData);
+            function Init() {
+                new PlatformServiceHelper().MakeServiceCall("webapp/GetAppNamesWeb", "", FillAppNamesCallback);
             }
-        }
 
-        function GetSelectedModule1() {
-            var selectBox = document.getElementById("modules1Id");
-            var selectedValue = selectBox.options[selectBox.selectedIndex].value;
-            return selectedValue;
-        }
+            function InitStates() {
+                var selectBox = document.getElementById("modules1Id");
+                var selectedValue1 = selectBox.options[0].value;
+                new PlatformServiceHelper().MakeServiceCall("webapp/GetModuleStatesWeb", '{"name":"' + selectedValue1 + '"}', FillStatesCallback1);
 
-        function GetSelectedModule2() {
-            var selectBox = document.getElementById("modules2Id");
-            var selectedValue = selectBox.options[selectBox.selectedIndex].value;
-            return selectedValue;
-        }
-
-        function GetSelectedState1() {
-            var selectBox = document.getElementById("states1Id");
-            var selectedValue = selectBox.options[selectBox.selectedIndex].value;
-            return selectedValue;
-        }
-
-        function GetSelectedState2() {
-            var selectBox = document.getElementById("states2Id");
-            var selectedValue = selectBox.options[selectBox.selectedIndex].value;
-            return selectedValue;
-        }
-
-        function FillStates1() {
-            var parameters = '{"name":"' + GetSelectedModule1() + '"}';
-            new PlatformServiceHelper().MakeServiceCall("webapp/GetModuleStatesWeb", parameters, FillStatesCallback1);
-        }
-
-        function FillStates2() {
-            var parameters = '{"name":"' + GetSelectedModule2() + '"}';
-            new PlatformServiceHelper().MakeServiceCall("webapp/GetModuleStatesWeb", parameters, FillStatesCallback2);
-        }
-
-        function FillStatesCallback1(context, result) {
-            $("#areaId").empty();
-            for (var i = 0; i < result.length; i++) {
-                $("#areaId").append(result[i]);
-                $("#areaId").append("; <br />");
+                //var selectBox2 = document.getElementById("modules2Id");
+                //var selectedValue2 = selectBox2.options[0].value;
+                //new PlatformServiceHelper().MakeServiceCall("webapp/GetModuleStatesWeb", '{"name":"' + selectedValue2 + '"}', FillStatesCallback2);
             }
-        }
 
-        function FillStatesCallback2(context, result) {
-            $("#states2Id").empty();
-            for (var i = 0; i < result.length; i++) {
-                $("#states2Id").append('<option value="' + result[i] + '">' + result[i] + '</option>');
+            function FillAppNamesCallback(context, result) {
+                $("#modules1Id").empty();
+                // $("#modules2Id").empty();
+                for (var i = 0; i < result.length; i++) {
+                    var optionData = '<option value="' + result[i] + '">' + result[i] + '</option>';
+                    $("#modules1Id").append(optionData);
+                    // $("#modules2Id").append(optionData);
+                }
             }
-        }
 
-        function SaveRules() {
-            var mod1 = GetSelectedModule1();
-            var mod2 = GetSelectedModule2();
-            var state1 = GetSelectedState1();
-            var state2 = GetSelectedState2();
-            $("#rulesId").append(mod1 + '(state:' + state1 + ') -> ' + mod2 + '(state:' + state2 + ')');
-            $("#rulesId").append('<br/>');
-        }
-    </script>
+            function GetSelectedModule1() {
+                var selectBox = document.getElementById("modules1Id");
+                var selectedValue = selectBox.options[selectBox.selectedIndex].value;
+                return selectedValue;
+            }
 
-</head>
-<body>
+            function GetSelectedModule2() {
+                var selectBox = document.getElementById("modules2Id");
+                var selectedValue = selectBox.options[selectBox.selectedIndex].value;
+                return selectedValue;
+            }
+
+            function GetSelectedState1() {
+                var selectBox = document.getElementById("states1Id");
+                var selectedValue = selectBox.options[selectBox.selectedIndex].value;
+                return selectedValue;
+            }
+
+            function GetSelectedState2() {
+                var selectBox = document.getElementById("states2Id");
+                var selectedValue = selectBox.options[selectBox.selectedIndex].value;
+                return selectedValue;
+            }
+
+            function FillStates1() {
+                var parameters = '{"name":"' + GetSelectedModule1() + '"}';
+                new PlatformServiceHelper().MakeServiceCall("webapp/GetModuleStatesWeb", parameters, FillStatesCallback1);
+            }
+
+            function FillStates2() {
+                var parameters = '{"name":"' + GetSelectedModule2() + '"}';
+                new PlatformServiceHelper().MakeServiceCall("webapp/GetModuleStatesWeb", parameters, FillStatesCallback2);
+            }
+
+            function FillStatesCallback1(context, result) {
+                $("#areaId").empty();
+                for (var i = 0; i < result.length; i++) {
+                    $("#areaId").append(result[i]);
+                    $("#areaId").append("; <br />");
+                }
+            }
+
+            function FillStatesCallback2(context, result) {
+                $("#states2Id").empty();
+                for (var i = 0; i < result.length; i++) {
+                    $("#states2Id").append('<option value="' + result[i] + '">' + result[i] + '</option>');
+                }
+            }
+
+            function SaveRules() {
+                var mod1 = GetSelectedModule1();
+                var mod2 = GetSelectedModule2();
+                var state1 = GetSelectedState1();
+                var state2 = GetSelectedState2();
+                $("#rulesId").append(mod1 + '(state:' + state1 + ') -> ' + mod2 + '(state:' + state2 + ')');
+                $("#rulesId").append('<br/>');
+            }
+        </script>
+
+    </head>
+    <body>
         <div><h2>Home Environment -> </h2></div>
         <section>
-        <nav>
-            <ul>
-                <li><a href="HomeStates.html">States Editor</a></li>
-                <li><a href="HomeEditor.html">Rules Editor</a></li>
-                <li><a href="link">Validation Tool</a></li>
-            </ul>
-        </nav>
-    </section>
-    <button onclick="InitStates();" >Init states</button>
-    <img src="SmartHouse.jpg" width="500" />
-
-    <div>
-        Select module:
-            <select name="Modules" id="modules1Id" onchange="FillStates1();">
+            <nav>
+                <ul>
+                    <li><a href="HomeStates.html">States Editor</a></li>
+                    <li><a href="HomeEditor.html">Rules Editor</a></li>
+                    <li><a href="link">Validation Tool</a></li>
+                </ul>
+            </nav>
+        </section>
+        <img src="SmartHouse.jpg" width="400" />
+        <hr />
+        <button onclick=" InitStates(); ">Init states</button>
+        <div>
+            Select module:
+            <select name="Modules" id="modules1Id" onchange=" FillStates1(); ">
             </select>
 
-       Select attribute:
+            Select attribute:
             <select name="Attribute" id="AttributesId">
                 <option value="Basic">Basic</option>
             </select>
 
-        States:
-        <textarea id="areaId">
+            States:
+            <textarea id="areaId">
             ON
             OFF
         </textarea>
-    </div>
-    <!--  -->
-</body>
+        </div>
+        <!--  -->
+    </body>
 </html>

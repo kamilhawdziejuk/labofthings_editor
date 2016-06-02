@@ -109,6 +109,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Editor.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="HomeEditor.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
