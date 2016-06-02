@@ -145,6 +145,7 @@
 
         function PresentRules() {
             new PlatformServiceHelper().MakeServiceCall("webapp/GetRulesWeb", "", FillRulesCallback);
+            ValidateStates();
         }
 
         function RemoveRule(id) {
@@ -181,12 +182,15 @@
                     </ul>
                 </nav>
             </section>
-            <button onclick="InitStates();">Init states</button>
+            <hr />
             <img src="SmartHouse.jpg" width="400" />
+            <hr />
+            <button onclick="InitStates();">Init states</button>
+            
 
 
             <div>
-                <h3>Defining rules</h3>
+                <h3>Defining rules:</h3>
                 IF module
                 <select name="Modules" id="modules1Id" onchange="FillStates1();"></select>
                 is in state
@@ -208,12 +212,12 @@
                 </div>-->
 
             <hr />
-            <h3>Rules added</h3>
+            <h3>Rules added:</h3>
             <span id="rulesId"></span>
 
-            <button onclick="ValidateStates();">Validate set of rules</button>
-
-            <h3>Validation results</h3>
+            <!--<button onclick="ValidateStates();">Validate set of rules</button>-->
+            <hr />
+            <h3>Validation results:</h3>
             <span id="validationsId"></span>
             <!--  -->
 

@@ -31,7 +31,7 @@ namespace HomeOS.Hub.Tools.EnvironmentMonitor.Validators
             try
             {
                 bounded.Run();
-                result.Success = !bounded.IsBounded;
+                result.Success = bounded.IsBounded;
             }
             catch (Exception ex)
             {
