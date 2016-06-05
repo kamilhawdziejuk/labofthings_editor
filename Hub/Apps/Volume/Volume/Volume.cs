@@ -121,5 +121,10 @@ namespace HomeOS.Hub.Apps.Volume
         {
             return this.volumeService.Clone();
         }
+
+        public override string GetDescription(string hint)
+        {
+            return "System speaker";
+        }
     }
 }

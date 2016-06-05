@@ -122,6 +122,11 @@ namespace HomeOS.Hub.Apps.Clock
             }
         }
 
+        public override string GetDescription(string hint)
+        {
+            return "System clock";
+        }
+
         private static string GetServiceBusConnectionString()
         {
             string connectionString = ConfigurationManager.AppSettings["Microsoft.ServiceBus.ConnectionString"];

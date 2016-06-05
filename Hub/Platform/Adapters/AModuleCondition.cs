@@ -107,6 +107,11 @@ namespace HomeOS.Hub.Platform.Adapters
             }
         }
 
+        public virtual string GetDescription(string hint)
+        {
+            return "Module";
+        }
+
         public object Clone()
         {
             IModuleCondition contractClone = this._contract.Clone() as IModuleCondition;

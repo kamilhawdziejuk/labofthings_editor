@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace HomeOS.Hub.Platform.Views
 {
@@ -31,5 +29,7 @@ namespace HomeOS.Hub.Platform.Views
         {
             get;
         }
+
+        string GetDescription(string hint);
     }
 }

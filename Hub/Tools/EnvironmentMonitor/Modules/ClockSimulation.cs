@@ -11,11 +11,6 @@ namespace HomeOS.Hub.Tools.EnvironmentMonitor.Modules
             //moduleInfo = new ModuleInfo("Light bulp", "LightBulpSimulation", null, null, false, null);
         }
 
-        public override string GetDescription(string hint)
-        {
-            return "Clock";
-        }
-
         #region Simulation
 
 
@@ -62,11 +57,16 @@ namespace HomeOS.Hub.Tools.EnvironmentMonitor.Modules
         {
             get
             {
-                Dictionary<double, string> result = new Dictionary<double, string>();
+                var result = new Dictionary<double, string>();
                 result.Add(0, "day [6;22]");
                 result.Add(1, "night (22;6)");
                 return result;
             }
+        }
+
+        public override string GetDescription(string hint)
+        {
+            return "Clock";
         }
 
         public object Clone()

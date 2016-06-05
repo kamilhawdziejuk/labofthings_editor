@@ -3,9 +3,9 @@ using HomeOS.Hub.Common;
 using System.Collections.Generic;
 namespace HomeOS.Hub.Tools.EnvironmentMonitor.Modules
 {
-    public class ThermomentrSimulation : ModuleBase, ModuleCondition, IModuleLinks
+    public class ThermometrSimulation : ModuleBase, ModuleCondition, IModuleLinks
     {
-        public ThermomentrSimulation()
+        public ThermometrSimulation()
         {
             //moduleInfo = new ModuleInfo("Light bulp", "LightBulpSimulation", null, null, false, null);
         }

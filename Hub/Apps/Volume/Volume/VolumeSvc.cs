@@ -231,6 +231,11 @@ namespace HomeOS.Hub.Apps.Volume
             }
         }
 
+        public string GetDescription(string hint)
+        {
+            return "System speaker service";
+        }
+
         public object Clone()
         {
             VolumeSvc appVolumeSvcCopy = new VolumeSvc(this.logger);

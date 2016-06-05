@@ -15,13 +15,13 @@ namespace HomeOS.Hub.Tools.EnvironmentMonitor
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
     public class HomeMonitorSvc : IHomeMonitorServiceWeb
     {
-        private VLogger logger;
-        private RulesManager _rulesManager;
-        private List<VModule> _modules = new List<VModule>();
+        private VLogger _logger;
+        private readonly RulesManager _rulesManager;
+        private readonly List<ModuleCondition> _modules = new List<ModuleCondition>();
 
-        public HomeMonitorSvc(VLogger _logger)
+        public HomeMonitorSvc(VLogger logger)
         {
-            this.logger = _logger;
+            this._logger = logger;
             _rulesManager = new RulesManager();
             InitModules();
         }
@@ -64,13 +64,8 @@ namespace HomeOS.Hub.Tools.EnvironmentMonitor
 
         public List<string> GetModuleStates(string name)
         {
-            VModule module = _modules.Where(m => m.GetDescription(null).Equals(name)).SingleOrDefault();
-            var results = new List<string>();
-            foreach (var kvp in (module as ModuleCondition).PossibleIntepretedValues)
-            {
-                results.Add(kvp.Value);
-            }
-            return results;
+            ModuleCondition module = _modules.SingleOrDefault(m => m.GetDescription(null).Equals(name));
+            return module.PossibleIntepretedValues.Select(kvp => kvp.Value).ToList();
         }
 
         public string ValidateStates()
@@ -92,7 +87,7 @@ namespace HomeOS.Hub.Tools.EnvironmentMonitor
 
         public List<string> GetModuleLinks(string name)
         {
-            VModule module = _modules.Where(m => m.GetDescription(null).Equals(name)).SingleOrDefault();
+            ModuleCondition module = _modules.SingleOrDefault(m => m.GetDescription(null).Equals(name));
             return ((IModuleLinks) module).Links;
         }
 
@@ -144,7 +139,7 @@ namespace HomeOS.Hub.Tools.EnvironmentMonitor
         private void InitModules()
         {
             _modules.Add(new LightBulpSimulation());
-            _modules.Add(new ThermomentrSimulation());
+            _modules.Add(new ThermometrSimulation());
             _modules.Add(new MotionSensorSimulation());
             _modules.Add(new SpeakerSimulation());
             _modules.Add(new ClockSimulation());
