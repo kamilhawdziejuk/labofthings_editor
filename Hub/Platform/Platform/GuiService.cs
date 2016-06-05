@@ -1898,6 +1898,8 @@ namespace HomeOS.Hub.Platform
 
         #endregion
 
+        #region users & system
+
         public List<string> GetRemoteAccessUrlWeb()
         {
             string url = String.Format("https://{0}:{1}/{2}/{3}/index.html", Settings.GatekeeperURI, HomeOS.Shared.Gatekeeper.Settings.ClientPort, Settings.HomeId, Common.Constants.GuiServiceSuffixWeb);
@@ -1978,7 +1980,7 @@ namespace HomeOS.Hub.Platform
 
                 var users = config.GetAllUsers();
 
-                List<string> retList = new List<string>();
+                var retList = new List<string>();
 
                 foreach (var user in users)
                 {
@@ -2088,6 +2090,10 @@ namespace HomeOS.Hub.Platform
             }
         }
 
+        #endregion
+
+        #region smart home editor
+
         public List<string> GetAppNamesWeb()
         {
             return _homeEditorService.GetModuleNames();
@@ -2096,6 +2102,11 @@ namespace HomeOS.Hub.Platform
         public List<string> GetModuleStatesWeb(string name)
         {
             return _homeEditorService.GetModuleStates(name);
+        }
+
+        public string AddModuleStatesWeb(string name, List<string> states)
+        {
+            return _homeEditorService.AddModuleStates(name, states);
         }
 
         public string ValidateStatesWeb()
@@ -2128,11 +2139,15 @@ namespace HomeOS.Hub.Platform
         {
             return _homeEditorService.CheckRule(ruleText);
         }
+
+        #endregion
     }
 
     [ServiceContract]
     public interface IGuiServiceWeb
     {
+        #region standard
+
         [OperationContract]
         [WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.WrappedRequest, ResponseFormat = WebMessageFormat.Json)]
         List<string> GetVersion();
@@ -2333,6 +2348,14 @@ namespace HomeOS.Hub.Platform
         [WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.WrappedRequest, ResponseFormat = WebMessageFormat.Json)]
         List<string> ShutdownWeb();
 
+        #endregion
+
+        #region Smart home editor
+
+        [OperationContract]
+        [WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.WrappedRequest, ResponseFormat = WebMessageFormat.Json)]
+        string AddModuleStatesWeb(string name, List<string> states);
+
         [OperationContract]
         [WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.WrappedRequest, ResponseFormat = WebMessageFormat.Json)]
         List<string> GetModuleStatesWeb(string name);
@@ -2361,8 +2384,9 @@ namespace HomeOS.Hub.Platform
         [WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.WrappedRequest, ResponseFormat = WebMessageFormat.Json)]
         List<string> CheckRuleWeb(string ruleText);
 
-
         List<string> GetModuleAttribValuesWeb(string name);
+
+        #endregion
 
     }
 

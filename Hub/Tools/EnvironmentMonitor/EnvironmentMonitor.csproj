@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Db\HomeConfigurationDb.cs" />
+    <Compile Include="Db\HomeModuleDbEntry.cs" />
     <Compile Include="HomeConfigurationAzureDocumentDb.cs" />
     <Compile Include="HomeConfiguration.cs" />
     <Compile Include="HomeMonitorSvc.cs" />

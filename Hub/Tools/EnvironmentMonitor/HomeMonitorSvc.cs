@@ -68,6 +68,11 @@ namespace HomeOS.Hub.Tools.EnvironmentMonitor
             return module.PossibleIntepretedValues.Select(kvp => kvp.Value).ToList();
         }
 
+        public string AddModuleStates(string name, List<string> states)
+        {
+            return string.Empty;
+        }
+
         public string ValidateStates()
         {
             var results = new ValidationsResponse();

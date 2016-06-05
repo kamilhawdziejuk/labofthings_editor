@@ -25,29 +25,18 @@
                 var selectedValue1 = selectBox.options[0].value;
                 new PlatformServiceHelper().MakeServiceCall("webapp/GetModuleStatesWeb", '{"name":"' + selectedValue1 + '"}', FillStatesCallback1);
 
-                //var selectBox2 = document.getElementById("modules2Id");
-                //var selectedValue2 = selectBox2.options[0].value;
-                //new PlatformServiceHelper().MakeServiceCall("webapp/GetModuleStatesWeb", '{"name":"' + selectedValue2 + '"}', FillStatesCallback2);
             }
 
             function FillAppNamesCallback(context, result) {
                 $("#modules1Id").empty();
-                // $("#modules2Id").empty();
                 for (var i = 0; i < result.length; i++) {
                     var optionData = '<option value="' + result[i] + '">' + result[i] + '</option>';
                     $("#modules1Id").append(optionData);
-                    // $("#modules2Id").append(optionData);
                 }
             }
 
             function GetSelectedModule1() {
                 var selectBox = document.getElementById("modules1Id");
-                var selectedValue = selectBox.options[selectBox.selectedIndex].value;
-                return selectedValue;
-            }
-
-            function GetSelectedModule2() {
-                var selectBox = document.getElementById("modules2Id");
                 var selectedValue = selectBox.options[selectBox.selectedIndex].value;
                 return selectedValue;
             }
@@ -58,22 +47,12 @@
                 return selectedValue;
             }
 
-            function GetSelectedState2() {
-                var selectBox = document.getElementById("states2Id");
-                var selectedValue = selectBox.options[selectBox.selectedIndex].value;
-                return selectedValue;
-            }
-
             function FillStates1() {
                 var parameters = '{"name":"' + GetSelectedModule1() + '"}';
                 new PlatformServiceHelper().MakeServiceCall("webapp/GetModuleStatesWeb", parameters, FillStatesCallback1);
             }
 
-            function FillStates2() {
-                var parameters = '{"name":"' + GetSelectedModule2() + '"}';
-                new PlatformServiceHelper().MakeServiceCall("webapp/GetModuleStatesWeb", parameters, FillStatesCallback2);
-            }
-
+          
             function FillStatesCallback1(context, result) {
                 $("#areaId").empty();
                 for (var i = 0; i < result.length; i++) {
@@ -82,26 +61,11 @@
                 }
             }
 
-            function FillStatesCallback2(context, result) {
-                $("#states2Id").empty();
-                for (var i = 0; i < result.length; i++) {
-                    $("#states2Id").append('<option value="' + result[i] + '">' + result[i] + '</option>');
-                }
-            }
-
-            function SaveRules() {
-                var mod1 = GetSelectedModule1();
-                var mod2 = GetSelectedModule2();
-                var state1 = GetSelectedState1();
-                var state2 = GetSelectedState2();
-                $("#rulesId").append(mod1 + '(state:' + state1 + ') -> ' + mod2 + '(state:' + state2 + ')');
-                $("#rulesId").append('<br/>');
-            }
         </script>
 
     </head>
     <body>
-        <div><h2>Home Environment -> </h2></div>
+        <div><h3>SMART HOME configuration:</h3></div>
         <section>
             <nav>
                 <ul>
