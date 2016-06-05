@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Xml;
 using HomeOS.Hub.Tools.EnvironmentMonitor.Validators;
 using PetrinetTool;
@@ -26,12 +25,12 @@ namespace EnvironmentMonitor
 
         public HomeConfigurationDb GetRules()
         {
-            return _configuration.ExecuteSimpleQuery(HomeConfigurationAzureDocumentDb.DatabaseName, HomeConfigurationAzureDocumentDb.CollectionName); 
+            return _configuration.ExecuteSimpleQuery(HomeConfigurationAzureDocumentDb.DatabaseName, HomeConfigurationAzureDocumentDb.RulesCollectionName); 
         }
 
         public void RemoveRule(string id)
         {
-            _configuration.DeleteDocumentIfExists(HomeConfigurationAzureDocumentDb.DatabaseName, HomeConfigurationAzureDocumentDb.CollectionName, id);
+            _configuration.DeleteDocumentIfExists(HomeConfigurationAzureDocumentDb.DatabaseName, HomeConfigurationAzureDocumentDb.RulesCollectionName, id);
         }
 
         public void AddRule(string mod1, string state1, string mod2, string state2)
@@ -58,9 +57,14 @@ namespace EnvironmentMonitor
             writer.Dispose();
 
 
-            _configuration.CreateDocumentIfNotExists(HomeConfigurationAzureDocumentDb.DatabaseName, HomeConfigurationAzureDocumentDb.CollectionName, new HomeRuleDbEntry(homeRule));
+            _configuration.CreateDocumentIfNotExists(HomeConfigurationAzureDocumentDb.DatabaseName, HomeConfigurationAzureDocumentDb.RulesCollectionName, new HomeRuleDbEntry(homeRule));
             
             AddToPetriNet(homeRule);
+        }
+
+        public void AddModule(HomeModuleDbEntry entry)
+        {
+            _configuration.CreateDocumentIfNotExists(HomeConfigurationAzureDocumentDb.DatabaseName, HomeConfigurationAzureDocumentDb.ModulesCollectionName, entry);
         }
 
         public List<Result> GetPetrinetProperties()

@@ -2104,9 +2104,9 @@ namespace HomeOS.Hub.Platform
             return _homeEditorService.GetModuleStates(name);
         }
 
-        public string AddModuleStatesWeb(string name, List<string> states)
+        public string AddModuleStatesWeb(string moduledef)
         {
-            return _homeEditorService.AddModuleStates(name, states);
+            return _homeEditorService.AddModuleStates(moduledef);
         }
 
         public string ValidateStatesWeb()
@@ -2354,7 +2354,7 @@ namespace HomeOS.Hub.Platform
 
         [OperationContract]
         [WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.WrappedRequest, ResponseFormat = WebMessageFormat.Json)]
-        string AddModuleStatesWeb(string name, List<string> states);
+        string AddModuleStatesWeb(string moduledef);
 
         [OperationContract]
         [WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.WrappedRequest, ResponseFormat = WebMessageFormat.Json)]

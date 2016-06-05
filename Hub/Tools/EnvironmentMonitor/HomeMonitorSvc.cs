@@ -68,8 +68,18 @@ namespace HomeOS.Hub.Tools.EnvironmentMonitor
             return module.PossibleIntepretedValues.Select(kvp => kvp.Value).ToList();
         }
 
-        public string AddModuleStates(string name, List<string> states)
+        public string AddModuleStates(string moduledef)
         {
+            string[] data = moduledef.Split(';');
+            string name = data[0];
+            var module = new HomeModuleDbEntry();
+            module.Name = name;
+            module.States = new List<string>();
+            for (int i = 1; i < data.Length; ++i)
+            {
+                module.States.Add(data[i]);
+            }
+            _rulesManager.AddModule(module);
             return string.Empty;
         }
 

@@ -61,6 +61,33 @@
                 }
             }
 
+            function AddModule() {
+                var mod1 = GetSelectedModule();
+                var states = GetModuleStates();
+                var data = mod1 + ';' + states;
+
+                var obj = new Object();
+                obj.moduledef = data;
+                var jsonString = JSON.stringify(obj);
+
+                new PlatformServiceHelper().MakeServiceCall("webapp/AddModuleStatesWeb", jsonString, EmptyCallback);
+            }
+
+            function GetSelectedModule() {
+                var selectBox = document.getElementById("modules1Id");
+                var selectedValue = selectBox.options[selectBox.selectedIndex].value;
+                return selectedValue;
+            }
+
+            function GetModuleStates() {
+                var area = document.getElementById("areaId");
+                return area.value;
+            }
+
+            function EmptyCallback(context, result) {
+
+            }
+
         </script>
 
     </head>
@@ -91,7 +118,9 @@
             <textarea id="areaId">
             ON
             OFF
-        </textarea>
+            </textarea>
+            
+            <button onclick="AddModule(); ">Add</button>
         </div>
         <!--  -->
     </body>

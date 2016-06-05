@@ -22,7 +22,7 @@ namespace EnvironmentMonitor
             this.client = new DocumentClient(new Uri(HomeConfigurationAzureDocumentDb.EndpointUri), HomeConfigurationAzureDocumentDb.PrimaryKey);
         }
 
-        public async Task CreateDocumentIfNotExists(string databaseName, string collectionName, HomeRuleDbEntry entry)
+        public async Task CreateDocumentIfNotExists(string databaseName, string collectionName, object entry)
         {
             try
             {
@@ -32,7 +32,6 @@ namespace EnvironmentMonitor
             {   
                 throw;
             }
-            
         }
 
         public async Task DeleteDocumentIfExists(string databaseName, string collectionName, string id)
